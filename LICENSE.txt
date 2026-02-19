@@ -1,0 +1,239 @@
+GRIP — Graph Retrieval with Intrinsic Patterns
+Copyright (c) 2025–2026 [Entity Name]. All rights reserved.
+
+════════════════════════════════════════════════════════════════
+
+  LICENSE GRANT
+
+  Subject to the terms of this agreement, [Entity Name] grants
+  you a limited, non-exclusive, non-transferable, revocable
+  license to use GRIP solely within the tier you have obtained
+  (Free, Licensed, or Accelerated) and in accordance with the
+  restrictions below.
+
+  GRIP Free: granted for evaluation, personal, and internal
+  non-production use only.
+
+  GRIP Licensed: granted for internal production use within
+  the licensed organization, subject to the capacity and
+  features of the purchased tier.
+
+  GRIP Accelerated: granted under the terms of a separate
+  mutual NDA and the Licensed tier terms.
+
+  No rights are granted except those expressly stated here.
+  All rights not granted are reserved.
+
+════════════════════════════════════════════════════════════════
+
+  GRIP FREE
+
+  A free demo of the GRIP retrieval engine.
+
+    pip install getgrip
+
+  Includes the full learning retrieval pipeline: BM25 engine,
+  co-occurrence expansion, auto-remember, sessions, confidence
+  scoring, all plugins, CLI and API access.
+
+  Limit: 10,000 indexed chunks. CPU engine only.
+  Learning resets on chunk deletion.
+
+  This is a demo product. Not licensed for production use.
+
+  The demo is a separate codebase from the licensed product.
+  No license key system. No upgrade path within this package.
+  To upgrade, purchase a licensed deployment.
+
+════════════════════════════════════════════════════════════════
+
+  GRIP LICENSED
+
+  The licensed product is delivered as a Docker image or
+  compiled binary with a license key.
+
+  Includes everything in GRIP Free, plus:
+
+    Unlimited learning persistence (survives chunk deletion)
+    Chunk capacity per tier (see pricing page)
+    Priority ingestion pipeline
+    Production-grade API server
+
+  License keys are validated locally. No phone-home.
+  No telemetry. No network requirement. Works air-gapped.
+
+  One key per deployment. No per-seat fees. No per-query fees.
+  Unlimited users within the licensed organization.
+
+  Tiers and pricing: https://getgrip.dev/pricing
+
+  ──────────────────────────────────────────────────────────────
+
+  GRIP ACCELERATED
+
+  An accelerated GPU engine is available for organizations
+  with large-scale retrieval requirements.
+
+  Access requires:
+
+    A signed mutual NDA
+    A licensed GRIP deployment at any commercial tier
+
+  The accelerated engine, its documentation, benchmarks,
+  and any technical details disclosed during evaluation
+  are confidential information.
+
+  The existence of an accelerated engine and the public
+  benchmark (1.2ms / 28M records / single GPU) are not
+  confidential. The mechanism is.
+
+  Pricing and evaluation: https://getgrip.dev/enterprise
+
+════════════════════════════════════════════════════════════════
+
+  PURCHASING
+
+  Self-serve (instant key delivery):
+    https://getgrip.dev/buy
+
+  Enterprise and accelerated engine:
+    enterprise@getgrip.dev
+
+  License keys are delivered immediately upon payment.
+  Keys activate via environment variable:
+
+    export GRIP_LICENSE_KEY=<your-key>
+
+════════════════════════════════════════════════════════════════
+
+  OEM / EMBEDDING LICENSE
+
+  Distributing GRIP as part of a product shipped to end users
+  (SaaS platform, IDE plugin, appliance, managed service)
+  requires an OEM agreement. Contact enterprise@getgrip.dev
+
+════════════════════════════════════════════════════════════════
+
+  RESTRICTIONS
+
+  You may NOT:
+
+    Reverse engineer, decompile, or disassemble any compiled
+    engine binaries (.so / .pyd files).
+
+    Remove or alter this license or any copyright notices.
+
+    Redistribute GRIP outside your licensed organization
+    without an OEM agreement.
+
+    Use GRIP to build a product whose primary function is
+    document retrieval, semantic search, or corpus indexing
+    offered as a standalone service to third parties.
+
+    Share, transfer, or publish license keys.
+
+    Circumvent chunk limits or other license constraints.
+
+    Disclose technical details of the accelerated engine
+    without written permission.
+
+════════════════════════════════════════════════════════════════
+
+  TERMINATION
+
+  This license is effective until terminated.
+
+  GRIP Free: [Entity Name] may terminate your right to use
+  GRIP Free at any time, for any reason, with no notice.
+
+  GRIP Licensed: If you breach any term of this agreement,
+  your license terminates automatically 30 days after
+  written notice, unless the breach is cured within that
+  period. Material breaches (reverse engineering, key
+  sharing, redistribution, or disclosure of accelerated
+  engine details) terminate the license immediately upon
+  written notice, with no cure period.
+
+  Upon termination you must destroy all copies of GRIP
+  and any compiled binaries in your possession.
+
+  Sections that survive termination: Restrictions, Export
+  Compliance, Limitation of Liability, No Warranty,
+  Governing Law.
+
+════════════════════════════════════════════════════════════════
+
+  EXPORT COMPLIANCE
+
+  This software is subject to United States export control
+  laws and regulations, including the Export Administration
+  Regulations (EAR).
+
+  License keys will NOT be issued to persons or entities
+  in countries subject to U.S. embargo or comprehensive
+  sanctions, currently including:
+
+    Cuba, Iran, North Korea, Syria, Russia, Belarus,
+    and the Crimea, Donetsk, and Luhansk regions of Ukraine.
+
+  License keys will NOT be issued to any person or entity
+  on the U.S. Denied Persons List, Entity List, or
+  Specially Designated Nationals (SDN) List.
+
+  The accelerated engine binary utilizes hardware capabilities
+  that may be subject to U.S. export controls in certain
+  jurisdictions. Licensee shall not export, re-export, or
+  transfer the compiled binary or license keys to any
+  destination, end user, or end use prohibited by U.S. law.
+
+  Licensee represents and warrants compliance with all
+  applicable export laws.
+
+════════════════════════════════════════════════════════════════
+
+  LIMITATION OF LIABILITY
+
+  TO THE MAXIMUM EXTENT PERMITTED BY LAW, [ENTITY NAME]'S
+  TOTAL LIABILITY UNDER THIS AGREEMENT SHALL NOT EXCEED
+  THE LICENSE FEES PAID BY LICENSEE IN THE TWELVE (12)
+  MONTHS PRECEDING THE EVENT GIVING RISE TO THE CLAIM.
+
+  FOR GRIP FREE (WHERE NO FEES WERE PAID), [ENTITY NAME]'S
+  TOTAL LIABILITY SHALL NOT EXCEED FIFTY U.S. DOLLARS ($50).
+
+  IN NO EVENT SHALL [ENTITY NAME] BE LIABLE FOR ANY
+  INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR
+  PUNITIVE DAMAGES, INCLUDING LOSS OF PROFITS, DATA,
+  OR BUSINESS OPPORTUNITY, REGARDLESS OF THE THEORY
+  OF LIABILITY.
+
+════════════════════════════════════════════════════════════════
+
+  NO WARRANTY
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY
+  KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
+  PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
+  BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+  IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+  OTHER DEALINGS IN THE SOFTWARE.
+
+════════════════════════════════════════════════════════════════
+
+  GOVERNING LAW
+
+  This agreement is governed by the laws of the State of
+  [State], United States, without regard to conflict of
+  law principles.
+
+  Any dispute arising under this agreement shall be resolved
+  exclusively in the state or federal courts located in
+  [County], [State], and each party consents to the personal
+  jurisdiction of such courts.
+
+════════════════════════════════════════════════════════════════
+
+  https://getgrip.dev
+  enterprise@getgrip.dev
