@@ -6,7 +6,7 @@
 
 Complete documentation for GRIP — Graph Retrieval with Intrinsic Patterns.
 
-← Back to [README](./README.md) · 🌐 [getgrip.dev](https://getgrip.dev)
+← Back to [README](./README.md) · 🌐 [getgrip.dev](https://grip-hub.github.io/getgrip.dev/)
 
 ---
 
@@ -116,7 +116,7 @@ Two-stage pipeline: retrieval narrows candidates, then a pluggable neural rerank
 
 The free `pip install` package includes all features with a **10,000 chunk limit**. No license key required. No time limit. Chunks can be deleted and replaced, but learned data (co-occurrence, remember scores) resets when you delete a source. Licensed tiers preserve learning permanently — even through deletions.
 
-Need more? See [Pricing](https://getgrip.dev/#pricing).
+Need more? See [Pricing](https://grip-hub.github.io/getgrip.dev/#pricing).
 
 ---
 

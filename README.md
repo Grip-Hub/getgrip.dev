@@ -8,7 +8,7 @@
 
 A retrieval engine that learns your data's vocabulary, remembers what works, and tells the AI when it doesn't have a good answer.
 
-🌐 [getgrip.dev](https://getgrip.dev) · 📦 [PyPI](https://pypi.org/project/getgrip/) · 📖 [User Guide](./GUIDE.md) · 📄 [License](./LICENSE)
+🌐 [getgrip.dev](https://grip-hub.github.io/getgrip.dev/) · 📦 [PyPI](https://pypi.org/project/getgrip/) · 📖 [User Guide](./GUIDE.md) · 📄 [License](./LICENSE)
 
 ---
 
@@ -163,4 +163,4 @@ An accelerated engine is available for organizations with large-scale retrieval 
 
 📄 **[License](./LICENSE)** — Free tier for evaluation, licensed tiers for production
 
-🌐 **[getgrip.dev](https://getgrip.dev)** — Landing page with pricing and benchmarks
+🌐 **[getgrip.dev](https://grip-hub.github.io/getgrip.dev/)** — Landing page with pricing and benchmarks
