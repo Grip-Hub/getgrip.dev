@@ -91,7 +91,7 @@ Two-stage pipeline: retrieval narrows candidates, then a pluggable neural rerank
 
 ## Free Demo Limits
 
-The free `pip install` package includes all features with a **10,000 chunk limit**. No license key required. No time limit. Learning resets on chunk deletion.
+The free `pip install` package includes all features with a **10,000 chunk limit**. No license key required. No time limit. Chunks can be deleted and replaced, but learned data (co-occurrence, remember scores) resets on deletion. Licensed tiers preserve learning permanently.
 
 Need more? See [Pricing](https://getgrip.dev/#pricing).
 
@@ -101,10 +101,10 @@ Need more? See [Pricing](https://getgrip.dev/#pricing).
 
 | Tier | Chunks | Price |
 |------|--------|-------|
-| Personal | 50,000 | $499/year |
-| Team | 250,000 | $1,499/year |
-| Professional | 2,000,000 | $4,999/year |
-| Enterprise | 25,000,000 | [Contact us](mailto:enterprise@getgrip.dev) |
+| Personal | 100,000 | $499/year |
+| Team | 500,000 | $1,499/year |
+| Professional | 5,000,000 | $4,999/year |
+| Enterprise | 25,000,000+ | [Contact us](mailto:enterprise@getgrip.dev) |
 
 One license per deployment. No per-seat fees. No per-query fees. Unlimited users.
 
