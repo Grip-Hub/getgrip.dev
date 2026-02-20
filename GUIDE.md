@@ -1,5 +1,9 @@
 # GRIP User Guide
 
+<p align="center">
+  <img src="Logo.png" alt="GRIP" width="400">
+</p>
+
 Complete documentation for GRIP — Graph Retrieval with Intrinsic Patterns.
 
 ← Back to [README](./README.md) · 🌐 [getgrip.dev](https://getgrip.dev)

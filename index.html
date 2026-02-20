@@ -5,6 +5,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>GRIP — Get a grip on your codebase</title>
 <meta name="description" content="A retrieval engine that learns your codebase's vocabulary. No embeddings. No vector database. 97.5% accuracy across 3,000 queries.">
+<meta property="og:title" content="GRIP — Get a grip on your codebase">
+<meta property="og:description" content="A retrieval engine that learns your data's vocabulary. No embeddings. No vector database. 97.5% accuracy.">
+<meta property="og:image" content="https://getgrip.dev/Logo.png">
+<meta property="og:url" content="https://getgrip.dev">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="GRIP — Get a grip on your codebase">
+<meta name="twitter:description" content="A retrieval engine that learns your data's vocabulary. No embeddings. No vector database. 97.5% accuracy.">
+<meta name="twitter:image" content="https://getgrip.dev/Logo.png">
+<link rel="icon" type="image/png" href="Logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
@@ -47,6 +57,78 @@ body::before {
   z-index: 9999;
 }
 
+/* ── Navigation ───────────────────────── */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 16px 0;
+  background: rgba(7, 11, 20, 0.85);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.3s;
+}
+
+nav.scrolled { border-bottom-color: var(--border); }
+
+nav .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-logo {
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.nav-logo span { color: var(--grip); }
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  list-style: none;
+}
+
+.nav-links a {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-dim);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover { color: var(--text); }
+
+.nav-links .btn-nav {
+  padding: 8px 18px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.nav-links .btn-nav:hover {
+  border-color: var(--grip);
+  color: var(--grip);
+}
+
+.nav-links .gh-link {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.nav-links .gh-link svg { fill: currentColor; }
+
 /* ── Layout ────────────────────────────── */
 .container {
   max-width: 1080px;
@@ -58,7 +140,7 @@ section { padding: 100px 0; }
 
 /* ── Hero ──────────────────────────────── */
 .hero {
-  padding: 140px 0 100px;
+  padding: 160px 0 100px;
   position: relative;
 }
 
@@ -97,6 +179,15 @@ section { padding: 100px 0; }
   animation: pulse 2s ease infinite;
 }
 
+.hero-logo {
+  display: block;
+  max-width: 320px;
+  height: auto;
+  margin-bottom: 32px;
+  animation: fadeUp 0.6s ease 0.05s both;
+  filter: drop-shadow(0 0 40px rgba(14, 165, 233, 0.3));
+}
+
 @keyframes pulse {
   0%, 100% { opacity: 1; }
   50% { opacity: 0.4; }
@@ -127,6 +218,14 @@ h1 .highlight {
   animation: fadeUp 0.6s ease 0.2s both;
 }
 
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  animation: fadeUp 0.6s ease 0.3s both;
+}
+
 .hero-install {
   display: inline-flex;
   align-items: center;
@@ -140,7 +239,6 @@ h1 .highlight {
   color: var(--grip);
   cursor: pointer;
   transition: all 0.2s ease;
-  animation: fadeUp 0.6s ease 0.3s both;
   position: relative;
 }
 
@@ -158,6 +256,19 @@ h1 .highlight {
   background: var(--surface-2);
   border-radius: 6px;
 }
+
+.hero-docker {
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+.hero-docker a {
+  color: var(--text-dim);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.hero-docker a:hover { color: var(--grip); }
 
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(20px); }
@@ -222,6 +333,61 @@ h2 {
   max-width: 560px;
   line-height: 1.7;
 }
+
+/* ── Terminal Demo ─────────────────────── */
+.terminal {
+  background: #0c0c0c;
+  border: 1px solid #2a2a2a;
+  border-radius: 14px;
+  overflow: hidden;
+  margin-top: 48px;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.5);
+}
+
+.terminal-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 20px;
+  background: #161616;
+  border-bottom: 1px solid #2a2a2a;
+}
+
+.terminal-dot {
+  width: 12px; height: 12px;
+  border-radius: 50%;
+}
+
+.terminal-dot.r { background: #ff5f57; }
+.terminal-dot.y { background: #febc2e; }
+.terminal-dot.g { background: #28c840; }
+
+.terminal-title {
+  flex: 1;
+  text-align: center;
+  font-size: 13px;
+  color: #666;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.terminal-body {
+  padding: 24px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13.5px;
+  line-height: 1.7;
+  overflow-x: auto;
+}
+
+.terminal-body .prompt-line { color: #888; }
+.terminal-body .cmd { color: #e2e8f0; }
+.terminal-body .comment { color: #555; }
+.terminal-body .output { color: #8494b0; }
+.terminal-body .hl-cyan { color: #0ea5e9; }
+.terminal-body .hl-green { color: #10b981; }
+.terminal-body .hl-yellow { color: #f59e0b; }
+.terminal-body .hl-dim { color: #5a6a88; }
+.terminal-body .sep { color: #333; }
+.terminal-body .block { margin: 14px 0; }
 
 /* ── Features ──────────────────────────── */
 .features-grid {
@@ -368,6 +534,58 @@ h2 {
 .compare-table .yes { color: var(--accent); font-weight: 600; }
 .compare-table .no { color: var(--text-muted); }
 
+/* ── Stack / Integration ───────────────── */
+.stack-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: center;
+  margin-top: 60px;
+}
+
+.stack-logos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.logo-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-dim);
+  transition: all 0.2s;
+}
+
+.logo-pill:hover {
+  border-color: var(--border-light);
+  color: var(--text);
+}
+
+.stack-code {
+  background: #0c0c0c;
+  border: 1px solid #2a2a2a;
+  border-radius: 12px;
+  padding: 24px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  line-height: 1.7;
+  overflow-x: auto;
+}
+
+.stack-code .kw { color: #c792ea; }
+.stack-code .fn { color: #82aaff; }
+.stack-code .str { color: #c3e88d; }
+.stack-code .cm { color: #555; }
+.stack-code .var { color: #e2e8f0; }
+.stack-code .num { color: #0ea5e9; }
+
 /* ── Pricing ───────────────────────────── */
 .pricing-grid {
   display: grid;
@@ -462,6 +680,21 @@ h2 {
   font-size: 14px;
 }
 
+.price-note {
+  margin-top: 40px;
+  padding: 20px 24px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  font-size: 14px;
+  color: var(--text-dim);
+  line-height: 1.7;
+}
+
+.price-note strong { color: var(--text); }
+.price-note a { color: var(--grip); text-decoration: none; }
+.price-note a:hover { text-decoration: underline; }
+
 .btn {
   display: inline-flex;
   align-items: center;
@@ -540,22 +773,47 @@ h2 {
 footer {
   padding: 48px 0;
   border-top: 1px solid var(--border);
-  text-align: center;
-  color: var(--text-muted);
-  font-size: 14px;
 }
 
-footer a { color: var(--text-dim); text-decoration: none; }
-footer a:hover { color: var(--grip); }
+.footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer-left {
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+.footer-left strong { color: var(--text); }
+
+.footer-links {
+  display: flex;
+  gap: 24px;
+  list-style: none;
+}
+
+.footer-links a {
+  font-size: 14px;
+  color: var(--text-dim);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-links a:hover { color: var(--grip); }
 
 /* ── Responsive ────────────────────────── */
 @media (max-width: 768px) {
   .stats-bar { grid-template-columns: repeat(2, 1fr); }
   .features-grid { grid-template-columns: 1fr; }
   .pricing-grid { grid-template-columns: 1fr; }
+  .stack-grid { grid-template-columns: 1fr; }
   section { padding: 64px 0; }
-  .hero { padding: 100px 0 60px; }
+  .hero { padding: 120px 0 60px; }
   .enterprise-cta { padding: 32px 20px; }
+  .footer-inner { flex-direction: column; gap: 16px; text-align: center; }
+  .nav-links .hide-mobile { display: none; }
 }
 
 @media (max-width: 1024px) and (min-width: 769px) {
@@ -564,10 +822,26 @@ footer a:hover { color: var(--grip); }
 
 @media (max-width: 480px) {
   .stats-bar { grid-template-columns: 1fr; }
+  .hero-actions { flex-direction: column; align-items: flex-start; }
 }
 </style>
 </head>
 <body>
+
+<!-- ═══ NAV ═══ -->
+<nav id="nav">
+<div class="container">
+  <a href="#" class="nav-logo"><span>G</span>RIP</a>
+  <ul class="nav-links">
+    <li><a href="#demo" class="hide-mobile">Demo</a></li>
+    <li><a href="#features">Features</a></li>
+    <li><a href="#benchmarks">Benchmarks</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="https://github.com/Grip-Hub/getgrip" class="gh-link" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg> GitHub</a></li>
+    <li><a href="https://github.com/Grip-Hub/getgrip/blob/main/GUIDE.md" class="btn-nav" target="_blank" rel="noopener">Docs</a></li>
+  </ul>
+</div>
+</nav>
 
 <!-- ═══ HERO ═══ -->
 <section class="hero">
@@ -576,12 +850,18 @@ footer a:hover { color: var(--grip); }
     <span class="dot"></span>
     Open source retrieval engine
   </div>
+  <img src="Logo.png" alt="GRIP — Get a grip on your data" class="hero-logo">
   <h1>Get a <span class="highlight">grip</span> on<br>your codebase.</h1>
   <p class="hero-sub">A retrieval engine that learns your data's vocabulary, remembers what works, and tells the AI when it doesn't have a good answer.</p>
 
-  <div class="hero-install" onclick="navigator.clipboard.writeText('pip install getgrip');this.querySelector('.copy-hint').textContent='Copied!'">
-    <span class="prompt">$</span> pip install getgrip
-    <span class="copy-hint">Click to copy</span>
+  <div class="hero-actions">
+    <div class="hero-install" onclick="navigator.clipboard.writeText('pip install getgrip');this.querySelector('.copy-hint').textContent='Copied!'">
+      <span class="prompt">$</span> pip install getgrip
+      <span class="copy-hint">Click to copy</span>
+    </div>
+    <div class="hero-docker">
+      or <a href="#demo">use Docker</a>
+    </div>
   </div>
 
   <div class="stats-bar">
@@ -600,6 +880,64 @@ footer a:hover { color: var(--grip); }
     <div class="stat">
       <div class="stat-num">97.5%</div>
       <div class="stat-label">Accuracy (3,000 queries)</div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ═══ DEMO ═══ -->
+<section id="demo">
+<div class="container">
+  <div class="section-label">See it work</div>
+  <h2>Three commands. Real results.</h2>
+  <p class="section-desc">Install GRIP, ingest FastAPI from GitHub, search it. Under 5ms. No config. No model downloads.</p>
+
+  <div class="terminal">
+    <div class="terminal-bar">
+      <div class="terminal-dot r"></div>
+      <div class="terminal-dot y"></div>
+      <div class="terminal-dot g"></div>
+      <div class="terminal-title">terminal — grip demo</div>
+    </div>
+    <div class="terminal-body">
+<div class="block">
+<span class="comment"># Start GRIP</span><br>
+<span class="prompt-line">$</span> <span class="cmd">docker run -d -p 7878:8000 -v grip-data:/data griphub/grip:free</span>
+</div>
+
+<div class="block">
+<span class="comment"># Ingest FastAPI from GitHub — 2,424 files</span><br>
+<span class="prompt-line">$</span> <span class="cmd">curl -X POST localhost:7878/ingest -H "Content-Type: application/json" \</span><br>
+<span class="cmd">&nbsp;&nbsp;-d '{"source": "https://github.com/tiangolo/fastapi"}'</span><br>
+<br>
+<span class="output">{"status": "ok", "chunks": </span><span class="hl-cyan">4195</span><span class="output">, "files": </span><span class="hl-cyan">2424</span><span class="output">, "time_sec": </span><span class="hl-cyan">16.2</span><span class="output">}</span>
+</div>
+
+<div class="block">
+<span class="comment"># Search — watch co-occurrence expand your query automatically</span><br>
+<span class="prompt-line">$</span> <span class="cmd">curl "localhost:7878/search?q=OAuth+bearer+token&amp;top_k=3"</span><br>
+<br>
+<span class="hl-dim">query:</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="output">"OAuth bearer token"</span><br>
+<span class="hl-dim">expanded:</span>&nbsp;&nbsp;&nbsp;<span class="hl-cyan">"OAuth bearer token authent secur valid header"</span><br>
+<span class="hl-dim">confidence:</span>&nbsp;<span class="hl-green">HIGH</span><br>
+<span class="hl-dim">latency:</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl-yellow">2.1ms</span><br>
+<br>
+<span class="sep">───────────────────────────────────────────────────</span><br>
+<span class="hl-green">① [32.4]</span> <span class="output">fastapi/security/oauth2.py</span><span class="hl-dim">:370</span><br>
+<span class="hl-dim">&nbsp;&nbsp;class OAuth2PasswordBearer(OAuth2):</span><br>
+<span class="hl-dim">&nbsp;&nbsp;&nbsp;&nbsp;def __init__(self, tokenUrl: str, scheme_name: str ...</span><br>
+<br>
+<span class="hl-green">② [28.1]</span> <span class="output">docs/en/docs/tutorial/security/oauth2-jwt.md</span><span class="hl-dim">:1</span><br>
+<span class="hl-dim">&nbsp;&nbsp;OAuth2 with Password (and hashing), Bearer with JWT tokens ...</span><br>
+<br>
+<span class="hl-green">③ [24.7]</span> <span class="output">fastapi/security/http.py</span><span class="hl-dim">:42</span><br>
+<span class="hl-dim">&nbsp;&nbsp;class HTTPBearer(HTTPBase): ...</span>
+</div>
+
+<div class="block">
+<span class="comment"># GRIP learned "OAuth" → "authent secur valid header" from YOUR data.</span><br>
+<span class="comment"># No embeddings. No vectors. Just learned vocabulary.</span>
+</div>
     </div>
   </div>
 </div>
@@ -636,12 +974,56 @@ footer a:hover { color: var(--grip); }
     <div class="feature-card">
       <div class="feature-icon">🔌</div>
       <h3>Plugin Architecture</h3>
-      <p>Ingest from GitHub, local files, any source. Chunk code or prose. Query via CLI, API, or any LLM. Ollama and OpenAI-compatible.</p>
+      <p>Ingest from GitHub, local files, any source. Chunk code or prose. Query via CLI, API, or web UI. Ollama, OpenAI, and Anthropic LLM plugins built in.</p>
     </div>
     <div class="feature-card">
       <div class="feature-icon">✈️</div>
       <h3>Fully Offline</h3>
-      <p>No cloud dependency. No network requirement. Works air-gapped. Your data stays on your machine. Always.</p>
+      <p>No cloud dependency. No network requirement. No telemetry. Works air-gapped. Your data stays on your machine. Always.</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ═══ WORKS WITH YOUR STACK ═══ -->
+<section id="stack">
+<div class="container">
+  <div class="section-label">Integration</div>
+  <h2>Drop into your existing stack.</h2>
+  <p class="section-desc">GRIP is a JSON API on localhost. Swap it into any RAG pipeline in 5 minutes. No SDK. No client library. Just HTTP.</p>
+
+  <div class="stack-grid">
+    <div>
+      <div class="stack-logos">
+        <div class="logo-pill">🦜 LangChain</div>
+        <div class="logo-pill">🦙 LlamaIndex</div>
+        <div class="logo-pill">🐍 Python</div>
+        <div class="logo-pill">⬡ Node.js</div>
+        <div class="logo-pill">🐳 Docker</div>
+        <div class="logo-pill">🔧 Any HTTP client</div>
+      </div>
+      <p style="margin-top: 24px; font-size: 15px; color: var(--text-dim); line-height: 1.7;">
+        Replace Pinecone, Chroma, or any vector store. Your existing prompts, chains, and agents work unchanged — GRIP just replaces the retrieval backend.
+      </p>
+      <p style="margin-top: 12px; font-size: 15px; color: var(--text-dim); line-height: 1.7;">
+        Drop your embedding API costs. Drop your vector database bill. Get vocabulary learning and confidence scoring that vector search doesn't have.
+      </p>
+      <a href="https://github.com/Grip-Hub/getgrip/blob/main/GUIDE.md#integrating-grip-into-your-application" class="btn btn-outline" style="margin-top: 24px;" target="_blank" rel="noopener">See integration examples →</a>
+    </div>
+    <div class="stack-code">
+<span class="cm"># LangChain — replace Pinecone in 12 lines</span><br>
+<span class="kw">class</span> <span class="fn">GRIPRetriever</span>(<span class="var">BaseRetriever</span>):<br>
+&nbsp;&nbsp;<span class="var">grip_url</span>: <span class="var">str</span> = <span class="str">"http://localhost:7878"</span><br>
+<br>
+&nbsp;&nbsp;<span class="kw">def</span> <span class="fn">_get_relevant_documents</span>(<span class="var">self</span>, <span class="var">query</span>):<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="var">r</span> = <span class="var">requests</span>.<span class="fn">post</span>(<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">f</span><span class="str">"{self.grip_url}/search"</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="var">json</span>={<span class="str">"q"</span>: <span class="var">query</span>, <span class="str">"top_k"</span>: <span class="num">5</span>}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">return</span> [<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="fn">Document</span>(<span class="var">page_content</span>=<span class="var">c</span>[<span class="str">"text"</span>])<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">for</span> <span class="var">c</span> <span class="kw">in</span> <span class="var">r</span>.<span class="fn">json</span>()[<span class="str">"results"</span>]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;]
     </div>
   </div>
 </div>
@@ -656,7 +1038,7 @@ footer a:hover { color: var(--grip); }
 
   <div class="bench-combined">
     <div class="bench-combined-num">0.58</div>
-    <div class="bench-combined-label"><strong>NDCG@10</strong> across 6 BEIR datasets, 2,771 queries.<br>Beats BM25 on all 6. Beats DPR, approaches ColBERT v2.</div>
+    <div class="bench-combined-label"><strong>NDCG@10</strong> across 6 BEIR datasets, 2,771 queries.<br>Beats BM25 on all 6.</div>
   </div>
 
   <table class="bench-table" style="margin-top: 40px;">
@@ -713,14 +1095,14 @@ footer a:hover { color: var(--grip); }
       <div class="price-amount" style="font-size: 36px;">$0</div>
       <div class="price-desc">Try GRIP. No credit card. No time limit.</div>
       <ul class="price-features">
-        <li>10,000 chunks</li>
+        <li>10,000 chunks (~3,500 files)</li>
         <li>All features included</li>
         <li>Co-occurrence &amp; remember</li>
         <li>Sessions &amp; confidence</li>
-        <li>CLI + API access</li>
+        <li>CLI + API + Web UI</li>
         <li>Learning resets on deletion</li>
       </ul>
-      <a href="https://pypi.org/project/getgrip/" class="btn btn-outline" style="width: 100%; text-align: center;">pip install getgrip</a>
+      <a href="https://pypi.org/project/getgrip/" class="btn btn-outline" style="width: 100%; text-align: center;" target="_blank" rel="noopener">pip install getgrip</a>
     </div>
 
     <div class="price-card">
@@ -728,29 +1110,31 @@ footer a:hover { color: var(--grip); }
       <div class="price-amount">$499<span>/year</span></div>
       <div class="price-desc">For individual developers and small projects.</div>
       <ul class="price-features">
-        <li>100,000 chunks</li>
+        <li>100,000 chunks (~35K files)</li>
         <li>Unlimited users</li>
-        <li>Learning persistence</li>
+        <li>Learning persists permanently</li>
         <li>CPU engine</li>
-        <li>CLI + API access</li>
+        <li>CLI + API + Web UI</li>
         <li>All plugins included</li>
       </ul>
-      <a href="#" class="btn btn-outline" style="width: 100%; text-align: center;">Buy Personal</a>
+      <!-- TODO: Replace with LemonSqueezy checkout URL -->
+      <a href="#pricing" class="btn btn-outline" style="width: 100%; text-align: center;">Buy Personal</a>
     </div>
 
     <div class="price-card featured">
       <div class="price-tier">Team</div>
-      <div class="price-amount">$1499<span>/year</span></div>
+      <div class="price-amount">$1,499<span>/year</span></div>
       <div class="price-desc">For teams working with larger codebases.</div>
       <ul class="price-features">
-        <li>500,000 chunks</li>
+        <li>500,000 chunks (~180K files)</li>
         <li>Unlimited users</li>
-        <li>Learning persistence</li>
+        <li>Learning persists permanently</li>
         <li>CPU engine</li>
-        <li>CLI + API access</li>
+        <li>CLI + API + Web UI</li>
         <li>All plugins included</li>
       </ul>
-      <a href="#" class="btn btn-primary" style="width: 100%; text-align: center;">Buy Team</a>
+      <!-- TODO: Replace with LemonSqueezy checkout URL -->
+      <a href="#pricing" class="btn btn-primary" style="width: 100%; text-align: center;">Buy Team</a>
     </div>
 
     <div class="price-card">
@@ -758,22 +1142,27 @@ footer a:hover { color: var(--grip); }
       <div class="price-amount">$4,999<span>/year</span></div>
       <div class="price-desc">For organizations with serious retrieval needs.</div>
       <ul class="price-features">
-        <li>5,000,000 chunks</li>
+        <li>5,000,000 chunks (~1.8M files)</li>
         <li>Unlimited users</li>
-        <li>Learning persistence</li>
+        <li>Learning persists permanently</li>
         <li>CPU engine</li>
         <li>Priority ingestion</li>
         <li>All plugins included</li>
       </ul>
-      <a href="#" class="btn btn-outline" style="width: 100%; text-align: center;">Buy Professional</a>
+      <!-- TODO: Replace with LemonSqueezy checkout URL -->
+      <a href="#pricing" class="btn btn-outline" style="width: 100%; text-align: center;">Buy Professional</a>
     </div>
+  </div>
+
+  <div class="price-note">
+    <strong>How many chunks do I need?</strong> Your text files × 3 ≈ chunks. FastAPI (2,424 files) = 4,195 chunks. Linux kernel (70K+ files) = 188K chunks. Most projects fit comfortably in the free tier. See the <a href="https://github.com/Grip-Hub/getgrip/blob/main/GUIDE.md#estimating-your-chunk-count">sizing guide</a> for details.
   </div>
 
   <!-- Enterprise -->
   <div class="enterprise-cta">
     <div class="enterprise-stat">1.2ms at 28 million records. Single GPU.</div>
     <p>An accelerated engine is available for organizations with large-scale retrieval needs.</p>
-    <a href="mailto:enterprise@getgrip.dev" class="btn btn-primary">Contact Enterprise</a>
+    <a href="/cdn-cgi/l/email-protection#94f1fae0f1e6e4e6fde7f1d4f3f1e0f3e6fde4baf0f1e2" class="btn btn-primary">Contact Enterprise</a>
   </div>
 </div>
 </section>
@@ -781,10 +1170,18 @@ footer a:hover { color: var(--grip); }
 <!-- ═══ FOOTER ═══ -->
 <footer>
 <div class="container">
-  <p style="margin-bottom: 8px;"><strong style="color: var(--text);">GRIP</strong> — Graph Retrieval with Intrinsic Patterns</p>
-  <p><a href="mailto:enterprise@getgrip.dev">enterprise@getgrip.dev</a></p>
+  <div class="footer-inner">
+    <div class="footer-left">
+      <strong>GRIP</strong> — Graph Retrieval with Intrinsic Patterns
+    </div>
+    <ul class="footer-links">
+      <li><a href="https://github.com/Grip-Hub/getgrip" target="_blank" rel="noopener">GitHub</a></li>
+      <li><a href="https://github.com/Grip-Hub/getgrip/blob/main/GUIDE.md" target="_blank" rel="noopener">Docs</a></li>
+      <li><a href="https://pypi.org/project/getgrip/" target="_blank" rel="noopener">PyPI</a></li>
+      <li><a href="/cdn-cgi/l/email-protection#ef8a819b8a9d9f9d869c8aaf888a9b889d869fc18b8a99">Contact</a></li>
+    </ul>
+  </div>
 </div>
 </footer>
 
-</body>
-</html>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><scrip

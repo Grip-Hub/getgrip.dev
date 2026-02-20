@@ -1,5 +1,9 @@
 # GRIP
 
+<p align="center">
+  <img src="Logo.png" alt="GRIP — Get a grip on your data" width="480">
+</p>
+
 **Get a grip on your codebase.**
 
 A retrieval engine that learns your data's vocabulary, remembers what works, and tells the AI when it doesn't have a good answer.
