@@ -1,583 +1,242 @@
 GRIP — Graph Retrieval with Intrinsic Patterns
-Software License Agreement
-Version 1.1 — Effective February 19, 2026
-Copyright (c) 2025–2026 Michael Davis. All rights reserved.
-
-https://getgrip.dev
+Copyright (c) 2025–2026 [Entity Name]. All rights reserved.
 
 ════════════════════════════════════════════════════════════════
 
-  1. ACCEPTANCE
+  LICENSE GRANT
 
-  By downloading, installing, copying, or otherwise using the
-  Software, Licensee agrees to be bound by all terms and
-  conditions of this Agreement. If Licensee does not agree to
-  these terms, Licensee must not download, install, or use the
-  Software.
+  Subject to the terms of this agreement, [Entity Name] grants
+  you a limited, non-exclusive, non-transferable, revocable
+  license to use GRIP solely within the tier you have obtained
+  (Free, Licensed, or Accelerated) and in accordance with the
+  restrictions below.
 
-  If Licensee is accepting this Agreement on behalf of an
-  Organization, Licensee represents and warrants that it has
-  the authority to bind that Organization to these terms.
+  GRIP Free: granted for evaluation, personal, and internal
+  non-production use only.
 
-════════════════════════════════════════════════════════════════
+  GRIP Licensed: granted for internal production use within
+  the licensed organization, subject to the capacity and
+  features of the purchased tier.
 
-  2. DEFINITIONS
+  GRIP Accelerated: granted under the terms of a separate
+  mutual NDA and the Licensed tier terms.
 
-  "Licensor" means Michael Davis, an individual, sole owner
-  and developer of the GRIP software.
-
-  "Licensee" means the individual or entity that has obtained
-  a copy of GRIP under the terms of this Agreement.
-
-  "GRIP" or "Software" means the GRIP retrieval engine,
-  including all source code, compiled binaries, documentation,
-  configuration files, plugins, CLI tools, API endpoints, and
-  any updates or patches provided by Licensor.
-
-  "Deployment" means a single running instance of the GRIP
-  engine, whether on a physical server, virtual machine,
-  container, or container orchestration cluster (e.g.,
-  Kubernetes). Each Deployment requires its own license key.
-  A Deployment includes all replicas, pods, or processes
-  serving requests from a single logical GRIP installation.
-
-  "Chunk" means a discrete unit of indexed content within a
-  GRIP Deployment, as counted by the engine's internal
-  indexing system.
-
-  "Production Use" means any use that serves end users,
-  customers, or downstream systems in a live, staging, or
-  pre-production environment, or that processes data for
-  business operations.
-
-  "Organization" means the legal entity (corporation, LLC,
-  partnership, sole proprietorship, non-profit, or government
-  agency) identified in the license purchase, including its
-  wholly-owned subsidiaries.
-
-  "Compiled Binaries" means any .so, .pyd, .dll, or other
-  machine-code files distributed as part of GRIP.
-
-  "Accelerated Engine" means the optional GPU-accelerated
-  retrieval engine available under a separate NDA as described
-  in Section 6.
-
-  "Confidential Information" means all technical details,
-  documentation, benchmarks, source code, and implementation
-  specifics of the Accelerated Engine disclosed to Licensee,
-  as further defined in the mutual NDA.
+  No rights are granted except those expressly stated here.
+  All rights not granted are reserved.
 
 ════════════════════════════════════════════════════════════════
 
-  3. LICENSE GRANT
+  GRIP FREE
 
-  Subject to the terms of this Agreement, Licensor grants
-  Licensee a limited, non-exclusive, non-transferable,
-  non-sublicensable, revocable license to use GRIP solely
-  within the tier obtained and in accordance with the
-  restrictions below. No rights are granted except those
-  expressly stated. All rights not granted are reserved.
-
-  ──────────────────────────────────────────────────────────────
-
-  3.1 GRIP FREE
-
-  GRIP Free is a demonstration version of the GRIP retrieval
-  engine provided at no cost for evaluation, personal,
-  educational, and internal non-production use only.
+  A free demo of the GRIP retrieval engine.
 
     pip install getgrip
 
-  Includes: Full learning retrieval pipeline (BM25 engine,
+  Includes the full learning retrieval pipeline: BM25 engine,
   co-occurrence expansion, auto-remember, sessions, confidence
-  scoring, all plugins, CLI and API access).
+  scoring, all plugins, CLI and API access.
 
-  Limit: 10,000 indexed Chunks. CPU engine only. Learning
-  state resets upon Chunk deletion.
+  Limit: 10,000 indexed chunks (concurrent). CPU engine only.
+  Chunks may be deleted and replaced, but learned data
+  (co-occurrence maps, remember scores) resets on deletion.
 
-  GRIP Free is a separate codebase from the licensed product.
-  It contains no license key system and no in-package upgrade
-  path. To obtain production rights, Licensee must purchase a
-  licensed Deployment.
+  Licensed tiers preserve learned data permanently.
 
-  GRIP Free is NOT licensed for Production Use.
+  This is a demo product. Not licensed for production use.
 
-  ──────────────────────────────────────────────────────────────
+  The demo is a separate codebase from the licensed product.
+  No license key system. No upgrade path within this package.
+  To upgrade, purchase a licensed deployment.
 
-  3.2 GRIP LICENSED
+════════════════════════════════════════════════════════════════
+
+  GRIP LICENSED
 
   The licensed product is delivered as a Docker image or
-  compiled binary with a license key. It includes everything
-  in GRIP Free, plus:
+  compiled binary with a license key.
 
-    Unlimited learning persistence (survives Chunk deletion)
-    Chunk capacity per purchased tier (see pricing page)
+  Includes everything in GRIP Free, plus:
+
+    Unlimited learning persistence (survives chunk deletion)
+    Chunk capacity per tier (see pricing page)
     Priority ingestion pipeline
     Production-grade API server
 
-  License keys are validated locally. No phone-home. No
-  telemetry. No network requirement. GRIP Licensed operates
-  fully air-gapped.
+  License keys are validated locally. No phone-home.
+  No telemetry. No network requirement. Works air-gapped.
 
-  One key per Deployment. No per-seat fees. No per-query fees.
-  Unlimited users within the licensed Organization.
+  One key per deployment. No per-seat fees. No per-query fees.
+  Unlimited users within the licensed organization.
 
   Tiers and pricing: https://getgrip.dev/pricing
 
   ──────────────────────────────────────────────────────────────
 
-  3.3 GRIP ACCELERATED
+  GRIP ACCELERATED
 
   An accelerated GPU engine is available for organizations
   with large-scale retrieval requirements.
 
   Access requires:
 
-    (a) A signed mutual NDA
-    (b) An active GRIP Licensed Deployment at any commercial
-        tier
+    A signed mutual NDA
+    A licensed GRIP deployment at any commercial tier
 
-  The Accelerated Engine, its documentation, benchmarks (other
-  than the public benchmark of 1.2 ms / 28M records / single
-  GPU), and any technical details disclosed during evaluation
-  are Confidential Information.
+  The accelerated engine, its documentation, benchmarks,
+  and any technical details disclosed during evaluation
+  are confidential information.
 
   The existence of an accelerated engine and the public
-  benchmark are not confidential. The mechanism is.
+  benchmark (1.2ms / 28M records / single GPU) are not
+  confidential. The mechanism is.
+
+  Pricing and evaluation: https://getgrip.dev/enterprise
 
 ════════════════════════════════════════════════════════════════
 
-  4. PURCHASING AND ACTIVATION
+  PURCHASING
 
   Self-serve (instant key delivery):
     https://getgrip.dev/buy
 
-  Enterprise and Accelerated Engine:
+  Enterprise and accelerated engine:
     enterprise@getgrip.dev
 
-  License keys are delivered immediately upon payment and
-  activated via environment variable:
+  License keys are delivered immediately upon payment.
+  Keys activate via environment variable:
 
     export GRIP_LICENSE_KEY=<your-key>
 
 ════════════════════════════════════════════════════════════════
 
-  5. RESTRICTIONS
+  OEM / EMBEDDING LICENSE
 
-  Licensee shall NOT:
-
-    (a) Reverse engineer, decompile, disassemble, or otherwise
-        attempt to derive the source code of any Compiled
-        Binaries, except to the extent expressly permitted by
-        applicable law that cannot be waived by contract.
-
-    (b) Remove, alter, or obscure this license, any copyright
-        notices, or any proprietary markings.
-
-    (c) Redistribute, sublicense, rent, lease, or lend GRIP
-        or any portion thereof outside the licensed
-        Organization without a separate OEM agreement (see
-        Section 7).
-
-    (d) Use GRIP to build, offer, or operate a product or
-        service whose primary or substantial function is
-        document retrieval, semantic search, corpus indexing,
-        or retrieval-augmented generation offered as a
-        standalone service to third parties.
-
-    (e) Share, transfer, publish, or otherwise disclose
-        license keys to any person or entity outside the
-        licensed Organization.
-
-    (f) Circumvent, disable, or tamper with Chunk limits,
-        license validation, or any other license enforcement
-        mechanism.
-
-    (g) Disclose any Confidential Information regarding the
-        Accelerated Engine without prior written permission
-        from Licensor.
-
-    (h) Use GRIP Free for Production Use.
-
-    (i) Use any automated means to extract, scrape, or
-        benchmark the internal algorithms or data structures
-        of GRIP for the purpose of replication or competitive
-        analysis, or publish performance benchmarks of GRIP
-        without Licensor's prior written consent.
+  Distributing GRIP as part of a product shipped to end users
+  (SaaS platform, IDE plugin, appliance, managed service)
+  requires an OEM agreement. Contact enterprise@getgrip.dev
 
 ════════════════════════════════════════════════════════════════
 
-  6. CONFIDENTIALITY
+  RESTRICTIONS
 
-  Licensee agrees to hold all Confidential Information in
-  strict confidence, using at least the same degree of care it
-  uses for its own confidential information (but no less than
-  reasonable care). Licensee shall not disclose Confidential
-  Information to any third party without Licensor's prior
-  written consent, except to employees or contractors with a
-  need to know who are bound by confidentiality obligations at
-  least as protective as those herein.
+  You may NOT:
 
-  Confidential Information excludes information that:
-  (a) is or becomes publicly available through no fault of
-      Licensee;
-  (b) was lawfully in Licensee's possession before disclosure;
-  (c) is independently developed without reference to
-      Confidential Information; or
-  (d) is required to be disclosed by law, provided Licensee
-      gives Licensor prompt written notice and cooperates in
-      seeking a protective order.
+    Reverse engineer, decompile, or disassemble any compiled
+    engine binaries (.so / .pyd files).
 
-════════════════════════════════════════════════════════════════
+    Remove or alter this license or any copyright notices.
 
-  7. OEM AND EMBEDDING LICENSE
+    Redistribute GRIP outside your licensed organization
+    without an OEM agreement.
 
-  Distributing GRIP as part of a product shipped to end
-  users — including but not limited to SaaS platforms, IDE
-  plugins, hardware appliances, managed services, or any
-  product where GRIP is bundled, embedded, or integrated —
-  requires a separate OEM agreement.
+    Use GRIP to build a product whose primary function is
+    document retrieval, semantic search, or corpus indexing
+    offered as a standalone service to third parties.
 
-  Contact: enterprise@getgrip.dev
+    Share, transfer, or publish license keys.
+
+    Circumvent chunk limits or other license constraints.
+
+    Disclose technical details of the accelerated engine
+    without written permission.
 
 ════════════════════════════════════════════════════════════════
 
-  8. INTELLECTUAL PROPERTY
+  TERMINATION
 
-  Licensor retains all right, title, and interest in and to
-  GRIP, including all intellectual property rights (patents,
-  copyrights, trademarks, trade secrets, and any other
-  proprietary rights). This Agreement does not transfer
-  ownership of any intellectual property. Licensee's rights
-  are limited to the license expressly granted herein.
+  This license is effective until terminated.
 
-  Licensee shall not register or attempt to register any
-  trademark, domain name, or other identifier confusingly
-  similar to "GRIP," "getGRIP," or any Licensor trademark.
+  GRIP Free: [Entity Name] may terminate your right to use
+  GRIP Free at any time, for any reason, with no notice.
 
-════════════════════════════════════════════════════════════════
+  GRIP Licensed: If you breach any term of this agreement,
+  your license terminates automatically 30 days after
+  written notice, unless the breach is cured within that
+  period. Material breaches (reverse engineering, key
+  sharing, redistribution, or disclosure of accelerated
+  engine details) terminate the license immediately upon
+  written notice, with no cure period.
 
-  9. PATENTS
+  Upon termination you must destroy all copies of GRIP
+  and any compiled binaries in your possession.
 
-  Licensor grants Licensee a limited, non-exclusive,
-  non-transferable license under any patent claims that
-  Licensor can license, or becomes able to license, to use
-  the Software as permitted by this Agreement, subject to all
-  limitations and conditions herein.
-
-  This patent license does not cover any patent claims that
-  Licensee causes to be infringed by modifications or
-  additions to the Software, or by combining the Software
-  with other software or hardware.
-
-  PATENT RETALIATION: If Licensee or Licensee's Organization
-  institutes, or participates in, any patent litigation or
-  written claim alleging that the Software (or any portion
-  thereof) constitutes direct or contributory patent
-  infringement, then all licenses granted to Licensee under
-  this Agreement (including both the copyright license and
-  the patent license) shall terminate immediately and
-  automatically as of the date such claim is first asserted.
-  This termination is irrevocable and no cure period applies.
+  Sections that survive termination: Restrictions, Export
+  Compliance, Limitation of Liability, No Warranty,
+  Governing Law.
 
 ════════════════════════════════════════════════════════════════
 
-  10. AUDIT RIGHTS
+  EXPORT COMPLIANCE
 
-  During the term of this Agreement and for one (1) year
-  following termination, Licensor shall have the right, upon
-  thirty (30) days' prior written notice and no more than once
-  per twelve-month period, to audit Licensee's use of GRIP to
-  verify compliance with this Agreement, including but not
-  limited to Chunk counts, Deployment counts, and usage within
-  the licensed tier.
-
-  Audits shall be conducted during Licensee's normal business
-  hours in a manner that minimizes disruption to Licensee's
-  operations. Licensor may designate a qualified independent
-  third party to conduct the audit, provided such third party
-  executes a confidentiality agreement with Licensee prior to
-  the audit.
-
-  If the audit reveals material non-compliance (defined as
-  exceeding licensed Chunk or Deployment limits by ten percent
-  (10%) or more, or any unauthorized Production Use of GRIP
-  Free), Licensee shall: (a) promptly cure the non-compliance
-  by purchasing the appropriate license tier; and (b) reimburse
-  Licensor for the reasonable costs of the audit.
-
-  Licensor shall not require direct access to Licensee's
-  systems. Audits may be conducted through self-reporting by
-  Licensee, review of GRIP's internal usage metrics, or
-  inspection of deployment records provided by Licensee.
-
-════════════════════════════════════════════════════════════════
-
-  11. FEEDBACK AND IMPROVEMENTS
-
-  If Licensee provides Licensor with any feedback, suggestions,
-  ideas, enhancement requests, or recommendations regarding the
-  Software ("Feedback"), Licensee hereby assigns to Licensor
-  all right, title, and interest in and to such Feedback.
-  Licensor may use, incorporate, and commercialize Feedback for
-  any purpose without restriction, attribution, or compensation
-  to Licensee. Licensee represents that any Feedback provided
-  does not violate the intellectual property rights of any
-  third party.
-
-════════════════════════════════════════════════════════════════
-
-  12. TERMINATION
-
-  12.1 GRIP FREE
-
-  Licensor may terminate Licensee's right to use GRIP Free
-  at any time, with or without cause, upon seven (7) days'
-  written notice (email to the address on file is sufficient).
-
-  12.2 GRIP LICENSED
-
-  If Licensee breaches any term of this Agreement, the license
-  terminates automatically thirty (30) days after written
-  notice from Licensor, unless the breach is cured within that
-  period. Material breaches — including but not limited to
-  reverse engineering, key sharing, unauthorized
-  redistribution, circumvention of license enforcement, or
-  disclosure of Confidential Information — terminate the
-  license immediately upon written notice, with no cure period.
-
-  12.3 EFFECT OF TERMINATION
-
-  Upon termination for any reason, Licensee must:
-  (a) immediately cease all use of GRIP;
-  (b) destroy all copies of GRIP and any Compiled Binaries in
-      its possession or control; and
-  (c) upon Licensor's written request, certify in writing
-      within ten (10) business days that all copies have been
-      destroyed.
-
-  12.4 SURVIVAL
-
-  The following sections survive termination or expiration of
-  this Agreement: Acceptance, Definitions, Restrictions,
-  Confidentiality, Intellectual Property, Patents, Audit
-  Rights, Feedback and Improvements, Indemnification,
-  Limitation of Liability, No Warranty, Export Compliance,
-  and Governing Law.
-
-════════════════════════════════════════════════════════════════
-
-  13. EXPORT COMPLIANCE
-
-  The Software is subject to United States export control laws
-  and regulations, including the Export Administration
+  This software is subject to United States export control
+  laws and regulations, including the Export Administration
   Regulations (EAR).
 
-  License keys will NOT be issued to persons or entities in
-  countries subject to U.S. embargo or comprehensive
+  License keys will NOT be issued to persons or entities
+  in countries subject to U.S. embargo or comprehensive
   sanctions, currently including:
 
     Cuba, Iran, North Korea, Syria, Russia, Belarus,
     and the Crimea, Donetsk, and Luhansk regions of Ukraine.
 
-  License keys will NOT be issued to any person or entity on
-  the U.S. Denied Persons List, Entity List, or Specially
-  Designated Nationals (SDN) List.
+  License keys will NOT be issued to any person or entity
+  on the U.S. Denied Persons List, Entity List, or
+  Specially Designated Nationals (SDN) List.
 
-  The Accelerated Engine binary utilizes hardware capabilities
-  that may be subject to additional U.S. export controls.
-  Licensee shall not export, re-export, or transfer the
-  Compiled Binaries or license keys to any destination, end
-  user, or end use prohibited by U.S. law.
+  The accelerated engine binary utilizes hardware capabilities
+  that may be subject to U.S. export controls in certain
+  jurisdictions. Licensee shall not export, re-export, or
+  transfer the compiled binary or license keys to any
+  destination, end user, or end use prohibited by U.S. law.
 
   Licensee represents and warrants compliance with all
-  applicable export laws and will promptly notify Licensor
-  if it becomes aware of any violation.
+  applicable export laws.
 
 ════════════════════════════════════════════════════════════════
 
-  14. INDEMNIFICATION
+  LIMITATION OF LIABILITY
 
-  Licensee shall indemnify, defend, and hold harmless Licensor
-  from and against any claims, damages, losses, liabilities,
-  costs, and expenses (including reasonable attorneys' fees)
-  arising out of or related to:
+  TO THE MAXIMUM EXTENT PERMITTED BY LAW, [ENTITY NAME]'S
+  TOTAL LIABILITY UNDER THIS AGREEMENT SHALL NOT EXCEED
+  THE LICENSE FEES PAID BY LICENSEE IN THE TWELVE (12)
+  MONTHS PRECEDING THE EVENT GIVING RISE TO THE CLAIM.
 
-    (a) Licensee's use of GRIP in violation of this Agreement;
-    (b) Licensee's violation of any applicable law, including
-        export control laws;
-    (c) Licensee's unauthorized distribution or disclosure of
-        GRIP or Confidential Information; or
-    (d) any third-party claim resulting from Licensee's
-        products or services that incorporate GRIP.
+  FOR GRIP FREE (WHERE NO FEES WERE PAID), [ENTITY NAME]'S
+  TOTAL LIABILITY SHALL NOT EXCEED FIFTY U.S. DOLLARS ($50).
 
-  Licensor shall promptly notify Licensee of any such claim
-  and provide reasonable cooperation (at Licensee's expense)
-  in the defense thereof.
+  IN NO EVENT SHALL [ENTITY NAME] BE LIABLE FOR ANY
+  INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR
+  PUNITIVE DAMAGES, INCLUDING LOSS OF PROFITS, DATA,
+  OR BUSINESS OPPORTUNITY, REGARDLESS OF THE THEORY
+  OF LIABILITY.
 
 ════════════════════════════════════════════════════════════════
 
-  15. LIMITATION OF LIABILITY
+  NO WARRANTY
 
-  TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW,
-  LICENSOR'S TOTAL AGGREGATE LIABILITY UNDER THIS AGREEMENT
-  SHALL NOT EXCEED THE LICENSE FEES ACTUALLY PAID BY LICENSEE
-  IN THE TWELVE (12) MONTHS IMMEDIATELY PRECEDING THE EVENT
-  GIVING RISE TO THE CLAIM.
-
-  FOR GRIP FREE (WHERE NO FEES WERE PAID), LICENSOR'S TOTAL
-  AGGREGATE LIABILITY SHALL NOT EXCEED FIFTY U.S. DOLLARS
-  ($50.00).
-
-  IN NO EVENT SHALL LICENSOR BE LIABLE FOR ANY INDIRECT,
-  INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES,
-  INCLUDING BUT NOT LIMITED TO LOSS OF PROFITS, REVENUE,
-  DATA, BUSINESS OPPORTUNITY, OR GOODWILL, REGARDLESS OF
-  THE THEORY OF LIABILITY (CONTRACT, TORT, STRICT LIABILITY,
-  OR OTHERWISE), EVEN IF LICENSOR HAS BEEN ADVISED OF THE
-  POSSIBILITY OF SUCH DAMAGES.
-
-════════════════════════════════════════════════════════════════
-
-  16. NO WARRANTY
-
-  THE SOFTWARE IS PROVIDED "AS IS," WITHOUT WARRANTY OF ANY
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY
   KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
   WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
-  PURPOSE, TITLE, AND NONINFRINGEMENT. LICENSOR DOES NOT
-  WARRANT THAT THE SOFTWARE WILL BE UNINTERRUPTED,
-  ERROR-FREE, OR FREE OF HARMFUL COMPONENTS. IN NO EVENT
-  SHALL LICENSOR BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER
-  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT, OR
-  OTHERWISE, ARISING FROM, OUT OF, OR IN CONNECTION WITH THE
-  SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+  PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
+  BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+  IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+  OTHER DEALINGS IN THE SOFTWARE.
 
 ════════════════════════════════════════════════════════════════
 
-  17. DATA AND PRIVACY
+  GOVERNING LAW
 
-  GRIP processes and indexes data provided by Licensee.
-  Licensor does not access, collect, transmit, or store any
-  Licensee data. All indexed content remains on Licensee's
-  infrastructure under Licensee's sole control.
+  This agreement is governed by the laws of the State of
+  [State], United States, without regard to conflict of
+  law principles.
 
-  Licensee is solely responsible for ensuring that its use of
-  GRIP complies with all applicable data protection and
-  privacy laws, including but not limited to the General Data
-  Protection Regulation (GDPR), the California Consumer
-  Privacy Act (CCPA), and any other applicable data protection
-  regulations. Licensor makes no representations regarding
-  GRIP's compliance with any specific data protection
-  framework.
-
-  Licensee shall not provide Licensor with any personally
-  identifiable information, protected health information, or
-  other regulated data except as strictly necessary to receive
-  support or resolve technical issues, and only with
-  appropriate safeguards in place.
-
-════════════════════════════════════════════════════════════════
-
-  18. U.S. GOVERNMENT USERS
-
-  The Software is a "commercial item" as defined in 48 C.F.R.
-  §2.101, consisting of "commercial computer software" and
-  "commercial computer software documentation" as such terms
-  are used in 48 C.F.R. §12.212 (for civilian agencies) and
-  48 C.F.R. §227.7202 (for Department of Defense).
-
-  The rights of the United States Government in the Software
-  are limited to those rights granted to all other Licensees
-  under this Agreement.
-
-════════════════════════════════════════════════════════════════
-
-  19. ASSIGNMENT
-
-  Licensee may not assign, transfer, delegate, or sublicense
-  any of its rights or obligations under this Agreement
-  without the prior written consent of Licensor. Any attempted
-  assignment without such consent is void.
-
-  Licensor may assign this Agreement freely, including in
-  connection with a merger, acquisition, or sale of
-  substantially all of its assets.
-
-════════════════════════════════════════════════════════════════
-
-  20. SEVERABILITY
-
-  If any provision of this Agreement is held to be invalid,
-  illegal, or unenforceable by a court of competent
-  jurisdiction, such provision shall be modified to the
-  minimum extent necessary to make it valid and enforceable,
-  or if modification is not possible, severed from this
-  Agreement. The remaining provisions shall continue in full
-  force and effect.
-
-════════════════════════════════════════════════════════════════
-
-  21. ENTIRE AGREEMENT
-
-  This Agreement, together with any applicable OEM agreement
-  and/or mutual NDA, constitutes the entire agreement between
-  the parties with respect to the subject matter hereof and
-  supersedes all prior and contemporaneous agreements,
-  proposals, negotiations, representations, and
-  communications, whether oral or written, between the parties
-  relating to GRIP.
-
-  No modification of this Agreement shall be effective unless
-  in writing and signed by both parties. No waiver of any term
-  shall be deemed a continuing waiver of that or any other
-  term.
-
-════════════════════════════════════════════════════════════════
-
-  22. NOTICES
-
-  All notices required or permitted under this Agreement shall
-  be in writing and shall be deemed given when: (a) delivered
-  personally; (b) sent by email with confirmed receipt; or
-  (c) sent by nationally recognized overnight courier,
-  addressed to the parties at their respective addresses on
-  file.
-
-  Licensor's notice address: enterprise@getgrip.dev
-
-════════════════════════════════════════════════════════════════
-
-  23. FORCE MAJEURE
-
-  Neither party shall be liable for any delay or failure to
-  perform obligations under this Agreement due to causes
-  beyond its reasonable control, including but not limited to
-  acts of God, war, terrorism, pandemic, government action,
-  natural disaster, power failure, or internet disruption,
-  provided the affected party promptly notifies the other
-  party and uses commercially reasonable efforts to resume
-  performance.
-
-════════════════════════════════════════════════════════════════
-
-  24. GOVERNING LAW AND DISPUTE RESOLUTION
-
-  This Agreement is governed by and construed in accordance
-  with the laws of the State of Texas, United States, without
-  regard to its conflict of law principles.
-
-  Any dispute arising under or in connection with this
-  Agreement shall be resolved exclusively in the state or
-  federal courts located in Hopkins County, Texas, and each
-  party irrevocably consents to the personal jurisdiction and
-  venue of such courts.
-
-  The prevailing party in any legal action to enforce this
-  Agreement shall be entitled to recover its reasonable
-  attorneys' fees and costs from the non-prevailing party.
+  Any dispute arising under this agreement shall be resolved
+  exclusively in the state or federal courts located in
+  [County], [State], and each party consents to the personal
+  jurisdiction of such courts.
 
 ════════════════════════════════════════════════════════════════
 
   https://getgrip.dev
   enterprise@getgrip.dev
-
