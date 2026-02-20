@@ -4,41 +4,63 @@
 
 A retrieval engine that learns your data's vocabulary, remembers what works, and tells the AI when it doesn't have a good answer.
 
-```bash
-pip install getgrip
-```
+🌐 [getgrip.dev](https://getgrip.dev) · 📦 [PyPI](https://pypi.org/project/getgrip/) · 📖 [User Guide](./GUIDE.md) · 📄 [License](./LICENSE)
 
 ---
 
-## What is GRIP?
-
-Most retrieval systems are stateless — query in, results out, everything forgotten. GRIP is different.
-
-- **Co-occurrence expansion** — Search "auth" and GRIP finds "authentication", "OAuth", "middleware" because it learned those terms co-occur in *your* data. No external model. No API call.
-- **Auto-remember** — Queries that return good results are reinforced. The system gets better every time you use it. Persistent across restarts.
-- **Session context** — Say "tell me more" and GRIP knows what you were just searching for. Retrieval with conversational memory.
-- **Confidence scoring** — Results scored HIGH / MEDIUM / LOW / NONE. The LLM knows when to say "I don't know" instead of hallucinating.
-- **Fully offline** — No cloud. No network. No telemetry. Works air-gapped. Your data stays on your machine.
-
-No embedding model required. No vector database required. No API keys for core retrieval.
-
----
-
-## Quick Start
+## Try it in 60 seconds
 
 ```bash
-# Install
 pip install getgrip
-
-# Ingest your codebase
 grip ingest --source /path/to/your/code
-
-# Search it
 grip search "authentication handler"
-
-# Ask questions (requires Ollama or OpenAI-compatible LLM)
-grip ask "how does the auth middleware work?"
 ```
+
+Or with Docker:
+
+```bash
+docker run -d -p 7878:8000 -v grip-data:/data -v /your/code:/code griphub/grip:free
+curl -X POST localhost:7878/ingest -H "Content-Type: application/json" -d '{"source": "/code"}'
+curl "localhost:7878/search?q=authentication+handler&top_k=5"
+```
+
+Open `http://localhost:7878` for the web UI.
+
+---
+
+## What makes GRIP different
+
+Search "auth" — GRIP finds results containing "authentication", "OAuth", "JWT", "middleware" because it learned those terms co-occur in **your** data. No embedding model. No vector database. No API keys.
+
+```
+Query:    "confidence scoring"
+Expanded: "confidence scoring heuristic percentil comput rerank"
+Result:   [27.95] grip_retrieval/server.py:160 — the exact function
+Latency:  1.4ms
+```
+
+| | Typical RAG | GRIP |
+|---|---|---|
+| Embedding model | Required | Not needed |
+| Vector database | Required | Not needed |
+| API keys | Required | Not needed |
+| Learns your vocabulary | No | Yes — from your data |
+| Remembers what works | No | Yes — across restarts |
+| Knows when it doesn't know | No | Yes — confidence scoring |
+| Works offline | Rarely | Fully air-gapped |
+| Gets better with use | No | Yes — automatically |
+
+---
+
+## Features
+
+- **Co-occurrence expansion** — Learns which terms appear together in your data and expands queries automatically
+- **Auto-remember** — Reinforces successful queries. Results improve with use
+- **Session context** — "Tell me more" carries context from the previous query
+- **Confidence scoring** — HIGH / MEDIUM / LOW / NONE. Your LLM knows when to say "I don't know"
+- **Plugin system** — Sources (local, GitHub), chunkers (code-aware, generic), LLMs (Ollama, OpenAI, Anthropic)
+- **CLI + API + Web UI** — 9 endpoints, CORS-ready, FastAPI server
+- **Fully offline** — No cloud. No telemetry. Your data stays on your machine
 
 ---
 
@@ -46,7 +68,7 @@ grip ask "how does the auth middleware work?"
 
 ### BEIR (Industry Standard)
 
-6 datasets. 2,771 queries. Corpora from 3K to 5.4M documents.
+6 datasets. 2,771 queries. Beats BM25 on all 6.
 
 | Dataset | Corpus | BM25 | GRIP | Delta |
 |---------|--------|------|------|-------|
@@ -57,62 +79,67 @@ grip ask "how does the auth middleware work?"
 | FiQA | 57,638 | 0.232 | **0.347** | +0.116 |
 | NFCorpus | 3,633 | 0.311 | **0.344** | +0.034 |
 
-**Average NDCG@10: 0.58** — Beats BM25 on all 6 datasets.
+**Average NDCG@10: 0.58**
 
-Two-stage pipeline: retrieval narrows candidates, then a pluggable neural reranker (MiniLM, 22M params) does semantic scoring. Swap in a better reranker and quality goes up. Retrieval cost stays the same.
+### Real-World Accuracy
 
-### Accuracy at Scale
+3,000 auto-generated queries across 3 domains. No cherry-picking.
 
-3,000 auto-generated queries. No hand-curation. No cherry-picking.
-
-| Domain | Corpus | Queries | Accuracy |
-|--------|--------|---------|----------|
-| Linux Kernel (code) | 188,209 chunks | 1,000 | **98.7%** |
-| Wikipedia (encyclopedia) | 11.2M chunks | 1,000 | **98.5%** |
-| Project Gutenberg (prose) | 173,817 chunks | 1,000 | **95.4%** |
-| **Combined** | | **3,000** | **97.5%** |
+| Domain | Corpus | Accuracy |
+|--------|--------|----------|
+| Linux Kernel (code) | 188,209 chunks | **98.7%** |
+| Wikipedia (encyclopedia) | 11.2M chunks | **98.5%** |
+| Project Gutenberg (prose) | 173,817 chunks | **95.4%** |
+| **Combined** | **3,000 queries** | **97.5%** |
 
 ---
 
-## What's Included
+## Drop into your existing stack
 
-- BM25 retrieval engine with Porter stemming
-- Co-occurrence expansion (learns from your data)
-- Auto-remember (reinforces successful queries)
-- Session continuity (conversational retrieval)
-- Confidence scoring (HIGH / MEDIUM / LOW / NONE)
-- Plugin system — sources, chunkers, LLMs, analyzers
-- CLI + FastAPI server (8 endpoints, CORS-ready)
-- Ollama and OpenAI-compatible LLM plugins
-- GitHub and local source ingestion plugins
-- Code-aware and generic chunking plugins
+GRIP is a JSON API. Swap it into LangChain, LlamaIndex, or any RAG pipeline:
 
----
+```python
+from langchain.schema import BaseRetriever, Document
+import requests
 
-## Free Demo Limits
+class GRIPRetriever(BaseRetriever):
+    grip_url: str = "http://localhost:7878"
+    top_k: int = 5
 
-The free `pip install` package includes all features with a **10,000 chunk limit**. No license key required. No time limit. Chunks can be deleted and replaced, but learned data (co-occurrence, remember scores) resets on deletion. Licensed tiers preserve learning permanently.
-
-Need more? See [Pricing](https://getgrip.dev/#pricing).
-
----
-
-## Licensed Tiers
-
-| Tier | Chunks | Price |
-|------|--------|-------|
-| Personal | 100,000 | $499/year |
-| Team | 500,000 | $1,499/year |
-| Professional | 5,000,000 | $4,999/year |
-| Enterprise | 25,000,000+ | [Contact us](mailto:enterprise@getgrip.dev) |
-
-One license per deployment. No per-seat fees. No per-query fees. Unlimited users.
-
-License keys are validated locally. No phone-home. No telemetry. Works air-gapped.
-
-```bash
-export GRIP_LICENSE_KEY=<your-key>
+    def _get_relevant_documents(self, query):
+        r = requests.post(f"{self.grip_url}/search", json={"q": query, "top_k": self.top_k})
+        data = r.json()
+        return [
+            Document(
+                page_content=chunk["text"],
+                metadata={"source": chunk["source"], "score": chunk["score"],
+                          "confidence": data["confidence"]}
+            )
+            for chunk in data["results"]
+        ]
 ```
+
+Replace Pinecone, Chroma, or any vector store. Your existing prompts, chains, and agents work unchanged.
+
+See the [User Guide](./GUIDE.md#integrating-grip-into-your-application) for Python, JavaScript, CI/CD, LlamaIndex, and more integration examples.
+
+---
+
+## Pricing
+
+The free tier includes **all features** with a 10,000 chunk limit (~3,500 files). No credit card. No time limit. Learned data resets when you delete a source — licensed tiers preserve it permanently.
+
+| Tier | Chunks | Price | $/chunk/yr |
+|------|--------|-------|-----------|
+| **Free** | 10,000 | $0 | — |
+| Personal | 100,000 | $499/year | $0.005 |
+| Team | 500,000 | $1,499/year | $0.003 |
+| Professional | 5,000,000 | $4,999/year | $0.001 |
+| Enterprise | 25,000,000+ | [Contact us](mailto:enterprise@getgrip.dev) | Custom |
+
+One license per deployment. No per-seat fees. No per-query fees. Unlimited users. License validated locally — no phone-home.
+
+**Quick estimate:** Your text files × 3 = approximate chunks. See the [User Guide](./GUIDE.md#estimating-your-chunk-count) for detailed sizing.
 
 ---
 
@@ -126,10 +153,10 @@ An accelerated engine is available for organizations with large-scale retrieval 
 
 ---
 
-## License
+## Documentation
 
-See [LICENSE](./LICENSE) for full terms.
+📖 **[User Guide](./GUIDE.md)** — Installation, ingestion, searching, sessions, LLM integration, plugins, Docker, API reference, integration examples, troubleshooting
 
-Free tier: evaluation and non-production use.  
-Licensed tiers: production use within your organization.  
-Accelerated engine: available under NDA.
+📄 **[License](./LICENSE)** — Free tier for evaluation, licensed tiers for production
+
+🌐 **[getgrip.dev](https://getgrip.dev)** — Landing page with pricing and benchmarks
