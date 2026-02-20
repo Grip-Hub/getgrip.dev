@@ -371,8 +371,8 @@ h2 {
 /* ── Pricing ───────────────────────────── */
 .pricing-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
   margin-top: 60px;
 }
 
@@ -558,6 +558,10 @@ footer a:hover { color: var(--grip); }
   .enterprise-cta { padding: 32px 20px; }
 }
 
+@media (max-width: 1024px) and (min-width: 769px) {
+  .pricing-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
 @media (max-width: 480px) {
   .stats-bar { grid-template-columns: 1fr; }
 }
@@ -701,15 +705,30 @@ footer a:hover { color: var(--grip); }
 <div class="container">
   <div class="section-label">Pricing</div>
   <h2>One license. Unlimited users.</h2>
-  <p class="section-desc">No per-seat fees. No per-query metering. Chunk count is the only variable. Free demo included.</p>
+  <p class="section-desc">No per-seat fees. No per-query metering. Chunk count is the only variable. Start free — upgrade when you need more.</p>
 
   <div class="pricing-grid">
+    <div class="price-card">
+      <div class="price-tier">Free</div>
+      <div class="price-amount" style="font-size: 36px;">$0</div>
+      <div class="price-desc">Try GRIP. No credit card. No time limit.</div>
+      <ul class="price-features">
+        <li>10,000 chunks</li>
+        <li>All features included</li>
+        <li>Co-occurrence &amp; remember</li>
+        <li>Sessions &amp; confidence</li>
+        <li>CLI + API access</li>
+        <li>Learning resets on deletion</li>
+      </ul>
+      <a href="https://pypi.org/project/getgrip/" class="btn btn-outline" style="width: 100%; text-align: center;">pip install getgrip</a>
+    </div>
+
     <div class="price-card">
       <div class="price-tier">Personal</div>
       <div class="price-amount">$499<span>/year</span></div>
       <div class="price-desc">For individual developers and small projects.</div>
       <ul class="price-features">
-        <li>50,000 chunks</li>
+        <li>100,000 chunks</li>
         <li>Unlimited users</li>
         <li>Learning persistence</li>
         <li>CPU engine</li>
@@ -724,7 +743,7 @@ footer a:hover { color: var(--grip); }
       <div class="price-amount">$1499<span>/year</span></div>
       <div class="price-desc">For teams working with larger codebases.</div>
       <ul class="price-features">
-        <li>250,000 chunks</li>
+        <li>500,000 chunks</li>
         <li>Unlimited users</li>
         <li>Learning persistence</li>
         <li>CPU engine</li>
@@ -739,7 +758,7 @@ footer a:hover { color: var(--grip); }
       <div class="price-amount">$4,999<span>/year</span></div>
       <div class="price-desc">For organizations with serious retrieval needs.</div>
       <ul class="price-features">
-        <li>2,000,000 chunks</li>
+        <li>5,000,000 chunks</li>
         <li>Unlimited users</li>
         <li>Learning persistence</li>
         <li>CPU engine</li>
