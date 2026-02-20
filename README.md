@@ -101,9 +101,9 @@ Need more? See [Pricing](https://getgrip.dev/#pricing).
 
 | Tier | Chunks | Price |
 |------|--------|-------|
-| Personal | 50,000 | $99/year |
-| Team | 250,000 | $499/year |
-| Professional | 2,000,000 | $2,499/year |
+| Personal | 50,000 | $499/year |
+| Team | 250,000 | $1,499/year |
+| Professional | 2,000,000 | $4,999/year |
 | Enterprise | 25,000,000 | [Contact us](mailto:enterprise@getgrip.dev) |
 
 One license per deployment. No per-seat fees. No per-query fees. Unlimited users.
