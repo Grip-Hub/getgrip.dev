@@ -695,6 +695,50 @@ h2 {
 .price-note a { color: var(--grip); text-decoration: none; }
 .price-note a:hover { text-decoration: underline; }
 
+/* ── Billing toggle ────────────────────── */
+.billing-toggle {
+  display: inline-flex;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 4px;
+  margin-top: 32px;
+  gap: 4px;
+}
+
+.toggle-btn {
+  padding: 10px 24px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text-dim);
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.toggle-btn.active {
+  background: var(--surface-2);
+  color: var(--text);
+  border: 1px solid var(--border-light);
+}
+
+.toggle-btn:hover:not(.active) { color: var(--text); }
+
+.save-badge {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--accent);
+  background: rgba(16, 185, 129, 0.1);
+  padding: 2px 8px;
+  border-radius: 100px;
+}
+
 .btn {
   display: inline-flex;
   align-items: center;
@@ -1089,6 +1133,12 @@ footer {
   <h2>One license. Unlimited users.</h2>
   <p class="section-desc">No per-seat fees. No per-query metering. Chunk count is the only variable. Start free — upgrade when you need more.</p>
 
+  <!-- Billing toggle -->
+  <div class="billing-toggle">
+    <button class="toggle-btn active" id="btn-yearly" onclick="setBilling('yearly')">Yearly <span class="save-badge">Save up to 8%</span></button>
+    <button class="toggle-btn" id="btn-monthly" onclick="setBilling('monthly')">Monthly</button>
+  </div>
+
   <div class="pricing-grid">
     <div class="price-card">
       <div class="price-tier">Free</div>
@@ -1107,7 +1157,7 @@ footer {
 
     <div class="price-card">
       <div class="price-tier">Personal</div>
-      <div class="price-amount">$499<span>/year</span></div>
+      <div class="price-amount" data-yearly="$499" data-monthly="$45">$499<span data-yearly="/year" data-monthly="/mo">/year</span></div>
       <div class="price-desc">For individual developers and small projects.</div>
       <ul class="price-features">
         <li>100,000 chunks (~35K files)</li>
@@ -1117,13 +1167,15 @@ footer {
         <li>CLI + API + Web UI</li>
         <li>All plugins included</li>
       </ul>
-      <!-- TODO: Replace with LemonSqueezy checkout URL -->
-      <a href="#pricing" class="btn btn-outline" style="width: 100%; text-align: center;">Buy Personal</a>
+      <a href="https://getgrip.lemonsqueezy.com/checkout/buy/3b9d60c5-52b2-4ea4-93f5-60ee1cdddbd4?enabled=1326548"
+         data-yearly="https://getgrip.lemonsqueezy.com/checkout/buy/3b9d60c5-52b2-4ea4-93f5-60ee1cdddbd4?enabled=1326548"
+         data-monthly="https://getgrip.lemonsqueezy.com/checkout/buy/cdf500d8-f935-472f-84fb-65b9cdb1dbef?enabled=1326599"
+         class="btn btn-outline" style="width: 100%; text-align: center;" target="_blank" rel="noopener">Buy Personal</a>
     </div>
 
     <div class="price-card featured">
       <div class="price-tier">Team</div>
-      <div class="price-amount">$1,499<span>/year</span></div>
+      <div class="price-amount" data-yearly="$1,499" data-monthly="$130">$1,499<span data-yearly="/year" data-monthly="/mo">/year</span></div>
       <div class="price-desc">For teams working with larger codebases.</div>
       <ul class="price-features">
         <li>500,000 chunks (~180K files)</li>
@@ -1133,13 +1185,15 @@ footer {
         <li>CLI + API + Web UI</li>
         <li>All plugins included</li>
       </ul>
-      <!-- TODO: Replace with LemonSqueezy checkout URL -->
-      <a href="#pricing" class="btn btn-primary" style="width: 100%; text-align: center;">Buy Team</a>
+      <a href="https://getgrip.lemonsqueezy.com/checkout/buy/ee07e38e-21a8-441b-adbe-5a95fa4676e3?enabled=1326492"
+         data-yearly="https://getgrip.lemonsqueezy.com/checkout/buy/ee07e38e-21a8-441b-adbe-5a95fa4676e3?enabled=1326492"
+         data-monthly="https://getgrip.lemonsqueezy.com/checkout/buy/0de1411c-d10f-411a-9918-93e3f3c71552?enabled=1326604"
+         class="btn btn-primary" style="width: 100%; text-align: center;" target="_blank" rel="noopener">Buy Team</a>
     </div>
 
     <div class="price-card">
       <div class="price-tier">Professional</div>
-      <div class="price-amount">$4,999<span>/year</span></div>
+      <div class="price-amount" data-yearly="$4,999" data-monthly="$425">$4,999<span data-yearly="/year" data-monthly="/mo">/year</span></div>
       <div class="price-desc">For organizations with serious retrieval needs.</div>
       <ul class="price-features">
         <li>5,000,000 chunks (~1.8M files)</li>
@@ -1149,8 +1203,10 @@ footer {
         <li>Priority ingestion</li>
         <li>All plugins included</li>
       </ul>
-      <!-- TODO: Replace with LemonSqueezy checkout URL -->
-      <a href="#pricing" class="btn btn-outline" style="width: 100%; text-align: center;">Buy Professional</a>
+      <a href="https://getgrip.lemonsqueezy.com/checkout/buy/c7a00b14-bfd6-4eeb-9e6f-8f9abefaa0e0?enabled=1326520"
+         data-yearly="https://getgrip.lemonsqueezy.com/checkout/buy/c7a00b14-bfd6-4eeb-9e6f-8f9abefaa0e0?enabled=1326520"
+         data-monthly="https://getgrip.lemonsqueezy.com/checkout/buy/ba05dffd-ccf2-49fd-b503-4e4aaa36e7d0?enabled=1326620"
+         class="btn btn-outline" style="width: 100%; text-align: center;" target="_blank" rel="noopener">Buy Professional</a>
     </div>
   </div>
 
@@ -1162,7 +1218,7 @@ footer {
   <div class="enterprise-cta">
     <div class="enterprise-stat">1.2ms at 28 million records. Single GPU.</div>
     <p>An accelerated engine is available for organizations with large-scale retrieval needs.</p>
-    <a href="mailto:getgrip.dev@gmail.com" class="btn btn-primary">Contact Enterprise</a>
+    <a href="mailto:enterprise@getgrip.dev" class="btn btn-primary">Contact Enterprise</a>
   </div>
 </div>
 </section>
@@ -1178,10 +1234,37 @@ footer {
       <li><a href="https://github.com/Grip-Hub/getgrip.dev" target="_blank" rel="noopener">GitHub</a></li>
       <li><a href="https://github.com/Grip-Hub/getgrip.dev/blob/main/GUIDE.md" target="_blank" rel="noopener">Docs</a></li>
       <li><a href="https://pypi.org/project/getgrip/" target="_blank" rel="noopener">PyPI</a></li>
-      <li><a href="/cdn-cgi/l/email-protection#ef8a819b8a9d9f9d869c8aaf888a9b889d869fc18b8a99">Contact</a></li>
+      <li><a href="mailto:enterprise@getgrip.dev">Contact</a></li>
     </ul>
   </div>
 </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><scrip
+<script>
+// Nav scroll effect
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 20);
+});
+
+// Billing toggle
+function setBilling(period) {
+  document.getElementById('btn-yearly').classList.toggle('active', period === 'yearly');
+  document.getElementById('btn-monthly').classList.toggle('active', period === 'monthly');
+
+  document.querySelectorAll('.price-amount[data-yearly]').forEach(el => {
+    const price = el.getAttribute('data-' + period);
+    const suffix = el.querySelector('span');
+    const suffixText = suffix.getAttribute('data-' + period);
+    el.childNodes[0].textContent = price;
+    suffix.textContent = suffixText;
+  });
+
+  document.querySelectorAll('a[data-yearly]').forEach(el => {
+    el.href = el.getAttribute('data-' + period);
+  });
+}
+</script>
+
+</body>
+</html>
