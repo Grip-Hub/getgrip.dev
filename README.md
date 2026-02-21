@@ -209,3 +209,5 @@ An accelerated engine is available for organizations with large-scale retrieval 
 [License](./LICENSE) — Free tier for evaluation, licensed tiers for production
 
 [getgrip.dev](https://grip-hub.github.io/getgrip.dev/) — Landing page with pricing and benchmarks
+
+*RT (Real Time) is hardware dependent.
