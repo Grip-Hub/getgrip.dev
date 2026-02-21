@@ -184,7 +184,7 @@ The free tier includes **all features** with a 10,000 chunk limit (~3,500 files)
 | Personal | 100,000 | $499/year | $0.005 |
 | Team | 500,000 | $1,499/year | $0.003 |
 | Professional | 5,000,000 | $4,999/year | $0.001 |
-| Enterprise | 25,000,000+ | [Contact us](mailto:enterprise@getgrip.dev) | Custom |
+| Enterprise | 25,000,000+ | [Contact us](mailto:getgrip.dev@gmail.com) | Custom |
 
 One license per deployment. No per-seat fees. No per-query fees. Unlimited users. License validated locally — no phone-home.
 
@@ -198,7 +198,7 @@ An accelerated engine is available for organizations with large-scale retrieval 
 
 **1.2ms at 28 million records. Single GPU.**
 
-[enterprise@getgrip.dev](mailto:enterprise@getgrip.dev)
+[getgrip.dev@gmail.com](mailto:getgrip.dev@gmail.com)
 
 ---
 
