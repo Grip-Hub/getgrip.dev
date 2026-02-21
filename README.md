@@ -8,7 +8,7 @@
 
 A retrieval engine that learns your data's vocabulary, remembers what works, and tells the AI when it doesn't have a good answer.
 
-🌐 [getgrip.dev](https://grip-hub.github.io/getgrip.dev/) · 📦 [PyPI](https://pypi.org/project/getgrip/) · 📖 [User Guide](./GUIDE.md) · 📄 [License](./LICENSE)
+[getgrip.dev](https://grip-hub.github.io/getgrip.dev/) | [PyPI](https://pypi.org/project/getgrip/) | [User Guide](./GUIDE.md) | [License](./LICENSE)
 
 ---
 
@@ -16,17 +16,20 @@ A retrieval engine that learns your data's vocabulary, remembers what works, and
 
 ```bash
 pip install getgrip
-grip ingest --source /path/to/your/code
-grip search "authentication handler"
+getgrip                                  # starts web UI + API on localhost:7878
 ```
 
-Or with Docker:
+Then ingest and search:
 
 ```bash
-docker run -d -p 7878:8000 -v grip-data:/data -v /your/code:/code griphub/grip:free
-curl -X POST localhost:7878/ingest -H "Content-Type: application/json" -d '{"source": "/code"}'
+curl -X POST localhost:7878/ingest \
+  -H "Content-Type: application/json" \
+  -d '{"paths": ["/path/to/your/code"]}'
+
 curl "localhost:7878/search?q=authentication+handler&top_k=5"
 ```
+
+Or open `http://localhost:7878` and use the Browse button to add folders.
 
 Open `http://localhost:7878` for the web UI.
 
@@ -53,6 +56,8 @@ Latency:  1.4ms
 | Knows when it doesn't know | No | Yes — confidence scoring |
 | Works offline | Rarely | Fully air-gapped |
 | Gets better with use | No | Yes — automatically |
+| Cold start | Minutes (model loading) | < 2 seconds |
+| Dependencies | 10-30+ | 4 (fastapi, uvicorn, pydantic, numpy) |
 
 ---
 
@@ -63,27 +68,56 @@ Latency:  1.4ms
 - **Session context** — "Tell me more" carries context from the previous query
 - **Confidence scoring** — HIGH / MEDIUM / LOW / NONE. Your LLM knows when to say "I don't know"
 - **Plugin system** — Sources (local, GitHub), chunkers (code-aware, generic), LLMs (Ollama, OpenAI, Anthropic)
-- **CLI + API + Web UI** — 9 endpoints, CORS-ready, FastAPI server
+- **API + Web UI** — 8 endpoints + directory browser, CORS-ready, FastAPI server
 - **Fully offline** — No cloud. No telemetry. Your data stays on your machine
 
 ---
 
 ## Benchmarks
 
-### BEIR (Industry Standard)
+### BEIR (Industry Standard IR Benchmark)
 
-6 datasets. 2,771 queries. Beats BM25 on all 6.
+Core engine — no neural components, no GPU, no reranker. 6 datasets, 21,708 queries, full query sets.
 
-| Dataset | Corpus | BM25 | GRIP | Delta |
-|---------|--------|------|------|-------|
-| FEVER | 5,416,568 | 0.509 | **0.808** | +0.299 |
-| HotpotQA | 5,233,329 | 0.595 | **0.741** | +0.146 |
-| SciFact | 5,183 | 0.665 | **0.682** | +0.017 |
-| NQ | 2,681,468 | 0.276 | **0.542** | +0.266 |
-| FiQA | 57,638 | 0.232 | **0.347** | +0.116 |
-| NFCorpus | 3,633 | 0.311 | **0.344** | +0.034 |
+| Dataset | Corpus | Queries | NDCG@10 | Latency |
+|---------|--------|---------|---------|---------|
+| SciFact | 5,183 | 300 | **0.687** | 10.6ms |
+| HotpotQA | 5,233,329 | 7,405 | **0.624** | 145.6ms |
+| FEVER | 5,416,568 | 6,666 | **0.598** | 139.6ms |
+| NFCorpus | 3,633 | 3,237 | **0.324** | 2.7ms |
+| NQ | 2,681,468 | 3,452 | **0.310** | 68.5ms |
+| FiQA | 57,638 | 648 | **0.243** | 7.5ms |
+| **Average** | | **21,708** | **0.464** | |
 
-**Average NDCG@10: 0.58**
+For context: published BM25 baselines average 0.35-0.50 on this slice depending on implementation and tuning. Dense retrievers (DPR, E5) typically score 0.40-0.55. GRIP achieves this range with zero learned parameters.
+
+Optional: `pip install getgrip[rerank]` adds a cross-encoder (MiniLM, 22M params) that bumps the average to ~0.58.
+
+### Scaling
+
+Tested from 1,000 to 39.2 million documents. Streaming model R^2 = 0.999.
+
+```
+39,219,414 documents → 1.2ms per query (streaming shards)
+BVH build: 14.9ms per 1M items
+Sublinear: 39,219x data → 140x latency
+```
+
+### Cold vs Warm
+
+```
+Cold (first query):  7.7ms
+Warm p50:            8.5ms
+Deterministic:       YES — same query always returns same results
+```
+
+### Adversarial Robustness
+
+Tested against degenerate queries (zero-match, 200-term floods, 50x duplicates), adversarial spatial distributions, and burst traffic (481K queries/sec).
+
+Result: **PASS** — 14/15 tests pass, no crashes, no degradation under load.
+
+Full benchmark logs: [`logs/`](./logs/)
 
 ### Real-World Accuracy
 
@@ -111,7 +145,7 @@ class GRIPRetriever(BaseRetriever):
     top_k: int = 5
 
     def _get_relevant_documents(self, query):
-        r = requests.post(f"{self.grip_url}/search", json={"q": query, "top_k": self.top_k})
+        r = requests.get(f"{self.grip_url}/search", params={"q": query, "top_k": self.top_k})
         data = r.json()
         return [
             Document(
@@ -129,6 +163,17 @@ See the [User Guide](./GUIDE.md#integrating-grip-into-your-application) for Pyth
 
 ---
 
+## Optional extras
+
+```bash
+pip install getgrip[rerank]   # Cross-encoder reranking (MiniLM, 22M params)
+pip install getgrip[pdf]      # PDF parsing
+pip install getgrip[llm]      # LLM-powered answers (Ollama, OpenAI, Anthropic, Groq)
+pip install getgrip[all]      # Everything
+```
+
+---
+
 ## Pricing
 
 The free tier includes **all features** with a 10,000 chunk limit (~3,500 files). No credit card. No time limit. Learned data resets when you delete a source — licensed tiers preserve it permanently.
@@ -139,11 +184,11 @@ The free tier includes **all features** with a 10,000 chunk limit (~3,500 files)
 | Personal | 100,000 | $499/year | $0.005 |
 | Team | 500,000 | $1,499/year | $0.003 |
 | Professional | 5,000,000 | $4,999/year | $0.001 |
-| Enterprise | 25,000,000+ | [Contact us](mailto:getgrip.dev@gmail.com) | Custom |
+| Enterprise | 25,000,000+ | [Contact us](mailto:enterprise@getgrip.dev) | Custom |
 
 One license per deployment. No per-seat fees. No per-query fees. Unlimited users. License validated locally — no phone-home.
 
-**Quick estimate:** Your text files × 3 = approximate chunks. See the [User Guide](./GUIDE.md#estimating-your-chunk-count) for detailed sizing.
+**Quick estimate:** Your text files x 3 = approximate chunks. See the [User Guide](./GUIDE.md#estimating-your-chunk-count) for detailed sizing.
 
 ---
 
@@ -153,14 +198,14 @@ An accelerated engine is available for organizations with large-scale retrieval 
 
 **1.2ms at 28 million records. Single GPU.**
 
-[enterprise@getgrip.dev](mailto:getgrip.dev@gmail.com)
+[enterprise@getgrip.dev](mailto:enterprise@getgrip.dev)
 
 ---
 
 ## Documentation
 
-📖 **[User Guide](./GUIDE.md)** — Installation, ingestion, searching, sessions, LLM integration, plugins, Docker, API reference, integration examples, troubleshooting
+[User Guide](./GUIDE.md) — Installation, ingestion, searching, sessions, LLM integration, plugins, Docker, API reference, integration examples, troubleshooting
 
-📄 **[License](./LICENSE)** — Free tier for evaluation, licensed tiers for production
+[License](./LICENSE) — Free tier for evaluation, licensed tiers for production
 
-🌐 **[getgrip.dev](https://grip-hub.github.io/getgrip.dev/)** — Landing page with pricing and benchmarks
+[getgrip.dev](https://grip-hub.github.io/getgrip.dev/) — Landing page with pricing and benchmarks
