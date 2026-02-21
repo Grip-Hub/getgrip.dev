@@ -1,0 +1,72 @@
+==================================================================
+  Benchmark: adversarial
+  Date: 2026-02-21 09:13:56
+  GPU: NVIDIA GeForce RTX 4090
+==================================================================
+
+
+==================================================================
+ TRACK 2: Adversarial Robustness Suite
+==================================================================
+
+ SECTION A: Scoring Adversarial (multi-signal retrieval)
+ --------------------------------------------------
+
+ Loading SciFact corpus...
+ Loading scifact from HuggingFace... FAILED: Dataset scripts are no longer supported, but found scifact.py
+ Loading scifact corpus... 5,183 docs, 300 queries (0.0s)
+ Indexing corpus...
+ RT indexing 5,183 documents... done (0.8s, 26,603 terms, 598,451 postings)
+ Baseline: 9.38ms per query
+ common_term_flood 0.48ms ratio=0.1x PASS
+ zero_match 0.04ms ratio=0.0x PASS
+ long_query_200_terms 271.24ms ratio=28.9x WARN
+ duplicate_terms_50x 0.16ms ratio=0.0x PASS
+ all_match_common_science 9.65ms ratio=1.0x PASS
+
+ SECTION B: Spatial/BVH Adversarial
+ --------------------------------------------------
+
+ Running spatial adversarial tests (with distribution guard)...
+ baseline_uniform: 294.2us
+ brute_force_baseline: 16003.0us (fallback reference)
+ clustered_0.1_cube (GUARD): 15444.6us ratio=1.0x(bf) PASS [axis_variance_min=0.0008]
+ single_point_100K (GUARD): 10128.3us ratio=0.6x(bf) PASS [axis_variance_min=0.0000]
+ linear_1d (GUARD): 17252.5us ratio=1.1x(bf) PASS [axis_variance_min=0.0000]
+
+ Loading real corpus positions for RGB test...
+ Loading books positions... 27,973,081 × 3D
+ Loading wiki positions... 11,246,333 × 3D
+ Combined base: 39,219,414 positions
+ real_rgb_corpus: 619.3us ratio=2.1x PASS
+
+ SECTION C: Burst Traffic
+ --------------------------------------------------
+
+ Running burst traffic test...
+ 1x1000 batch query: 2.076ms (481696 q/s)
+ 10x100 batch query total: 7.732ms (129333 q/s)
+ Batch stability (max/min): 1.17x PASS
+
+==================================================================
+ ADVERSARIAL SUMMARY
+==================================================================
+
+ Scoring: 4/5 PASS (worst ratio: 28.9x)
+ Spatial: 5/5 PASS (worst ratio: 2.1x)
+ Burst: PASS (stability: 1.2x)
+
+ Overall: PASS
+
+ Saved: results_adversarial.json
+
+--- stderr ---
+
+ 0%| | 0/5183 [00:00<?, ?it/s]
+100%|██████████| 5183/5183 [00:00<00:00, 187708.44it/s]
+
+
+==================================================================
+  Elapsed: 15.0s (0.2m)
+  Exit code: 0
+==================================================================
