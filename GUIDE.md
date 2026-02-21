@@ -29,33 +29,29 @@ No embedding model required. No vector database required. No API keys for core r
 **Option A — pip**
 
 ```bash
-# Install
+# Install and start
 pip install getgrip
+getgrip
+# → opens http://localhost:7878 (web UI with Browse button)
 
-# Ingest your codebase
-grip ingest --source /path/to/your/code
+# Or via curl:
+curl -X POST http://localhost:7878/ingest \
+  -H "Content-Type: application/json" \
+  -d '{"paths": ["/path/to/your/code"]}'
 
-# Search it
-grip search "authentication handler"
-
-# Start the API server + web UI
-grip serve
-# → http://localhost:7878
-
-# Ask questions (requires Ollama or OpenAI-compatible LLM)
-grip ask "how does the auth middleware work?"
+curl "http://localhost:7878/search?q=authentication+handler&top_k=5"
 ```
 
 **Option B — Docker**
 
 ```bash
 # Start GRIP
-docker run -d -p 7878:8000 -v grip-data:/data -v /your/code:/code griphub/grip:free
+docker run -d -p 7878:7878 -v grip-data:/data -v /your/code:/code griphub/grip:free
 
 # Ingest
 curl -X POST http://localhost:7878/ingest \
   -H "Content-Type: application/json" \
-  -d '{"source": "/code"}'
+  -d '{"paths": ["/code"]}'
 
 # Search
 curl "http://localhost:7878/search?q=authentication+handler&top_k=5"
@@ -217,10 +213,10 @@ Requires Python 3.9+. No other dependencies needed for core retrieval.
 
 ```bash
 # Free tier
-docker run -d -p 7878:8000 -v /your/data:/data -v /your/code:/code griphub/grip:free
+docker run -d -p 7878:7878 -v /your/data:/data -v /your/code:/code griphub/grip:free
 
 # Licensed tier
-docker run -d -p 7878:8000 -v /your/data:/data -v /your/code:/code \
+docker run -d -p 7878:7878 -v /your/data:/data -v /your/code:/code \
   -e GRIP_LICENSE_KEY="GRIP-<your-key>" griphub/grip:latest
 ```
 
@@ -234,29 +230,21 @@ Open `http://localhost:7878` for the web UI, or use the API and CLI below.
 
 GRIP needs data before it can search. Ingest local directories or clone GitHub repos directly.
 
-**CLI**
-
-```bash
-# Local directory
-grip ingest --source /path/to/your/project
-
-# GitHub repo (clones automatically)
-grip ingest --source https://github.com/org/repo
-```
-
 **API**
 
 ```bash
 # Local directory
 curl -X POST http://localhost:7878/ingest \
   -H "Content-Type: application/json" \
-  -d '{"source": "/code/my-project"}'
+  -d '{"paths": ["/code/my-project"]}'
 
 # GitHub repo
 curl -X POST http://localhost:7878/ingest \
   -H "Content-Type: application/json" \
-  -d '{"source": "https://github.com/org/repo"}'
+  -d '{"paths": ["https://github.com/org/repo"]}'
 ```
+
+Or use the **Browse** button in the web UI at `http://localhost:7878` to select directories visually.
 
 **What gets indexed:** Python, JavaScript, TypeScript, Go, Rust, Java, C, C++, Ruby, PHP, Swift, Kotlin, Markdown, RST, TXT, YAML, JSON, TOML, and other text files. Binary files (images, compiled artifacts, archives) are automatically skipped.
 
@@ -268,26 +256,10 @@ curl -X POST http://localhost:7878/ingest \
 
 ### Searching
 
-**CLI**
-
-```bash
-# Basic search
-grip search "authentication middleware"
-
-# With options
-grip search "OAuth token validation" --top-k 10
-```
-
 **API**
 
 ```bash
-# GET (simple)
 curl "http://localhost:7878/search?q=authentication+middleware&top_k=5"
-
-# POST (full options)
-curl -X POST http://localhost:7878/search \
-  -H "Content-Type: application/json" \
-  -d '{"q": "authentication middleware", "top_k": 5}'
 ```
 
 **Response fields:**
@@ -373,12 +345,6 @@ curl -X POST http://localhost:7878/config \
   -d '{"provider": "anthropic", "model": "claude-sonnet-4-20250514", "api_key": "sk-ant-..."}'
 ```
 
-**CLI**
-
-```bash
-grip ask "how does the auth middleware validate tokens?"
-```
-
 **API**
 
 ```bash
@@ -389,7 +355,7 @@ curl -X POST http://localhost:7878/query \
 
 The LLM receives your query, the top matching chunks, and the confidence level. When confidence is NONE, the LLM is instructed to acknowledge it doesn't have enough information rather than hallucinate.
 
-An LLM is only needed for `grip ask` and `"answer": true` queries. All other features (search, co-occurrence, sessions, confidence) work without any LLM.
+An LLM is only needed for `"answer": true` queries. All other features (search, co-occurrence, sessions, confidence) work without any LLM.
 
 ---
 
@@ -424,7 +390,7 @@ GRIP selects the chunker automatically based on file extension. No configuration
 | Anthropic | Claude | Requires API key |
 | Custom | Any HTTP endpoint | Set a custom base URL for self-hosted or alternative providers |
 
-Configure via the `/config` endpoint or CLI. Only needed for `grip ask` — core retrieval works without any LLM.
+Configure via the `/config` endpoint. Only needed for LLM-powered answers — core retrieval works without any LLM.
 
 **Analyzer Plugins**
 
@@ -505,7 +471,7 @@ GRIP = "http://localhost:7878"
 class ReindexHandler(FileSystemEventHandler):
     def on_modified(self, event):
         if event.src_path.endswith(('.py', '.js', '.ts', '.md')):
-            requests.post(f"{GRIP}/ingest", json={"source": "/code/my-project"})
+            requests.post(f"{GRIP}/ingest", json={"paths": ["/code/my-project"]})
             print(f"Re-indexed after change to {event.src_path}")
 
 observer = Observer()
@@ -519,11 +485,8 @@ observer.start()
 const GRIP = "http://localhost:7878";
 
 async function search(query) {
-  const res = await fetch(`${GRIP}/search`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ q: query, top_k: 5 }),
-  });
+  const params = new URLSearchParams({ q: query, top_k: 5 });
+  const res = await fetch(`${GRIP}/search?${params}`);
   return res.json();
 }
 
@@ -539,12 +502,12 @@ app.get("/ask", async (req, res) => {
 ```bash
 #!/bin/bash
 # Re-index after every deploy
-curl -X POST http://grip:8000/ingest \
+curl -X POST http://grip:7878/ingest \
   -H "Content-Type: application/json" \
-  -d '{"source": "/app"}'
+  -d '{"paths": ["/app"]}'
 
 # Smoke test: verify critical code is findable
-RESULT=$(curl -s "http://grip:8000/search?q=payment+processing&top_k=1")
+RESULT=$(curl -s "http://grip:7878/search?q=payment+processing&top_k=1")
 CONFIDENCE=$(echo "$RESULT" | jq -r '.confidence')
 
 if [ "$CONFIDENCE" = "NONE" ]; then
@@ -566,9 +529,9 @@ class GRIPRetriever(BaseRetriever):
     top_k: int = 5
 
     def _get_relevant_documents(self, query):
-        r = requests.post(
+        r = requests.get(
             f"{self.grip_url}/search",
-            json={"q": query, "top_k": self.top_k}
+            params={"q": query, "top_k": self.top_k}
         )
         data = r.json()
         return [
@@ -729,10 +692,10 @@ All endpoints accept and return JSON. CORS is enabled for browser-based access.
 
 **Ports**
 
-The server listens on port 8000 inside the container. Map to any host port:
+The server listens on port 7878 inside the container. Map to any host port:
 
 ```bash
-docker run -d -p 7878:8000 -v grip-data:/data griphub/grip:free
+docker run -d -p 7878:7878 -v grip-data:/data griphub/grip:free
 ```
 
 **Container lifecycle**
@@ -752,7 +715,7 @@ No re-ingestion needed. No data migration. Just add your license key:
 docker stop grip
 
 # Start with license key (same data volume)
-docker run -d -p 7878:8000 -v grip-data:/data \
+docker run -d -p 7878:7878 -v grip-data:/data \
   -e GRIP_LICENSE_KEY="GRIP-<your-key>" \
   --name grip griphub/grip:latest
 ```
@@ -771,9 +734,9 @@ You've hit the 10,000 chunk limit on the free tier. Delete unused sources to mak
 
 Your query terms don't appear in the indexed data. Check that ingestion completed successfully with `/stats`. Try broader search terms.
 
-**LLM not responding for `grip ask`**
+**LLM not responding for queries with `"answer": true`**
 
-Verify your LLM is configured with `/config`. For Ollama, ensure it's running (`ollama serve`) and the model is pulled (`ollama pull llama3.2`). GRIP's core search works without any LLM — only `grip ask` requires one.
+Verify your LLM is configured via `/config`. For Ollama, ensure it's running (`ollama serve`) and the model is pulled (`ollama pull llama3.2`). GRIP's core search works without any LLM — only answered queries require one.
 
 **Co-occurrence not expanding queries**
 
