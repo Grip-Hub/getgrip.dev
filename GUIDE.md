@@ -157,7 +157,7 @@ This counts only text files — binary files (images, compiled artifacts) are sk
 | Multiple projects or a large codebase | 10K–100K chunks | Personal ($499/yr) |
 | A monorepo or several team repos | 100K–500K chunks | Team ($1,499/yr) |
 | Enterprise-scale code + documentation | 500K–5M chunks | Professional ($4,999/yr) |
-| Beyond 5M chunks | Custom | [Enterprise](mailto:enterprise@getgrip.dev) |
+| Beyond 5M chunks | Custom | [Enterprise](mailto:getgrip.dev@gmail.com) |
 
 **Check your count after ingesting:**
 
@@ -175,7 +175,7 @@ curl http://localhost:7878/stats
 | Personal | 100,000 | $499/year |
 | Team | 500,000 | $1,499/year |
 | Professional | 5,000,000 | $4,999/year |
-| Enterprise | 25,000,000+ | [Contact us](mailto:enterprise@getgrip.dev) |
+| Enterprise | 25,000,000+ | [Contact us](mailto:getgrip.dev@gmail.com) |
 
 One license per deployment. No per-seat fees. No per-query fees. Unlimited users.
 
@@ -193,7 +193,7 @@ An accelerated engine is available for organizations with large-scale retrieval 
 
 **1.2ms at 28 million records. Single GPU.**
 
-[enterprise@getgrip.dev](mailto:enterprise@getgrip.dev)
+[getgrip.dev@gmail.com](mailto:getgrip.dev@gmail.com)
 
 ---
 
