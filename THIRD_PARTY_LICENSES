@@ -1,0 +1,145 @@
+GRIP Third-Party Licenses
+=========================
+
+GRIP uses the following open-source libraries. All are MIT, BSD, or
+Apache-2.0 licensed. No GPL or AGPL dependencies.
+
+This file satisfies the attribution requirements of the licenses below.
+
+
+================================================================================
+  CORE DEPENDENCIES (always installed)
+================================================================================
+
+fastapi
+  License: MIT
+  Copyright (c) 2018 Sebastian Ramirez
+  https://github.com/fastapi/fastapi
+
+uvicorn
+  License: BSD-3-Clause
+  Copyright (c) 2017-present, Encode OSS Ltd. All rights reserved.
+  https://github.com/encode/uvicorn
+
+starlette
+  License: BSD-3-Clause
+  Copyright (c) 2018, Encode OSS Ltd. All rights reserved.
+  https://github.com/encode/starlette
+
+pydantic
+  License: MIT
+  Copyright (c) 2017 to present Pydantic Services Inc. and individual
+  contributors
+  https://github.com/pydantic/pydantic
+
+numpy
+  License: BSD-3-Clause
+  Copyright (c) 2005-2025, NumPy Developers.
+  https://numpy.org
+
+requests
+  License: Apache-2.0
+  Copyright 2019 Kenneth Reitz
+  https://github.com/psf/requests
+
+
+================================================================================
+  OPTIONAL: Document readers (pip install getgrip[docs])
+================================================================================
+
+pypdf
+  License: BSD-3-Clause
+  Copyright (c) 2006-2008, Mathieu Fenniak
+  https://github.com/py-pdf/pypdf
+
+python-docx
+  License: MIT
+  Copyright (c) 2013 Steve Canny
+  https://github.com/python-openxml/python-docx
+
+openpyxl
+  License: MIT
+  Copyright (c) 2010 openpyxl
+  https://openpyxl.readthedocs.io
+
+python-pptx
+  License: MIT
+  Copyright (c) 2013 Steve Canny
+  https://github.com/scanny/python-pptx
+
+striprtf
+  License: BSD-3-Clause
+  Copyright (c) 2018, Joshy Cyriac
+  https://github.com/joshy/striprtf
+
+odfpy
+  License: Apache-2.0
+  Copyright (C) 2006-2010 Soren Roug, European Environment Agency
+  https://github.com/eea/odfpy
+  Note: Dual-licensed Apache-2.0 / GPL-2.0+. Used under Apache-2.0.
+
+xlrd
+  License: BSD-3-Clause
+  Copyright (c) 2005-2009, Stephen John Machin, Lingfo Pty Ltd
+  Copyright (c) 2001 David Giffin (based on Java version by Andrew Khan)
+  https://github.com/python-excel/xlrd
+
+olefile
+  License: BSD-2-Clause
+  Copyright (c) 2005-2023 Philippe Lagadec
+  Copyright (c) 1997-2009 by Secret Labs AB
+  Copyright (c) 1995-2009 by Fredrik Lundh
+  https://github.com/decalage2/olefile
+  Note: Incorporates code originally from PIL (Python Imaging Library).
+
+
+================================================================================
+  OPTIONAL: OCR (pip install getgrip[ocr])
+================================================================================
+
+rapidocr-onnxruntime
+  License: Apache-2.0
+  Copyright (c) 2021 RapidOCR Authors. All rights reserved.
+  https://github.com/RapidAI/RapidOCR
+  Note: Underlying PaddleOCR models are Copyright (c) Baidu Inc.,
+  also licensed under Apache-2.0.
+
+
+================================================================================
+  OPTIONAL: Reranker (pip install getgrip[rerank])
+================================================================================
+
+sentence-transformers
+  License: Apache-2.0
+  Copyright (c) 2019 Nils Reimers, UKP Lab, TU Darmstadt
+  https://github.com/UKPLab/sentence-transformers
+
+
+================================================================================
+  OPTIONAL: LLM providers (pip install getgrip[llm])
+================================================================================
+
+openai
+  License: Apache-2.0
+  Copyright (c) OpenAI
+  https://github.com/openai/openai-python
+
+anthropic
+  License: MIT
+  Copyright (c) Anthropic
+  https://github.com/anthropics/anthropic-sdk-python
+
+groq
+  License: Apache-2.0
+  Copyright (c) Groq Inc.
+  https://github.com/groq/groq-python
+
+
+================================================================================
+
+Full license texts for MIT, BSD-2-Clause, BSD-3-Clause, and Apache-2.0
+are available at:
+  MIT:           https://opensource.org/licenses/MIT
+  BSD-2-Clause:  https://opensource.org/licenses/BSD-2-Clause
+  BSD-3-Clause:  https://opensource.org/licenses/BSD-3-Clause
+  Apache-2.0:    https://opensource.org/licenses/Apache-2.0
