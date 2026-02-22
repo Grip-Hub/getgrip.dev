@@ -69,7 +69,7 @@ Latency:  1.4ms
 - **Confidence scoring** — HIGH / MEDIUM / LOW / NONE. Your LLM knows when to say "I don't know"
 - **Plugin system** — Sources (local, GitHub), chunkers (code-aware, generic), LLMs (Ollama, OpenAI, Anthropic)
 - **API + Web UI** — 8 endpoints + directory browser, CORS-ready, FastAPI server
-- **Fully offline** — No cloud. No telemetry. Your data stays on your machine
+- **Fully offline** — No cloud. No telemetry. Your data stays on your machine (*API to LLMs excluded) 
 
 ---
 
