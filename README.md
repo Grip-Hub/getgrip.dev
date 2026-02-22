@@ -16,7 +16,8 @@ A retrieval engine that learns your data's vocabulary, remembers what works, and
 
 ```bash
 pip install getgrip
-getgrip                                  # starts web UI + API on localhost:7878
+
+getgrip # starts web UI + API on localhost:7878
 ```
 
 Then ingest and search:
