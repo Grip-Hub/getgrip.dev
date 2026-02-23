@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GRIP for Business — 18 Years of Documents. Instant Answers.</title>
+<meta name="description" content="GRIP turns your document mess into a knowledge engine. Service manuals, contracts, policies, compliance reports — all queryable. New hires get instant access to institutional knowledge.">
+<meta property="og:title" content="GRIP for Business & Operations">
+<meta property="og:description" content="Every business creates documents constantly, organizes poorly, and searches rarely. GRIP fixes all three.">
+<meta property="og:image" content="https://getgrip.dev/Logo.png">
+<link rel="icon" type="image/png" href="Logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root { --bg: #070b14; --surface: #0d1321; --surface-2: #131a2e; --border: #1e2a45; --border-light: #2a3a5c; --text: #e2e8f0; --text-dim: #8494b0; --text-muted: #5a6a88; --grip: #0ea5e9; --grip-glow: rgba(14, 165, 233, 0.15); --accent: #10b981; --warm: #f59e0b; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Plus Jakarta Sans', -apple-system, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden; }
+body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E"); pointer-events: none; z-index: 9999; }
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 16px 0; background: rgba(7, 11, 20, 0.85); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); }
+nav .container { display: flex; align-items: center; justify-content: space-between; }
+.nav-logo { font-size: 20px; font-weight: 800; letter-spacing: -0.03em; color: var(--text); text-decoration: none; }
+.nav-logo span { color: var(--grip); }
+.nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+.nav-links a { font-size: 14px; font-weight: 500; color: var(--text-dim); text-decoration: none; transition: color 0.2s; }
+.nav-links a:hover { color: var(--text); }
+.nav-links .btn-nav { padding: 8px 18px; background: var(--surface-2); border: 1px solid var(--border); border-radius: 8px; color: var(--text); font-weight: 600; transition: all 0.2s; }
+.nav-links .btn-nav:hover { border-color: var(--grip); color: var(--grip); }
+.container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+section { padding: 80px 0; }
+.page-hero { padding: 160px 0 80px; position: relative; }
+.page-hero::before { content: ''; position: absolute; top: -200px; left: 50%; transform: translateX(-50%); width: 800px; height: 800px; background: radial-gradient(circle, var(--grip-glow) 0%, transparent 70%); pointer-events: none; }
+.hero-label { display: inline-flex; align-items: center; gap: 8px; padding: 6px 16px; background: var(--surface-2); border: 1px solid var(--border); border-radius: 100px; font-size: 13px; font-weight: 500; color: var(--text-dim); margin-bottom: 24px; }
+.hero-label .dot { width: 7px; height: 7px; background: var(--grip); border-radius: 50%; box-shadow: 0 0 8px var(--grip); animation: pulse 2s ease infinite; }
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+.page-hero h1 { font-size: clamp(36px, 6vw, 64px); font-weight: 800; line-height: 1.05; letter-spacing: -0.03em; margin-bottom: 24px; }
+.page-hero h1 .hl { background: linear-gradient(135deg, var(--grip) 0%, #38bdf8 50%, var(--accent) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.page-hero .sub { font-size: clamp(16px, 2vw, 19px); color: var(--text-dim); max-width: 640px; line-height: 1.7; margin-bottom: 40px; }
+.btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; border-radius: 12px; font-weight: 700; font-size: 15px; text-decoration: none; transition: all 0.25s; font-family: inherit; }
+.btn-primary { background: var(--grip); color: #fff; border: none; }
+.btn-primary:hover { box-shadow: 0 0 30px var(--grip-glow); transform: translateY(-1px); }
+.btn-outline { background: transparent; color: var(--text); border: 1px solid var(--border); }
+.btn-outline:hover { border-color: var(--grip); color: var(--grip); }
+.hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; }
+.section-label { font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--grip); margin-bottom: 16px; }
+h2 { font-size: clamp(26px, 4vw, 38px); font-weight: 800; letter-spacing: -0.02em; line-height: 1.15; margin-bottom: 20px; }
+.section-desc { font-size: 16px; color: var(--text-dim); max-width: 620px; line-height: 1.7; margin-bottom: 40px; }
+.scenario-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 40px; }
+.scenario-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 32px 28px; transition: all 0.3s; position: relative; overflow: hidden; }
+.scenario-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--grip), transparent); opacity: 0; transition: opacity 0.3s; }
+.scenario-card:hover { border-color: var(--border-light); transform: translateY(-2px); }
+.scenario-card:hover::before { opacity: 1; }
+.scenario-card .icon { font-size: 28px; margin-bottom: 16px; }
+.scenario-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 10px; }
+.scenario-card p { font-size: 14px; color: var(--text-dim); line-height: 1.7; }
+.scenario-card .example { margin-top: 16px; padding: 14px 18px; background: var(--surface-2); border-radius: 10px; font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--grip); line-height: 1.6; }
+.scenario-full { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 36px 32px; margin-top: 24px; }
+.scenario-full h3 { font-size: 18px; font-weight: 700; margin-bottom: 12px; }
+.scenario-full p { font-size: 15px; color: var(--text-dim); line-height: 1.7; }
+.scenario-full .example { margin-top: 16px; padding: 18px 20px; background: var(--surface-2); border-radius: 10px; font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--grip); line-height: 1.7; }
+.biz-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; margin-top: 40px; }
+.biz-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 28px 24px; transition: all 0.3s; }
+.biz-card:hover { border-color: var(--border-light); transform: translateY(-2px); }
+.biz-card .icon { font-size: 32px; margin-bottom: 14px; }
+.biz-card h3 { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+.biz-card p { font-size: 13px; color: var(--text-dim); line-height: 1.6; }
+.biz-card .metric { margin-top: 12px; font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--accent); }
+.stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; margin-top: 48px; }
+.stat-cell { background: var(--surface); padding: 28px 20px; text-align: center; }
+.stat-cell .num { font-size: 28px; font-weight: 800; color: var(--grip); font-family: 'JetBrains Mono', monospace; }
+.stat-cell .label { font-size: 12px; color: var(--text-muted); margin-top: 4px; font-weight: 500; }
+.cta-section { text-align: center; padding: 80px 0; }
+.cta-section h2 { margin-left: auto; margin-right: auto; max-width: 600px; }
+.cta-section .section-desc { margin-left: auto; margin-right: auto; text-align: center; }
+.cta-install { display: inline-flex; align-items: center; gap: 12px; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 16px 28px; font-family: 'JetBrains Mono', monospace; font-size: 17px; color: var(--grip); cursor: pointer; transition: all 0.2s; margin-top: 32px; }
+.cta-install:hover { border-color: var(--grip); box-shadow: 0 0 30px var(--grip-glow); }
+.cta-install .prompt { color: var(--text-muted); user-select: none; }
+.cta-install .hint { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 12px; color: var(--text-muted); padding: 3px 10px; background: var(--surface-2); border-radius: 6px; }
+.cta-alt { margin-top: 16px; font-size: 14px; color: var(--text-muted); }
+.cta-alt a { color: var(--text-dim); text-decoration: underline; text-underline-offset: 3px; }
+.cta-alt a:hover { color: var(--grip); }
+footer { padding: 40px 0; border-top: 1px solid var(--border); }
+.footer-inner { display: flex; justify-content: space-between; align-items: center; }
+.footer-left { font-size: 14px; color: var(--text-muted); }
+.footer-left strong { color: var(--text); }
+.footer-links { display: flex; gap: 24px; list-style: none; }
+.footer-links a { font-size: 14px; color: var(--text-muted); text-decoration: none; }
+.footer-links a:hover { color: var(--text); }
+@media (max-width: 768px) {
+  .scenario-grid, .biz-grid { grid-template-columns: 1fr; }
+  .stats-row { grid-template-columns: repeat(2, 1fr); }
+  .footer-inner { flex-direction: column; gap: 16px; text-align: center; }
+  .hero-buttons { flex-direction: column; align-items: flex-start; }
+}
+@media (max-width: 1024px) and (min-width: 769px) { .biz-grid { grid-template-columns: 1fr 1fr; } }
+</style>
+</head>
+<body>
+
+<nav>
+<div class="container">
+  <a href="./" class="nav-logo"><span>G</span>RIP</a>
+  <ul class="nav-links">
+    <li><a href="./#features">Features</a></li>
+    <li><a href="./#benchmarks">Benchmarks</a></li>
+    <li><a href="./#pricing">Pricing</a></li>
+    <li><a href="https://github.com/Grip-Hub/getgrip.dev" target="_blank" rel="noopener">GitHub</a></li>
+    <li><a href="https://github.com/Grip-Hub/getgrip.dev/blob/main/GUIDE.md" class="btn-nav" target="_blank" rel="noopener">Docs</a></li>
+  </ul>
+</div>
+</nav>
+
+<section class="page-hero">
+<div class="container">
+  <div class="hero-label"><span class="dot"></span> Business & Operations</div>
+  <h1>Your documents have<br><span class="hl">all the answers.</span></h1>
+  <p class="sub">Every business creates documents constantly, organizes them poorly, and searches them rarely. The most valuable knowledge — the connections, the patterns, the history — exists only in the heads of people who've been there longest. GRIP changes that.</p>
+  <div class="hero-buttons">
+    <a href="https://github.com/Grip-Hub/getgrip.dev/releases/latest/download/GRIP.exe" class="btn btn-primary">Download for Windows</a>
+    <a href="https://github.com/Grip-Hub/getgrip.dev/releases/latest/download/GRIP-Linux.zip" class="btn btn-outline">Download for Linux</a>
+    <a href="https://pypi.org/project/getgrip/" class="btn btn-outline" target="_blank" rel="noopener">pip install</a>
+  </div>
+  <div class="stats-row">
+    <div class="stat-cell"><div class="num">30+</div><div class="label">Document formats</div></div>
+    <div class="stat-cell"><div class="num">OCR</div><div class="label">Scanned docs included</div></div>
+    <div class="stat-cell"><div class="num">0</div><div class="label">Per-seat fees</div></div>
+    <div class="stat-cell"><div class="num">Free</div><div class="label">10K chunks to start</div></div>
+  </div>
+</div>
+</section>
+
+<section>
+<div class="container">
+  <div class="section-label">The Universal Business Problem</div>
+  <h2>Document volume is supposed to be an asset. It's usually a liability.</h2>
+  <p class="section-desc">More documents should mean more knowledge. Instead, more documents mean more chaos. The answer is in there somewhere — in a PDF from 2019, or a Word doc someone emailed, or a scanned form in a folder called "Old Stuff."</p>
+
+  <div class="scenario-full">
+    <h3>The Knowledge That Walks Out the Door</h3>
+    <p>Your most experienced employee retires. They knew which vendor changed their formulation in 2021. They knew that the third-floor HVAC issue was actually a roof drainage problem documented in a 2018 inspection report. They knew that the insurance policy has an exclusion for exactly the thing you're about to file a claim for. All of that knowledge was synthesized from years of reading documents that nobody else read. With GRIP, that synthesis lives in the knowledge artifact layer — cached, queryable, and available to the person who takes their place.</p>
+  </div>
+</div>
+</section>
+
+<!-- ═══ BY BUSINESS TYPE ═══ -->
+<section>
+<div class="container">
+  <div class="section-label">Every Business. Every Scale.</div>
+  <h2>From the auto shop to the Fortune 500.</h2>
+
+  <div class="biz-grid">
+    <div class="biz-card">
+      <div class="icon">🔧</div>
+      <h3>Auto / Repair Shops</h3>
+      <p>18 years of service manuals, technical service bulletins, and shop notes. New hire asks "what's the fix for the 2019 F-150 transmission shudder?" — answered instantly from a TSB the senior tech knew by heart.</p>
+      <div class="metric">Scanned TSBs → OCR'd and searchable</div>
+    </div>
+    <div class="biz-card">
+      <div class="icon">🍽️</div>
+      <h3>Restaurant Groups</h3>
+      <p>Supplier contracts, health inspection reports, customer feedback, and training materials across 5 locations. "Which supplier contracts expire this quarter?" — synthesized across all locations with exact dates.</p>
+      <div class="metric">Cross-location compliance queries</div>
+    </div>
+    <div class="biz-card">
+      <div class="icon">🏭</div>
+      <h3>Manufacturing</h3>
+      <p>QC reports, maintenance logs, customer complaints, and supplier specs. "What defects correlate with the new raw material?" — cross-referenced automatically across complaint data and QC results.</p>
+      <div class="metric">QC + complaints cross-referenced</div>
+    </div>
+    <div class="biz-card">
+      <div class="icon">🏥</div>
+      <h3>Healthcare Admin</h3>
+      <p>Policy manuals, compliance documentation, training records, and incident reports. "What's our protocol for X?" — answered from the current policy, cross-checked against the latest regulatory update.</p>
+      <div class="metric">Stale detection on policy changes</div>
+    </div>
+    <div class="biz-card">
+      <div class="icon">🛡️</div>
+      <h3>Insurance Agencies</h3>
+      <p>50 common coverage questions come in every quarter. By Q1 end, most are answered from cached artifacts. Agent asks "does this policy cover flood damage to outbuildings?" — answered with the specific exclusion clause cited.</p>
+      <div class="metric">50 common questions cached by Q1</div>
+    </div>
+    <div class="biz-card">
+      <div class="icon">🏢</div>
+      <h3>Professional Services</h3>
+      <p>Proposals, SOWs, project reports, and client communications across years of engagements. "What approach did we use for the similar project in 2022?" — found and cited from the project archive.</p>
+      <div class="metric">Institutional knowledge preserved</div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ═══ HOW IT WORKS ═══ -->
+<section>
+<div class="container">
+  <div class="section-label">How It Works</div>
+  <h2>Drop your documents. Ask questions. Get smarter.</h2>
+
+  <div class="scenario-grid">
+    <div class="scenario-card">
+      <div class="icon">📂</div>
+      <h3>Day One — Ingest Everything</h3>
+      <p>Point GRIP at your file server, shared drive, or document folder. Every PDF, Word doc, spreadsheet, and scanned page gets read. Mixed formats handled transparently. One command, walk away.</p>
+      <div class="example">
+        getgrip ingest /shared/documents --name "company"<br>
+        → 2,400 files processed<br>
+        → 847 scanned pages OCR'd<br>
+        → Ready to query
+      </div>
+    </div>
+    <div class="scenario-card">
+      <div class="icon">💡</div>
+      <h3>Week One — Ask Questions</h3>
+      <p>Every question builds a knowledge artifact. First question is the expensive one — full exhaustive synthesis. By end of week one, the 20 most common questions all resolve instantly from cached artifacts.</p>
+      <div class="example">
+        Monday: 5 questions → 5 new artifacts<br>
+        Tuesday: 8 questions → 3 new, 5 cache hits<br>
+        Friday: 12 questions → 1 new, 11 instant<br>
+        → System gets faster every day
+      </div>
+    </div>
+    <div class="scenario-card">
+      <div class="icon">🔄</div>
+      <h3>Month One — Documents Change</h3>
+      <p>New contracts signed, policies updated, reports filed. Re-ingest the changed folders. GRIP detects what's new, flags stale artifacts, and delta-updates affected answers. No manual tracking.</p>
+    </div>
+    <div class="scenario-card">
+      <div class="icon">🚀</div>
+      <h3>Month Three — Compounding Knowledge</h3>
+      <p>By now, most routine questions resolve instantly. New employees get access to knowledge that took veterans years to accumulate. The document library isn't just stored — it's understood.</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<section class="cta-section">
+<div class="container">
+  <div class="section-label">Get Started</div>
+  <h2>The free tier handles most small businesses.</h2>
+  <p class="section-desc">10,000 chunks — roughly 3,500 files. That's years of documents for most small businesses. No credit card. No time limit. Upgrade when you need more.</p>
+  <div class="cta-install" onclick="navigator.clipboard.writeText('pip install getgrip');this.querySelector('.hint').textContent='Copied!'">
+    <span class="prompt">$</span> pip install getgrip
+    <span class="hint">Click to copy</span>
+  </div>
+  <div class="cta-alt" style="margin-top: 16px;">
+    <a href="https://github.com/Grip-Hub/getgrip.dev/releases/latest/download/GRIP.exe" style="color: var(--text-dim); text-decoration: underline; text-underline-offset: 3px;">Download for Windows</a>
+    · <a href="https://github.com/Grip-Hub/getgrip.dev/releases/latest/download/GRIP-Linux.zip" style="color: var(--text-dim); text-decoration: underline; text-underline-offset: 3px;">Download for Linux</a>
+  </div>
+  <div class="cta-alt">
+    <a href="https://github.com/Grip-Hub/getgrip.dev/releases">all releases</a>
+    · <a href="./#pricing">pricing</a>
+  </div>
+</div>
+</section>
+
+<footer>
+<div class="container">
+  <div class="footer-inner">
+    <div class="footer-left"><strong>GRIP</strong> — Get a grip on your data</div>
+    <ul class="footer-links">
+      <li><a href="./">Home</a></li>
+      <li><a href="https://github.com/Grip-Hub/getgrip.dev" target="_blank">GitHub</a></li>
+      <li><a href="https://github.com/Grip-Hub/getgrip.dev/blob/main/GUIDE.md" target="_blank">Docs</a></li>
+      <li><a href="https://pypi.org/project/getgrip/" target="_blank">PyPI</a></li>
+    </ul>
+  </div>
+</div>
+</footer>
+</body>
+</html>
