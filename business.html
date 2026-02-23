@@ -25,11 +25,15 @@ nav .container { display: flex; align-items: center; justify-content: space-betw
 .nav-links a { font-size: 14px; font-weight: 500; color: var(--text-dim); text-decoration: none; transition: color 0.2s; }
 .nav-links a:hover { color: var(--text); }
 .nav-dropdown { position: relative; }
+.nav-dropdown > a { padding: 6px 14px !important; border: 1px solid var(--border-light); border-radius: 8px; color: var(--grip) !important; font-weight: 600 !important; transition: all 0.25s; }
+.nav-dropdown > a:hover { border-color: var(--grip); box-shadow: 0 0 12px var(--grip-glow); }
 .nav-dropdown > a::after { content: ' \25BE'; font-size: 10px; }
-.nav-dropdown-menu { display: none; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); margin-top: 12px; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 8px 0; min-width: 200px; box-shadow: 0 8px 32px rgba(0,0,0,0.4); z-index: 1001; list-style: none; }
+.nav-dropdown-menu { display: none; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); padding-top: 8px; z-index: 1001; list-style: none; }
 .nav-dropdown:hover .nav-dropdown-menu { display: block; }
-.nav-dropdown-menu li a { display: block; padding: 8px 20px; font-size: 13px; color: var(--text-dim); white-space: nowrap; }
-.nav-dropdown-menu li a:hover { color: var(--text); background: var(--surface-2); }
+.nav-dropdown-menu li a { display: block; padding: 10px 22px; font-size: 13px; color: var(--text-dim); white-space: nowrap; background: var(--surface); border-left: 1px solid var(--border); border-right: 1px solid var(--border); }
+.nav-dropdown-menu li:first-child a { border-top: 1px solid var(--border); border-radius: 12px 12px 0 0; padding-top: 14px; }
+.nav-dropdown-menu li:last-child a { border-bottom: 1px solid var(--border); border-radius: 0 0 12px 12px; padding-bottom: 14px; }
+.nav-dropdown-menu li a:hover { color: var(--grip); background: var(--surface-2); }
 .nav-links .btn-nav { padding: 8px 18px; background: var(--surface-2); border: 1px solid var(--border); border-radius: 8px; color: var(--text); font-weight: 600; transition: all 0.2s; }
 .nav-links .btn-nav:hover { border-color: var(--grip); color: var(--grip); }
 .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
