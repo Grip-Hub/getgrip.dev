@@ -202,6 +202,88 @@ nav .container {
   background: var(--surface-2);
 }
 
+/* ── Industry Cards ───────────────────── */
+.industry-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-top: 60px;
+}
+
+.industry-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 36px 28px;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+.industry-card:hover {
+  border-color: var(--grip);
+  transform: translateY(-3px);
+  box-shadow: 0 0 40px var(--grip-glow);
+}
+
+.industry-icon {
+  font-size: 36px;
+  margin-bottom: 16px;
+  line-height: 1;
+}
+
+.industry-name {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: var(--text);
+}
+
+.industry-card p {
+  font-size: 14px;
+  color: var(--text-dim);
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+
+.industry-highlights {
+  list-style: none;
+  flex: 1;
+  margin-bottom: 20px;
+}
+
+.industry-highlights li {
+  font-size: 13px;
+  color: var(--text-dim);
+  padding: 5px 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.industry-highlights li::before {
+  content: '\2713';
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.industry-link {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--grip);
+  margin-top: auto;
+  transition: letter-spacing 0.2s;
+}
+
+.industry-card:hover .industry-link {
+  letter-spacing: 0.02em;
+}
+
 /* ── Layout ────────────────────────────── */
 .container {
   max-width: 1080px;
@@ -925,6 +1007,7 @@ footer {
   .stats-bar { grid-template-columns: repeat(2, 1fr); }
   .features-grid { grid-template-columns: 1fr; }
   .pricing-grid { grid-template-columns: 1fr; }
+  .industry-grid { grid-template-columns: 1fr; }
   .stack-grid { grid-template-columns: 1fr; }
   section { padding: 64px 0; }
   .hero { padding: 120px 0 60px; }
@@ -935,6 +1018,7 @@ footer {
 
 @media (max-width: 1024px) and (min-width: 769px) {
   .pricing-grid { grid-template-columns: repeat(2, 1fr); }
+  .industry-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 480px) {
@@ -954,7 +1038,7 @@ footer {
     <li><a href="#features">Features</a></li>
     <li><a href="#benchmarks">Benchmarks</a></li>
     <li class="nav-dropdown">
-      <a href="#">Industries</a>
+      <a href="#industries">Industries</a>
       <ul class="nav-dropdown-menu">
         <li><a href="./engineering">Engineering & Construction</a></li>
         <li><a href="./legal">Legal</a></li>
@@ -1009,6 +1093,65 @@ footer {
       <div class="stat-num">97.5%</div>
       <div class="stat-label">Accuracy (3,000 queries)</div>
     </div>
+  </div>
+</div>
+</section>
+
+<!-- ═══ INDUSTRIES ═══ -->
+<section id="industries">
+<div class="container">
+  <div class="section-label">Built for your work</div>
+  <h2>Your documents. Your industry.</h2>
+  <p class="section-desc">GRIP reads what other tools can't — scanned drawings, legal filings, research papers, service manuals. Here's how it works in practice.</p>
+
+  <div class="industry-grid">
+    <a href="./engineering" class="industry-card">
+      <div class="industry-icon">&#9881;</div>
+      <div class="industry-name">Engineering & Construction</div>
+      <p>ISO drawings, P&IDs, valve specs, welding procedures. OCR reads rotated callouts on scanned sheets. Revision tracking flags stale specs automatically.</p>
+      <ul class="industry-highlights">
+        <li>Reads scanned technical drawings</li>
+        <li>Cross-references across 1,000+ PDFs</li>
+        <li>Detects outdated revisions</li>
+      </ul>
+      <span class="industry-link">See engineering use cases &rarr;</span>
+    </a>
+
+    <a href="./legal" class="industry-card">
+      <div class="industry-icon">&#9878;</div>
+      <div class="industry-name">Legal</div>
+      <p>Discovery sets, contracts, regulatory filings. Every document read — not sampled. Every clause cited to source page. Air-gapped for client confidentiality.</p>
+      <ul class="industry-highlights">
+        <li>100% of documents reviewed</li>
+        <li>Citations to source + page</li>
+        <li>Fully offline — no cloud</li>
+      </ul>
+      <span class="industry-link">See legal use cases &rarr;</span>
+    </a>
+
+    <a href="./education" class="industry-card">
+      <div class="industry-icon">&#127891;</div>
+      <div class="industry-name">Education & Research</div>
+      <p>150 papers into a literature review with citations. Students synthesize without copy-paste. Researchers find contradictions across sources.</p>
+      <ul class="industry-highlights">
+        <li>BibTeX-aware citations</li>
+        <li>Cross-paper contradiction detection</li>
+        <li>Free tier fits ~150 papers</li>
+      </ul>
+      <span class="industry-link">See research use cases &rarr;</span>
+    </a>
+
+    <a href="./business" class="industry-card">
+      <div class="industry-icon">&#128188;</div>
+      <div class="industry-name">Business & Operations</div>
+      <p>Service manuals, contracts, SOPs, compliance docs. New hires query 18 years of institutional knowledge instead of asking the one person who remembers.</p>
+      <ul class="industry-highlights">
+        <li>30+ document formats</li>
+        <li>Knowledge persists when people leave</li>
+        <li>No per-seat licensing</li>
+      </ul>
+      <span class="industry-link">See business use cases &rarr;</span>
+    </a>
   </div>
 </div>
 </section>
