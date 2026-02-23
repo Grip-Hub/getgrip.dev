@@ -211,7 +211,7 @@ GRIP works with any corpus of documents, but it's especially powerful in industr
 |----------|---------------|------------|
 | **Engineering & Construction** | Reads ISO drawings, P&IDs, valve specs, welding procedures. Synthesizes across IFC packages. Catches revision changes. | [→ Engineering](https://grip-hub.github.io/getgrip.dev/engineering) |
 | **Legal** | Exhaustive review across discovery sets. Every document read, every clause cited. Staleness detection when case law changes. | [→ Legal](https://grip-hub.github.io/getgrip.dev/legal) |
-| **Education & Research** | 150 papers → literature review with citations. Students synthesize sources without plagiarism. Researchers find what they're missing. | [→ Education & Research](https://grip-hub.github.io/getgrip.dev/education) |
+| **Education & Research** | 500 papers → literature review with citations. Students synthesize sources without plagiarism. Researchers find what they're missing. | [→ Education & Research](https://grip-hub.github.io/getgrip.dev/education) |
 | **Business & Operations** | 18 years of service manuals → instant answers for new hires. Supplier contracts, compliance reports, policy docs — all queryable. | [→ Business](https://grip-hub.github.io/getgrip.dev/business) |
 
 ---

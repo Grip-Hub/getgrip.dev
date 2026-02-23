@@ -433,6 +433,69 @@ h1 .highlight {
 
 .hero-docker a:hover { color: var(--grip); }
 
+.quick-setup {
+  margin-top: 32px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 24px 28px;
+  max-width: 620px;
+}
+
+.quick-setup-label {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--grip);
+  margin-bottom: 16px;
+}
+
+.quick-setup-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.setup-step {
+  font-size: 14px;
+  color: var(--text-dim);
+  line-height: 1.6;
+  display: flex;
+  gap: 12px;
+  align-items: baseline;
+}
+
+.setup-step .step-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--grip);
+  background: rgba(14, 165, 233, 0.1);
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.setup-step code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  color: var(--grip);
+  background: var(--surface-2);
+  padding: 2px 8px;
+  border-radius: 6px;
+}
+
+.setup-step a {
+  color: var(--grip);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
@@ -1084,6 +1147,15 @@ footer {
     </div>
   </div>
 
+  <div class="quick-setup">
+    <div class="quick-setup-label">Quick setup</div>
+    <div class="quick-setup-steps">
+      <div class="setup-step"><span class="step-num">1</span> Install <a href="https://ollama.com" target="_blank" rel="noopener">Ollama</a> and run <code>ollama pull llama3.2</code> for AI-powered answers.</div>
+      <div class="setup-step"><span class="step-num">2</span> Install GRIP: <code>pip install getgrip</code> — or download the Windows/Linux binary above.</div>
+      <div class="setup-step"><span class="step-num">3</span> Run <code>getgrip</code>, open <code>localhost:7878</code>, drop in your files.</div>
+    </div>
+  </div>
+
   <div class="stats-bar">
     <div class="stat">
       <div class="stat-num">0</div>
@@ -1149,7 +1221,7 @@ footer {
         <ul class="industry-highlights">
           <li>BibTeX-aware citations</li>
           <li>Cross-paper contradiction detection</li>
-          <li>Free tier fits ~500-700 papers</li>
+          <li>Free tier fits ~500 papers</li>
         </ul>
         <span class="industry-link">See research use cases &rarr;</span>
       </div>
