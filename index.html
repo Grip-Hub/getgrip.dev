@@ -214,13 +214,13 @@ nav .container {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 20px;
-  padding: 36px 28px;
   display: flex;
   flex-direction: column;
   transition: all 0.3s ease;
   text-decoration: none;
   color: inherit;
   cursor: pointer;
+  overflow: hidden;
 }
 
 .industry-card:hover {
@@ -229,10 +229,18 @@ nav .container {
   box-shadow: 0 0 40px var(--grip-glow);
 }
 
-.industry-icon {
-  font-size: 36px;
-  margin-bottom: 16px;
-  line-height: 1;
+.industry-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  display: block;
+}
+
+.industry-card-body {
+  padding: 28px 24px 32px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 
 .industry-name {
@@ -1106,51 +1114,59 @@ footer {
 
   <div class="industry-grid">
     <a href="./engineering" class="industry-card">
-      <div class="industry-icon">&#9881;</div>
-      <div class="industry-name">Engineering & Construction</div>
-      <p>ISO drawings, P&IDs, valve specs, welding procedures. OCR reads rotated callouts on scanned sheets. Revision tracking flags stale specs automatically.</p>
-      <ul class="industry-highlights">
-        <li>Reads scanned technical drawings</li>
-        <li>Cross-references across 1,000+ PDFs</li>
-        <li>Detects outdated revisions</li>
-      </ul>
-      <span class="industry-link">See engineering use cases &rarr;</span>
+      <img src="Engineering %26 Construction.png" alt="GRIP for Engineering & Construction" loading="lazy">
+      <div class="industry-card-body">
+        <div class="industry-name">Engineering & Construction</div>
+        <p>ISO drawings, P&IDs, valve specs, welding procedures. OCR reads rotated callouts on scanned sheets. Revision tracking flags stale specs automatically.</p>
+        <ul class="industry-highlights">
+          <li>Reads scanned technical drawings</li>
+          <li>Cross-references across 1,000+ PDFs</li>
+          <li>Detects outdated revisions</li>
+        </ul>
+        <span class="industry-link">See engineering use cases &rarr;</span>
+      </div>
     </a>
 
     <a href="./legal" class="industry-card">
-      <div class="industry-icon">&#9878;</div>
-      <div class="industry-name">Legal</div>
-      <p>Discovery sets, contracts, regulatory filings. Every document read — not sampled. Every clause cited to source page. Air-gapped for client confidentiality.</p>
-      <ul class="industry-highlights">
-        <li>100% of documents reviewed</li>
-        <li>Citations to source + page</li>
-        <li>Fully offline — no cloud</li>
-      </ul>
-      <span class="industry-link">See legal use cases &rarr;</span>
+      <img src="Legal.png" alt="GRIP for Legal" loading="lazy">
+      <div class="industry-card-body">
+        <div class="industry-name">Legal</div>
+        <p>Discovery sets, contracts, regulatory filings. Every document read — not sampled. Every clause cited to source page. Air-gapped for client confidentiality.</p>
+        <ul class="industry-highlights">
+          <li>100% of documents reviewed</li>
+          <li>Citations to source + page</li>
+          <li>Fully offline — no cloud</li>
+        </ul>
+        <span class="industry-link">See legal use cases &rarr;</span>
+      </div>
     </a>
 
     <a href="./education" class="industry-card">
-      <div class="industry-icon">&#127891;</div>
-      <div class="industry-name">Education & Research</div>
-      <p>150 papers into a literature review with citations. Students synthesize without copy-paste. Researchers find contradictions across sources.</p>
-      <ul class="industry-highlights">
-        <li>BibTeX-aware citations</li>
-        <li>Cross-paper contradiction detection</li>
-        <li>Free tier fits ~150 papers</li>
-      </ul>
-      <span class="industry-link">See research use cases &rarr;</span>
+      <img src="Education %26 Research.png" alt="GRIP for Education & Research" loading="lazy">
+      <div class="industry-card-body">
+        <div class="industry-name">Education & Research</div>
+        <p>150 papers into a literature review with citations. Students synthesize without copy-paste. Researchers find contradictions across sources.</p>
+        <ul class="industry-highlights">
+          <li>BibTeX-aware citations</li>
+          <li>Cross-paper contradiction detection</li>
+          <li>Free tier fits ~150 papers</li>
+        </ul>
+        <span class="industry-link">See research use cases &rarr;</span>
+      </div>
     </a>
 
     <a href="./business" class="industry-card">
-      <div class="industry-icon">&#128188;</div>
-      <div class="industry-name">Business & Operations</div>
-      <p>Service manuals, contracts, SOPs, compliance docs. New hires query 18 years of institutional knowledge instead of asking the one person who remembers.</p>
-      <ul class="industry-highlights">
-        <li>30+ document formats</li>
-        <li>Knowledge persists when people leave</li>
-        <li>No per-seat licensing</li>
-      </ul>
-      <span class="industry-link">See business use cases &rarr;</span>
+      <img src="Business %26 Operations.png" alt="GRIP for Business & Operations" loading="lazy">
+      <div class="industry-card-body">
+        <div class="industry-name">Business & Operations</div>
+        <p>Service manuals, contracts, SOPs, compliance docs. New hires query 18 years of institutional knowledge instead of asking the one person who remembers.</p>
+        <ul class="industry-highlights">
+          <li>30+ document formats</li>
+          <li>Knowledge persists when people leave</li>
+          <li>No per-seat licensing</li>
+        </ul>
+        <span class="industry-link">See business use cases &rarr;</span>
+      </div>
     </a>
   </div>
 </div>
