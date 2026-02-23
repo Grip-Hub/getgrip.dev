@@ -76,6 +76,12 @@ nav .container {
   text-decoration: none; transition: color 0.2s;
 }
 .nav-links a:hover { color: var(--text); }
+.nav-dropdown { position: relative; }
+.nav-dropdown > a::after { content: ' \25BE'; font-size: 10px; }
+.nav-dropdown-menu { display: none; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); margin-top: 12px; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 8px 0; min-width: 200px; box-shadow: 0 8px 32px rgba(0,0,0,0.4); z-index: 1001; list-style: none; }
+.nav-dropdown:hover .nav-dropdown-menu { display: block; }
+.nav-dropdown-menu li a { display: block; padding: 8px 20px; font-size: 13px; color: var(--text-dim); white-space: nowrap; }
+.nav-dropdown-menu li a:hover { color: var(--text); background: var(--surface-2); }
 .nav-links .btn-nav {
   padding: 8px 18px; background: var(--surface-2); border: 1px solid var(--border);
   border-radius: 8px; color: var(--text); font-weight: 600; transition: all 0.2s;
@@ -316,6 +322,15 @@ footer {
   <ul class="nav-links">
     <li><a href="./#features">Features</a></li>
     <li><a href="./#benchmarks">Benchmarks</a></li>
+    <li class="nav-dropdown">
+      <a href="#">Industries</a>
+      <ul class="nav-dropdown-menu">
+        <li><a href="./engineering">Engineering & Construction</a></li>
+        <li><a href="./legal">Legal</a></li>
+        <li><a href="./education">Education & Research</a></li>
+        <li><a href="./business">Business & Operations</a></li>
+      </ul>
+    </li>
     <li><a href="./#pricing">Pricing</a></li>
     <li><a href="https://github.com/Grip-Hub/getgrip.dev" target="_blank" rel="noopener">GitHub</a></li>
     <li><a href="https://github.com/Grip-Hub/getgrip.dev/blob/main/GUIDE.md" class="btn-nav" target="_blank" rel="noopener">Docs</a></li>
