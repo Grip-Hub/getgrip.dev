@@ -26,13 +26,13 @@ jobs:
         include:
           - os: windows-latest
             artifact: GRIP-Windows.exe
-            build_cmd: pyinstaller GRIP.spec && copy dist\GRIP.exe dist\GRIP-Windows.exe
+            build_cmd: pyinstaller GRIP.spec && copy dist\grip.exe dist\GRIP-Windows.exe
           - os: macos-latest
             artifact: GRIP-macOS
-            build_cmd: pyinstaller GRIP.spec && cp dist/GRIP dist/GRIP-macOS
+            build_cmd: pyinstaller GRIP.spec && cp dist/grip dist/GRIP-macOS
           - os: ubuntu-latest
             artifact: GRIP-Linux
-            build_cmd: pyinstaller GRIP.spec && cp dist/GRIP dist/GRIP-Linux
+            build_cmd: pyinstaller GRIP.spec && cp dist/grip dist/GRIP-Linux
 
     runs-on: ${{ matrix.os }}
 
