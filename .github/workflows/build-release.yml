@@ -46,6 +46,7 @@ jobs:
 
       - name: Install dependencies
         run: |
+          pip install Cython>=3.0 setuptools wheel
           pip install getgrip pyinstaller
 
       - name: Build executable
