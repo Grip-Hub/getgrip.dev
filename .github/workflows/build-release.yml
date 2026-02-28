@@ -1,0 +1,102 @@
+# .github/workflows/build-release.yml
+#
+# Builds standalone GRIP executables for Windows, macOS, and Linux.
+# Triggered when you push a version tag like v0.2.2
+#
+# Usage:
+#   git tag v0.2.2
+#   git push origin v0.2.2
+#
+# This creates a GitHub Release with all three executables attached.
+
+name: Build Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        include:
+          - os: windows-latest
+            artifact: GRIP-Windows.exe
+            build_cmd: pyinstaller GRIP.spec && copy dist\GRIP.exe dist\GRIP-Windows.exe
+          - os: macos-latest
+            artifact: GRIP-macOS
+            build_cmd: pyinstaller GRIP.spec && cp dist/GRIP dist/GRIP-macOS
+          - os: ubuntu-latest
+            artifact: GRIP-Linux
+            build_cmd: pyinstaller GRIP.spec && cp dist/GRIP dist/GRIP-Linux
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: |
+          pip install getgrip pyinstaller
+
+      - name: Build executable
+        run: ${{ matrix.build_cmd }}
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.artifact }}
+          path: dist/${{ matrix.artifact }}
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            GRIP-Windows.exe/GRIP-Windows.exe
+            GRIP-macOS/GRIP-macOS
+            GRIP-Linux/GRIP-Linux
+          body: |
+            ## GRIP ${{ github.ref_name }} — Standalone Downloads
+
+            **No Python required. Download, double-click, search.**
+
+            | Platform | Download |
+            |----------|----------|
+            | Windows | GRIP-Windows.exe |
+            | macOS | GRIP-macOS |
+            | Linux | GRIP-Linux |
+
+            Your browser opens automatically to the GRIP search interface.
+            Keep the console window open while using GRIP.
+
+            **macOS users:** If you see "unidentified developer", right-click → Open → Open Anyway.
+            Or run: `xattr -d com.apple.quarantine ./GRIP-macOS`
+
+            **Still prefer pip?** `pip install getgrip`
+
+            ---
+            ### What's in the box
+            - Full web UI at localhost:7878
+            - Browse button to pick folders (no terminal needed)
+            - Confidence scoring on every search
+            - All features from the free tier (10K chunks)
+            - Works fully offline after download
+          draft: false
+          prerelease: false
