@@ -74,7 +74,7 @@ jobs:
             GRIP-macOS/GRIP-macOS
             GRIP-Linux/GRIP-Linux
           body: |
-            ## GRIP ${{ github.ref_name }} — Standalone Downloads
+            ## GRIP ${{ github.ref_name }} — The Memory Layer for AI
 
             **No Python required. Download, double-click, search.**
 
@@ -93,11 +93,14 @@ jobs:
             **Still prefer pip?** `pip install getgrip`
 
             ---
-            ### What's in the box
+            ### What's new in 0.4.0
+            - **MCP Server** — 15 tools, one `.mcp.json` config file
+            - **Episodic Memory** — store/recall facts across conversations
+            - **Query Parser** — exact phrases, field filters, OR groups, negation
+            - **Vocabulary Learning** — learns your terminology from ingested docs
+            - **Confidence Scoring** — HIGH/MEDIUM/LOW/NONE on every answer
+            - **Explain Mode** — see why each result was retrieved
             - Full web UI at localhost:7878
-            - Browse button to pick folders (no terminal needed)
-            - Confidence scoring on every search
-            - All features from the free tier (10K chunks)
             - Works fully offline after download
           draft: false
           prerelease: false
