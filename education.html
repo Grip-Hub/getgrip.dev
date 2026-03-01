@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GRIP for Education & Research — Synthesize 150 Papers. Cite Every One.</title>
-<meta name="description" content="GRIP reads your entire research corpus and synthesizes understanding with citations. Literature reviews, curriculum alignment, cross-paper discovery. No plagiarism — comprehension.">
+<title>GRIP for Education & Research — Give Your Research AI a Memory</title>
+<meta name="description" content="GRIP gives your AI agents persistent memory across your research corpus. MCP server with 15 tools. Literature reviews with citations. Cross-paper discovery. Knowledge that compounds.">
 <meta property="og:title" content="GRIP for Education & Research">
-<meta property="og:description" content="500 papers → literature review with citations. Students synthesize without plagiarism. Researchers find what they're missing.">
+<meta property="og:description" content="The memory layer for AI. 500 papers synthesized with citations. Knowledge compounds across semesters.">
 <meta property="og:image" content="https://getgrip.dev/Logo.png">
 <link rel="icon" type="image/png" href="Logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -92,6 +92,7 @@ footer { padding: 40px 0; border-top: 1px solid var(--border); }
   .stats-row { grid-template-columns: repeat(2, 1fr); }
   .footer-inner { flex-direction: column; gap: 16px; text-align: center; }
   .hero-buttons { flex-direction: column; align-items: flex-start; }
+  .hide-mobile { display: none; }
 }
 </style>
 </head>
@@ -101,8 +102,9 @@ footer { padding: 40px 0; border-top: 1px solid var(--border); }
 <div class="container">
   <a href="./" class="nav-logo"><span>G</span>RIP</a>
   <ul class="nav-links">
+    <li><a href="./#mcp" class="hide-mobile">MCP</a></li>
     <li><a href="./#features">Features</a></li>
-    <li><a href="./#benchmarks">Benchmarks</a></li>
+    <li><a href="./#proof">Proof</a></li>
     <li class="nav-dropdown">
       <a href="#">Industries</a>
       <ul class="nav-dropdown-menu">
@@ -123,17 +125,17 @@ footer { padding: 40px 0; border-top: 1px solid var(--border); }
 <div class="container">
   <div class="hero-label"><span class="dot"></span> Education & Research</div>
   <h1>Read 500 papers.<br><span class="hl">Cite every one.</span></h1>
-  <p class="sub">GRIP reads your entire research corpus and synthesizes understanding across all sources with citations. Literature reviews in minutes instead of months. Cross-paper connections you'd never find manually.</p>
+  <p class="sub">GRIP gives your AI agents persistent memory across your entire research corpus. Literature reviews in minutes. Cross-paper connections found automatically. Knowledge compounds across semesters. Works as an MCP server — free tier covers 10K chunks.</p>
   <div class="hero-buttons">
-    <a href="https://github.com/Grip-Hub/getgrip.dev/releases/latest/download/GRIP.exe" class="btn btn-primary">Download for Windows</a>
-    <a href="https://github.com/Grip-Hub/getgrip.dev/releases/latest/download/GRIP-Linux.zip" class="btn btn-outline">Download for Linux</a>
-    <a href="https://pypi.org/project/getgrip/" class="btn btn-outline" target="_blank" rel="noopener">pip install</a>
+    <a href="./#mcp" class="btn btn-primary">See MCP setup</a>
+    <a href="https://pypi.org/project/getgrip/" class="btn btn-outline" target="_blank" rel="noopener">pip install getgrip</a>
+    <a href="https://github.com/Grip-Hub/getgrip.dev/releases" class="btn btn-outline">Download binary</a>
   </div>
   <div class="stats-row">
-    <div class="stat-cell"><div class="num">All</div><div class="label">Sources read exhaustively</div></div>
+    <div class="stat-cell"><div class="num">15</div><div class="label">MCP tools for agents</div></div>
     <div class="stat-cell"><div class="num">Cited</div><div class="label">Every claim traced to source</div></div>
-    <div class="stat-cell"><div class="num">0</div><div class="label">Papers skipped</div></div>
-    <div class="stat-cell"><div class="num">Free</div><div class="label">For students (10K chunks)</div></div>
+    <div class="stat-cell"><div class="num">Free</div><div class="label">10K chunks for students</div></div>
+    <div class="stat-cell"><div class="num">2x</div><div class="label">Cheaper than context stuffing</div></div>
   </div>
 </div>
 </section>
@@ -245,18 +247,15 @@ footer { padding: 40px 0; border-top: 1px solid var(--border); }
 <section class="cta-section">
 <div class="container">
   <div class="section-label">Get Started</div>
-  <h2>Your sources deserve to be read. All of them.</h2>
-  <p class="section-desc">Free tier includes 10,000 chunks — enough for ~500 research papers or a full semester of course materials. No credit card. No time limit.</p>
+  <h2>Give your research AI a memory.</h2>
+  <p class="section-desc">Free tier includes 10,000 chunks — enough for ~500 research papers or a full semester of course materials. No credit card. No time limit. MCP server with 15 tools including episodic memory.</p>
   <div class="cta-install" onclick="navigator.clipboard.writeText('pip install getgrip');this.querySelector('.hint').textContent='Copied!'">
     <span class="prompt">$</span> pip install getgrip
     <span class="hint">Click to copy</span>
   </div>
   <div class="cta-alt" style="margin-top: 16px;">
-    <a href="https://github.com/Grip-Hub/getgrip.dev/releases/latest/download/GRIP.exe" style="color: var(--text-dim); text-decoration: underline; text-underline-offset: 3px;">Download for Windows</a>
-    · <a href="https://github.com/Grip-Hub/getgrip.dev/releases/latest/download/GRIP-Linux.zip" style="color: var(--text-dim); text-decoration: underline; text-underline-offset: 3px;">Download for Linux</a>
-  </div>
-  <div class="cta-alt">
-    <a href="https://github.com/Grip-Hub/getgrip.dev/releases">all releases</a>
+    <a href="./#mcp">MCP setup guide</a>
+    · <a href="https://github.com/Grip-Hub/getgrip.dev/releases">download binary</a>
     · <a href="./#pricing">pricing</a>
   </div>
 </div>
@@ -265,7 +264,7 @@ footer { padding: 40px 0; border-top: 1px solid var(--border); }
 <footer>
 <div class="container">
   <div class="footer-inner">
-    <div class="footer-left"><strong>GRIP</strong> — Get a grip on your data</div>
+    <div class="footer-left"><strong>GRIP</strong> — The memory layer for AI</div>
     <ul class="footer-links">
       <li><a href="./">Home</a></li>
       <li><a href="https://github.com/Grip-Hub/getgrip.dev" target="_blank">GitHub</a></li>

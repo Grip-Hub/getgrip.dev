@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GRIP for Legal — Every Document Reviewed. Every Clause Cited.</title>
-<meta name="description" content="GRIP exhaustively reviews every document in discovery sets, contracts, and regulatory filings. Every clause cited. Staleness detection when case law changes.">
+<title>GRIP for Legal — Give Your Legal AI a Memory</title>
+<meta name="description" content="GRIP gives your AI agents persistent memory across discovery sets, contracts, and regulatory filings. MCP server with 15 tools. Every clause cited. Staleness detection on case law changes.">
 <meta property="og:title" content="GRIP for Legal">
-<meta property="og:description" content="Exhaustive document review. Every document read. Every clause cited. No asterisks.">
+<meta property="og:description" content="The memory layer for AI. Exhaustive document review with citations. Every document read. Every clause cited.">
 <meta property="og:image" content="https://getgrip.dev/Logo.png">
 <link rel="icon" type="image/png" href="Logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -102,6 +102,7 @@ footer { padding: 40px 0; border-top: 1px solid var(--border); }
   .stats-row { grid-template-columns: repeat(2, 1fr); }
   .footer-inner { flex-direction: column; gap: 16px; text-align: center; }
   .hero-buttons { flex-direction: column; align-items: flex-start; }
+  .hide-mobile { display: none; }
 }
 </style>
 </head>
@@ -111,8 +112,9 @@ footer { padding: 40px 0; border-top: 1px solid var(--border); }
 <div class="container">
   <a href="./" class="nav-logo"><span>G</span>RIP</a>
   <ul class="nav-links">
+    <li><a href="./#mcp" class="hide-mobile">MCP</a></li>
     <li><a href="./#features">Features</a></li>
-    <li><a href="./#benchmarks">Benchmarks</a></li>
+    <li><a href="./#proof">Proof</a></li>
     <li class="nav-dropdown">
       <a href="#">Industries</a>
       <ul class="nav-dropdown-menu">
@@ -133,17 +135,17 @@ footer { padding: 40px 0; border-top: 1px solid var(--border); }
 <div class="container">
   <div class="hero-label"><span class="dot"></span> Legal</div>
   <h1>"Did you review<br><span class="hl">everything?"</span></h1>
-  <p class="sub">With GRIP, the answer is actually yes. Exhaustive review across every document in the set. Every page read. Every clause cited. Scanned documents included. Revision changes tracked.</p>
+  <p class="sub">With GRIP, the answer is actually yes. Your AI agents get persistent memory across every document in the set. Every page read. Every clause cited. Scanned documents included. Works as an MCP server — air-gapped, your client data never leaves your machine.</p>
   <div class="hero-buttons">
-    <a href="https://github.com/Grip-Hub/getgrip.dev/releases/latest/download/GRIP.exe" class="btn btn-primary">Download for Windows</a>
-    <a href="https://github.com/Grip-Hub/getgrip.dev/releases/latest/download/GRIP-Linux.zip" class="btn btn-outline">Download for Linux</a>
-    <a href="https://pypi.org/project/getgrip/" class="btn btn-outline" target="_blank" rel="noopener">pip install</a>
+    <a href="./#mcp" class="btn btn-primary">See MCP setup</a>
+    <a href="https://pypi.org/project/getgrip/" class="btn btn-outline" target="_blank" rel="noopener">pip install getgrip</a>
+    <a href="https://github.com/Grip-Hub/getgrip.dev/releases" class="btn btn-outline">Download binary</a>
   </div>
   <div class="stats-row">
+    <div class="stat-cell"><div class="num">15</div><div class="label">MCP tools for agents</div></div>
     <div class="stat-cell"><div class="num">100%</div><div class="label">Documents reviewed</div></div>
-    <div class="stat-cell"><div class="num">Every</div><div class="label">Clause cited to source</div></div>
     <div class="stat-cell"><div class="num">OCR</div><div class="label">Scanned docs included</div></div>
-    <div class="stat-cell"><div class="num">Auto</div><div class="label">Stale detection on changes</div></div>
+    <div class="stat-cell"><div class="num">2x</div><div class="label">Cheaper than context stuffing</div></div>
   </div>
 </div>
 </section>
@@ -223,18 +225,15 @@ footer { padding: 40px 0; border-top: 1px solid var(--border); }
 <section class="cta-section">
 <div class="container">
   <div class="section-label">Get Started</div>
-  <h2>Due diligence means reading everything. GRIP does.</h2>
-  <p class="section-desc">Every document. Every page. Every clause. Scanned documents included. Cited to source. Air-gapped — your client data never leaves your machine.</p>
+  <h2>Give your legal AI a memory.</h2>
+  <p class="section-desc">Every document. Every page. Every clause. Scanned documents included. Cited to source. Air-gapped — your client data never leaves your machine. MCP server with 15 tools including episodic memory.</p>
   <div class="cta-install" onclick="navigator.clipboard.writeText('pip install getgrip[all]');this.querySelector('.hint').textContent='Copied!'">
     <span class="prompt">$</span> pip install getgrip[all]
     <span class="hint">Click to copy</span>
   </div>
   <div class="cta-alt" style="margin-top: 16px;">
-    <a href="https://github.com/Grip-Hub/getgrip.dev/releases/latest/download/GRIP.exe" style="color: var(--text-dim); text-decoration: underline; text-underline-offset: 3px;">Download for Windows</a>
-    · <a href="https://github.com/Grip-Hub/getgrip.dev/releases/latest/download/GRIP-Linux.zip" style="color: var(--text-dim); text-decoration: underline; text-underline-offset: 3px;">Download for Linux</a>
-  </div>
-  <div class="cta-alt">
-    <a href="https://github.com/Grip-Hub/getgrip.dev/releases">all releases</a>
+    <a href="./#mcp">MCP setup guide</a>
+    · <a href="https://github.com/Grip-Hub/getgrip.dev/releases">download binary</a>
     · <a href="./#pricing">pricing</a>
   </div>
 </div>
@@ -243,7 +242,7 @@ footer { padding: 40px 0; border-top: 1px solid var(--border); }
 <footer>
 <div class="container">
   <div class="footer-inner">
-    <div class="footer-left"><strong>GRIP</strong> — Get a grip on your data</div>
+    <div class="footer-left"><strong>GRIP</strong> — The memory layer for AI</div>
     <ul class="footer-links">
       <li><a href="./">Home</a></li>
       <li><a href="https://github.com/Grip-Hub/getgrip.dev" target="_blank">GitHub</a></li>

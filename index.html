@@ -3,16 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GRIP — Get a grip on your data</title>
-<meta name="description" content="A retrieval engine that learns your data's vocabulary. No embeddings. No vector database. 97.5% accuracy across 3,000 queries.">
-<meta property="og:title" content="GRIP — Get a grip on your data">
-<meta property="og:description" content="A retrieval engine that learns your data's vocabulary. No embeddings. No vector database. 97.5% accuracy.">
+<title>GRIP — The memory layer for AI</title>
+<meta name="description" content="Give your AI a memory. GRIP is an MCP server that stores, searches, and recalls knowledge across conversations. One config file. 15 tools. Zero context stuffing.">
+<meta property="og:title" content="GRIP — The memory layer for AI">
+<meta property="og:description" content="Give your AI a memory. MCP server with 15 tools. Store, search, and recall knowledge across conversations.">
 <meta property="og:image" content="https://getgrip.dev/Logo.png">
 <meta property="og:url" content="https://getgrip.dev/">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="GRIP — Get a grip on your data">
-<meta name="twitter:description" content="A retrieval engine that learns your data's vocabulary. No embeddings. No vector database. 97.5% accuracy.">
+<meta name="twitter:title" content="GRIP — The memory layer for AI">
+<meta name="twitter:description" content="Give your AI a memory. MCP server with 15 tools. Store, search, and recall knowledge across conversations.">
 <meta name="twitter:image" content="https://getgrip.dev/Logo.png">
 <link rel="icon" type="image/png" href="Logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -35,6 +35,8 @@
   --accent: #10b981;
   --accent-glow: rgba(16, 185, 129, 0.1);
   --warm: #f59e0b;
+  --red: #ef4444;
+  --red-glow: rgba(239, 68, 68, 0.1);
 }
 
 html { scroll-behavior: smooth; }
@@ -129,169 +131,6 @@ nav .container {
 
 .nav-links .gh-link svg { fill: currentColor; }
 
-/* ── Dropdown ─────────────────────────── */
-.nav-dropdown {
-  position: relative;
-}
-
-.nav-dropdown > a {
-  padding: 6px 14px !important;
-  border: 1px solid var(--border-light);
-  border-radius: 8px;
-  color: var(--grip) !important;
-  font-weight: 600 !important;
-  transition: all 0.25s;
-}
-
-.nav-dropdown > a:hover {
-  border-color: var(--grip);
-  box-shadow: 0 0 12px var(--grip-glow);
-}
-
-.nav-dropdown > a::after {
-  content: ' \25BE';
-  font-size: 10px;
-}
-
-.nav-dropdown-menu {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  padding-top: 8px;
-  z-index: 1001;
-  list-style: none;
-}
-
-.nav-dropdown-menu > li:first-child {
-  border-radius: 12px 12px 0 0;
-}
-
-.nav-dropdown-menu > li:last-child {
-  border-radius: 0 0 12px 12px;
-}
-
-.nav-dropdown:hover .nav-dropdown-menu { display: block; }
-
-.nav-dropdown-menu li a {
-  display: block;
-  padding: 10px 22px;
-  font-size: 13px;
-  color: var(--text-dim);
-  white-space: nowrap;
-  background: var(--surface);
-  border-left: 1px solid var(--border);
-  border-right: 1px solid var(--border);
-}
-
-.nav-dropdown-menu li:first-child a {
-  border-top: 1px solid var(--border);
-  border-radius: 12px 12px 0 0;
-  padding-top: 14px;
-}
-
-.nav-dropdown-menu li:last-child a {
-  border-bottom: 1px solid var(--border);
-  border-radius: 0 0 12px 12px;
-  padding-bottom: 14px;
-}
-
-.nav-dropdown-menu li a:hover {
-  color: var(--grip);
-  background: var(--surface-2);
-}
-
-/* ── Industry Cards ───────────────────── */
-.industry-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
-  margin-top: 60px;
-}
-
-.industry-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  display: flex;
-  flex-direction: column;
-  transition: all 0.3s ease;
-  text-decoration: none;
-  color: inherit;
-  cursor: pointer;
-  overflow: hidden;
-}
-
-.industry-card:hover {
-  border-color: var(--grip);
-  transform: translateY(-3px);
-  box-shadow: 0 0 40px var(--grip-glow);
-}
-
-.industry-card img {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-  display: block;
-}
-
-.industry-card-body {
-  padding: 28px 24px 32px;
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-}
-
-.industry-name {
-  font-size: 18px;
-  font-weight: 700;
-  margin-bottom: 12px;
-  color: var(--text);
-}
-
-.industry-card p {
-  font-size: 14px;
-  color: var(--text-dim);
-  line-height: 1.7;
-  margin-bottom: 20px;
-}
-
-.industry-highlights {
-  list-style: none;
-  flex: 1;
-  margin-bottom: 20px;
-}
-
-.industry-highlights li {
-  font-size: 13px;
-  color: var(--text-dim);
-  padding: 5px 0;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.industry-highlights li::before {
-  content: '\2713';
-  color: var(--accent);
-  font-size: 13px;
-  font-weight: 700;
-  flex-shrink: 0;
-}
-
-.industry-link {
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--grip);
-  margin-top: auto;
-  transition: letter-spacing 0.2s;
-}
-
-.industry-card:hover .industry-link {
-  letter-spacing: 0.02em;
-}
-
 /* ── Layout ────────────────────────────── */
 .container {
   max-width: 1080px;
@@ -375,7 +214,7 @@ h1 .highlight {
 .hero-sub {
   font-size: clamp(17px, 2.5vw, 21px);
   color: var(--text-dim);
-  max-width: 600px;
+  max-width: 640px;
   line-height: 1.6;
   margin-bottom: 40px;
   animation: fadeUp 0.6s ease 0.2s both;
@@ -432,69 +271,6 @@ h1 .highlight {
 }
 
 .hero-docker a:hover { color: var(--grip); }
-
-.quick-setup {
-  margin-top: 32px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 24px 28px;
-  max-width: 620px;
-}
-
-.quick-setup-label {
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--grip);
-  margin-bottom: 16px;
-}
-
-.quick-setup-steps {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.setup-step {
-  font-size: 14px;
-  color: var(--text-dim);
-  line-height: 1.6;
-  display: flex;
-  gap: 12px;
-  align-items: baseline;
-}
-
-.setup-step .step-num {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--grip);
-  background: rgba(14, 165, 233, 0.1);
-  border-radius: 50%;
-  width: 22px;
-  height: 22px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-
-.setup-step code {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 13px;
-  color: var(--grip);
-  background: var(--surface-2);
-  padding: 2px 8px;
-  border-radius: 6px;
-}
-
-.setup-step a {
-  color: var(--grip);
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
 
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(20px); }
@@ -559,6 +335,164 @@ h2 {
   max-width: 560px;
   line-height: 1.7;
 }
+
+/* ── MCP Config block ────────────────── */
+.mcp-config-block {
+  background: #0c0c0c;
+  border: 1px solid #2a2a2a;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.5);
+}
+
+.mcp-config-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 20px;
+  background: #161616;
+  border-bottom: 1px solid #2a2a2a;
+}
+
+.mcp-config-bar .dot { width: 12px; height: 12px; border-radius: 50%; }
+.mcp-config-bar .dot.r { background: #ff5f57; }
+.mcp-config-bar .dot.y { background: #febc2e; }
+.mcp-config-bar .dot.g { background: #28c840; }
+
+.mcp-config-bar .title {
+  flex: 1;
+  text-align: center;
+  font-size: 13px;
+  color: #666;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.mcp-config-body {
+  padding: 24px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13.5px;
+  line-height: 1.7;
+  overflow-x: auto;
+}
+
+.mcp-config-body .key { color: #82aaff; }
+.mcp-config-body .str { color: #c3e88d; }
+.mcp-config-body .brace { color: #e2e8f0; }
+.mcp-config-body .comment { color: #555; }
+
+/* ── MCP Integration section ─────────── */
+.mcp-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: start;
+  margin-top: 60px;
+}
+
+.mcp-tools-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.mcp-tool {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  font-size: 13px;
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--text-dim);
+  transition: all 0.2s;
+}
+
+.mcp-tool:hover {
+  border-color: var(--border-light);
+  color: var(--text);
+}
+
+.mcp-tool .icon { font-size: 16px; }
+
+/* ── Problem/proof section ───────────── */
+.proof-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  margin-top: 60px;
+}
+
+.proof-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 36px 32px;
+}
+
+.proof-card h3 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  letter-spacing: -0.01em;
+}
+
+.proof-card p {
+  font-size: 15px;
+  color: var(--text-dim);
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+
+/* ── Cost chart ──────────────────────── */
+.cost-chart {
+  margin-top: 40px;
+}
+
+.cost-row {
+  display: grid;
+  grid-template-columns: 140px 1fr 80px;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.cost-row:last-child { border-bottom: none; }
+
+.cost-label {
+  font-size: 13px;
+  color: var(--text-dim);
+  font-weight: 500;
+}
+
+.cost-bar-wrap {
+  height: 28px;
+  position: relative;
+}
+
+.cost-bar {
+  height: 100%;
+  border-radius: 6px;
+  transition: width 0.8s ease;
+}
+
+.cost-bar.grip { background: var(--grip); }
+.cost-bar.stuff { background: var(--red); }
+.cost-bar.broken { background: var(--red); opacity: 0.4; border: 1px dashed var(--red); }
+
+.cost-value {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  font-weight: 700;
+  text-align: right;
+}
+
+.cost-value.grip-val { color: var(--grip); }
+.cost-value.stuff-val { color: var(--red); }
+.cost-value.broken-val { color: var(--text-muted); }
 
 /* ── Terminal Demo ─────────────────────── */
 .terminal {
@@ -729,6 +663,63 @@ h2 {
 .bench-combined-label { color: var(--text-dim); font-size: 15px; }
 .bench-combined-label strong { color: var(--text); }
 
+/* ── Head-to-head results ─────────────── */
+.h2h-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 32px;
+}
+
+.h2h-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 28px 24px;
+  text-align: center;
+}
+
+.h2h-model {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+}
+
+.h2h-scores {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 16px;
+}
+
+.h2h-score {
+  text-align: center;
+}
+
+.h2h-score .num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 28px;
+  font-weight: 800;
+}
+
+.h2h-score .label {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.h2h-score .num.grip { color: var(--grip); }
+.h2h-score .num.stuff { color: var(--text-dim); }
+
+.h2h-savings {
+  font-size: 14px;
+  color: var(--accent);
+  font-weight: 600;
+}
+
 /* ── Comparison table ──────────────────── */
 .compare-section { margin-top: 80px; }
 
@@ -760,40 +751,97 @@ h2 {
 .compare-table .yes { color: var(--accent); font-weight: 600; }
 .compare-table .no { color: var(--text-muted); }
 
-/* ── Stack / Integration ───────────────── */
-.stack-grid {
+/* ── Industry Cards ───────────────────── */
+.industry-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 48px;
-  align-items: center;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
   margin-top: 60px;
 }
 
-.stack-logos {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-
-.logo-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 18px;
+.industry-card {
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 10px;
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--text-dim);
-  transition: all 0.2s;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  overflow: hidden;
 }
 
-.logo-pill:hover {
-  border-color: var(--border-light);
+.industry-card:hover {
+  border-color: var(--grip);
+  transform: translateY(-3px);
+  box-shadow: 0 0 40px var(--grip-glow);
+}
+
+.industry-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  display: block;
+}
+
+.industry-card-body {
+  padding: 28px 24px 32px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.industry-name {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 12px;
   color: var(--text);
 }
 
+.industry-card p {
+  font-size: 14px;
+  color: var(--text-dim);
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+
+.industry-highlights {
+  list-style: none;
+  flex: 1;
+  margin-bottom: 20px;
+}
+
+.industry-highlights li {
+  font-size: 13px;
+  color: var(--text-dim);
+  padding: 5px 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.industry-highlights li::before {
+  content: '\2713';
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.industry-link {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--grip);
+  margin-top: auto;
+  transition: letter-spacing 0.2s;
+}
+
+.industry-card:hover .industry-link {
+  letter-spacing: 0.02em;
+}
+
+/* ── Stack / Integration ───────────────── */
 .stack-code {
   background: #0c0c0c;
   border: 1px solid #2a2a2a;
@@ -1079,7 +1127,10 @@ footer {
   .features-grid { grid-template-columns: 1fr; }
   .pricing-grid { grid-template-columns: 1fr; }
   .industry-grid { grid-template-columns: 1fr; }
-  .stack-grid { grid-template-columns: 1fr; }
+  .mcp-grid { grid-template-columns: 1fr; }
+  .proof-grid { grid-template-columns: 1fr; }
+  .h2h-grid { grid-template-columns: 1fr; }
+  .mcp-tools-list { grid-template-columns: 1fr; }
   section { padding: 64px 0; }
   .hero { padding: 120px 0 60px; }
   .enterprise-cta { padding: 32px 20px; }
@@ -1105,18 +1156,10 @@ footer {
 <div class="container">
   <a href="#" class="nav-logo"><span>G</span>RIP</a>
   <ul class="nav-links">
-    <li><a href="#demo" class="hide-mobile">Demo</a></li>
+    <li><a href="#mcp" class="hide-mobile">MCP</a></li>
     <li><a href="#features">Features</a></li>
+    <li><a href="#proof">Proof</a></li>
     <li><a href="#benchmarks">Benchmarks</a></li>
-    <li class="nav-dropdown">
-      <a href="#industries">Industries</a>
-      <ul class="nav-dropdown-menu">
-        <li><a href="./engineering">Engineering & Construction</a></li>
-        <li><a href="./legal">Legal</a></li>
-        <li><a href="./education">Education & Research</a></li>
-        <li><a href="./business">Business & Operations</a></li>
-      </ul>
-    </li>
     <li><a href="#pricing">Pricing</a></li>
     <li><a href="https://github.com/Grip-Hub/getgrip.dev" class="gh-link" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg> GitHub</a></li>
     <li><a href="https://github.com/Grip-Hub/getgrip.dev/blob/main/GUIDE.md" class="btn-nav" target="_blank" rel="noopener">Docs</a></li>
@@ -1129,117 +1172,230 @@ footer {
 <div class="container">
   <div class="hero-badge">
     <span class="dot"></span>
-    Retrieval engine
+    MCP Server
   </div>
-  <img src="Logo.png" alt="GRIP — Get a grip on your data" class="hero-logo">
-  <h1>Get a <span class="highlight">grip</span> on<br>your data.</h1>
-  <p class="hero-sub">A retrieval engine that learns your data's vocabulary, remembers what works, and tells the AI when it doesn't have a good answer.</p>
+  <img src="Logo.png" alt="GRIP — The memory layer for AI" class="hero-logo">
+  <h1>Give your AI<br>a <span class="highlight">memory</span>.</h1>
+  <p class="hero-sub">GRIP is an MCP server that stores, searches, and recalls knowledge across conversations. One config file. Your AI remembers everything you've ever given it.</p>
 
   <div class="hero-actions">
     <div class="hero-install" onclick="navigator.clipboard.writeText('pip install getgrip');this.querySelector('.copy-hint').textContent='Copied!'">
       <span class="prompt">$</span> pip install getgrip
       <span class="copy-hint">Click to copy</span>
     </div>
-    <a href="https://github.com/Grip-Hub/getgrip.dev/releases/latest/download/GRIP-Windows.zip" class="btn btn-outline">Download for Windows</a>
-    <a href="https://github.com/Grip-Hub/getgrip.dev/releases/latest/download/GRIP-Linux.zip" class="btn btn-outline">Download for Linux</a>
+    <a href="#mcp" class="btn btn-primary">See MCP setup</a>
     <div class="hero-docker">
-      or <a href="#demo">use Docker</a> · <a href="https://github.com/Grip-Hub/getgrip.dev/releases">all releases</a>
-    </div>
-  </div>
-
-  <div class="quick-setup">
-    <div class="quick-setup-label">Quick setup</div>
-    <div class="quick-setup-steps">
-      <div class="setup-step"><span class="step-num">1</span> Install <a href="https://ollama.com" target="_blank" rel="noopener">Ollama</a> and run <code>ollama pull llama3.2</code> for AI-powered answers.</div>
-      <div class="setup-step"><span class="step-num">2</span> Install GRIP: <code>pip install getgrip</code> — or download the Windows/Linux binary above.</div>
-      <div class="setup-step"><span class="step-num">3</span> Run <code>getgrip</code>, open <code>localhost:7878</code>, drop in your files.</div>
+      or <a href="#demo">use Docker</a> &middot; <a href="https://github.com/Grip-Hub/getgrip.dev/releases">download binary</a>
     </div>
   </div>
 
   <div class="stats-bar">
     <div class="stat">
-      <div class="stat-num">0</div>
-      <div class="stat-label">Embedding models needed</div>
+      <div class="stat-num">15</div>
+      <div class="stat-label">MCP tools</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">70/70</div>
+      <div class="stat-label">Benchmark accuracy</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">2x</div>
+      <div class="stat-label">Cost reduction</div>
     </div>
     <div class="stat">
       <div class="stat-num">0</div>
       <div class="stat-label">Vector databases needed</div>
     </div>
-    <div class="stat">
-      <div class="stat-num">0</div>
-      <div class="stat-label">API keys needed</div>
+  </div>
+</div>
+</section>
+
+<!-- ═══ MCP INTEGRATION ═══ -->
+<section id="mcp">
+<div class="container">
+  <div class="section-label">One config file</div>
+  <h2>Connect to Claude Code<br>in 30 seconds.</h2>
+  <p class="section-desc">Add GRIP to your project's MCP config. That's it. Claude gets persistent memory that compounds across every conversation.</p>
+
+  <div class="mcp-grid">
+    <div>
+      <div class="mcp-config-block">
+        <div class="mcp-config-bar">
+          <div class="dot r"></div>
+          <div class="dot y"></div>
+          <div class="dot g"></div>
+          <div class="title">.mcp.json</div>
+        </div>
+        <div class="mcp-config-body">
+<span class="brace">{</span><br>
+&nbsp;&nbsp;<span class="key">"mcpServers"</span>: <span class="brace">{</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="key">"grip"</span>: <span class="brace">{</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="key">"command"</span>: <span class="str">"grip-mcp"</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="brace">}</span><br>
+&nbsp;&nbsp;<span class="brace">}</span><br>
+<span class="brace">}</span><br>
+<br>
+<span class="comment">// That's the entire config.</span><br>
+<span class="comment">// pip install getgrip[mcp]</span><br>
+<span class="comment">// Drop this in your project root.</span><br>
+<span class="comment">// Claude now has memory.</span>
+        </div>
+      </div>
+
+      <p style="margin-top: 24px; font-size: 15px; color: var(--text-dim); line-height: 1.7;">
+        Works with Claude Code, Claude Desktop, Cursor, Windsurf, and any MCP-compatible client. Stdio transport. Zero network calls.
+      </p>
     </div>
-    <div class="stat">
-      <div class="stat-num">97.5%</div>
-      <div class="stat-label">Accuracy (3,000 queries)</div>
+
+    <div>
+      <h3 style="font-size: 20px; font-weight: 700; margin-bottom: 8px;">15 tools your AI can call</h3>
+      <p style="font-size: 14px; color: var(--text-dim); line-height: 1.7; margin-bottom: 16px;">Search documents, store memories, ingest files, tune retrieval weights, inspect result signals, manage sources. All via MCP.</p>
+
+      <div class="mcp-tools-list">
+        <div class="mcp-tool"><span class="icon">&#128269;</span> search</div>
+        <div class="mcp-tool"><span class="icon">&#128172;</span> query</div>
+        <div class="mcp-tool"><span class="icon">&#128230;</span> ingest</div>
+        <div class="mcp-tool"><span class="icon">&#128202;</span> get_stats</div>
+        <div class="mcp-tool"><span class="icon">&#129504;</span> store_memory</div>
+        <div class="mcp-tool"><span class="icon">&#128161;</span> recall_memory</div>
+        <div class="mcp-tool"><span class="icon">&#128270;</span> search_explain</div>
+        <div class="mcp-tool"><span class="icon">&#9878;&#65039;</span> set_weights</div>
+        <div class="mcp-tool"><span class="icon">&#128196;</span> list_sources</div>
+        <div class="mcp-tool"><span class="icon">&#128465;&#65039;</span> delete_source</div>
+        <div class="mcp-tool"><span class="icon">&#127919;</span> set_authority</div>
+        <div class="mcp-tool"><span class="icon">&#128203;</span> get_authority</div>
+        <div class="mcp-tool"><span class="icon">&#128221;</span> set_memory</div>
+        <div class="mcp-tool"><span class="icon">&#128214;</span> get_memory</div>
+        <div class="mcp-tool"><span class="icon">&#9878;&#65039;</span> get_weights</div>
+      </div>
     </div>
   </div>
 </div>
 </section>
 
-<!-- ═══ INDUSTRIES ═══ -->
-<section id="industries">
+<!-- ═══ THE PROBLEM ═══ -->
+<section id="proof">
 <div class="container">
-  <div class="section-label">Built for your work</div>
-  <h2>Your documents. Your industry.</h2>
-  <p class="section-desc">GRIP reads what other tools can't — scanned drawings, legal filings, research papers, service manuals. Here's how it works in practice.</p>
+  <div class="section-label">The problem with context stuffing</div>
+  <h2>Your AI doesn't remember.<br>And the workaround breaks.</h2>
+  <p class="section-desc">Most teams dump all their docs into the context window. It works at 10 files. It fails at 100. Here's what actually happens.</p>
 
-  <div class="industry-grid">
-    <a href="./engineering" class="industry-card">
-      <img src="Engineering %26 Construction.png" alt="GRIP for Engineering & Construction" loading="lazy">
-      <div class="industry-card-body">
-        <div class="industry-name">Engineering & Construction</div>
-        <p>ISO drawings, P&IDs, valve specs, welding procedures. OCR reads rotated callouts on scanned sheets. Revision tracking flags stale specs automatically.</p>
-        <ul class="industry-highlights">
-          <li>Reads scanned technical drawings</li>
-          <li>Cross-references across 1,000+ PDFs</li>
-          <li>Detects outdated revisions</li>
-        </ul>
-        <span class="industry-link">See engineering use cases &rarr;</span>
+  <div class="proof-grid">
+    <div class="proof-card" style="border-color: rgba(239, 68, 68, 0.3);">
+      <h3 style="color: var(--red);">Context stuffing</h3>
+      <p>Shove everything into the prompt. Costs scale linearly with corpus size. At 100+ documents, you hit the context limit and the model starts losing information. Cost per query: <strong style="color: var(--red);">$0.14</strong></p>
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--text-muted); padding: 16px; background: var(--surface-2); border-radius: 10px;">
+        10 docs &rarr; $0.02/query<br>
+        50 docs &rarr; $0.09/query<br>
+        100 docs &rarr; $0.14/query<br>
+        200 docs &rarr; <span style="color: var(--red);">CONTEXT LIMIT</span>
       </div>
-    </a>
+    </div>
+    <div class="proof-card" style="border-color: rgba(14, 165, 233, 0.3);">
+      <h3 style="color: var(--grip);">GRIP retrieval</h3>
+      <p>Search first, then send only relevant chunks. Cost stays flat regardless of corpus size. Works at 10 documents or 10 million. Cost per query: <strong style="color: var(--grip);">$0.07</strong></p>
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--text-muted); padding: 16px; background: var(--surface-2); border-radius: 10px;">
+        10 docs &rarr; $0.07/query<br>
+        50 docs &rarr; $0.07/query<br>
+        100 docs &rarr; $0.07/query<br>
+        10M docs &rarr; <span style="color: var(--grip);">$0.07/query</span>
+      </div>
+    </div>
+  </div>
 
-    <a href="./legal" class="industry-card">
-      <img src="Legal.png" alt="GRIP for Legal" loading="lazy">
-      <div class="industry-card-body">
-        <div class="industry-name">Legal</div>
-        <p>Discovery sets, contracts, regulatory filings. Every document read — not sampled. Every clause cited to source page. Air-gapped for client confidentiality.</p>
-        <ul class="industry-highlights">
-          <li>100% of documents reviewed</li>
-          <li>Citations to source + page</li>
-          <li>Fully offline — no cloud</li>
-        </ul>
-        <span class="industry-link">See legal use cases &rarr;</span>
-      </div>
-    </a>
+  <!-- Head-to-head benchmark results -->
+  <h3 style="margin-top: 60px; font-size: 22px; font-weight: 700; letter-spacing: -0.01em;">Head-to-head: 3 models, 70 questions, 0 failures.</h3>
+  <p style="font-size: 15px; color: var(--text-dim); line-height: 1.7; margin-top: 8px; max-width: 600px;">Same 15 questions. Same documents. Context stuffing vs GRIP retrieval. Tested on Claude Sonnet, Claude Opus, and GPT-4o.</p>
 
-    <a href="./education" class="industry-card">
-      <img src="Education %26 Research.png" alt="GRIP for Education & Research" loading="lazy">
-      <div class="industry-card-body">
-        <div class="industry-name">Education & Research</div>
-        <p>500 papers into a literature review with citations. Students synthesize without copy-paste. Researchers find contradictions across sources.</p>
-        <ul class="industry-highlights">
-          <li>BibTeX-aware citations</li>
-          <li>Cross-paper contradiction detection</li>
-          <li>Free tier fits ~500 papers</li>
-        </ul>
-        <span class="industry-link">See research use cases &rarr;</span>
+  <div class="h2h-grid">
+    <div class="h2h-card">
+      <div class="h2h-model">Claude Sonnet 4.5</div>
+      <div class="h2h-scores">
+        <div class="h2h-score">
+          <div class="num stuff">15/15</div>
+          <div class="label">Context stuffing</div>
+        </div>
+        <div class="h2h-score">
+          <div class="num grip">15/15</div>
+          <div class="label">GRIP</div>
+        </div>
       </div>
-    </a>
+      <div class="h2h-savings">2.1x cheaper with GRIP</div>
+    </div>
+    <div class="h2h-card" style="border-color: var(--grip); box-shadow: 0 0 30px var(--grip-glow);">
+      <div class="h2h-model">Claude Opus 4.6</div>
+      <div class="h2h-scores">
+        <div class="h2h-score">
+          <div class="num stuff">15/15</div>
+          <div class="label">Context stuffing</div>
+        </div>
+        <div class="h2h-score">
+          <div class="num grip">15/15</div>
+          <div class="label">GRIP</div>
+        </div>
+      </div>
+      <div class="h2h-savings">1.9x cheaper with GRIP</div>
+    </div>
+    <div class="h2h-card">
+      <div class="h2h-model">GPT-4o</div>
+      <div class="h2h-scores">
+        <div class="h2h-score">
+          <div class="num stuff">14/15</div>
+          <div class="label">Context stuffing</div>
+        </div>
+        <div class="h2h-score">
+          <div class="num grip">14/15</div>
+          <div class="label">GRIP</div>
+        </div>
+      </div>
+      <div class="h2h-savings">2.4x cheaper with GRIP</div>
+    </div>
+  </div>
 
-    <a href="./business" class="industry-card">
-      <img src="Business %26 Operations.png" alt="GRIP for Business & Operations" loading="lazy">
-      <div class="industry-card-body">
-        <div class="industry-name">Business & Operations</div>
-        <p>Service manuals, contracts, SOPs, compliance docs. New hires query 18 years of institutional knowledge instead of asking the one person who remembers.</p>
-        <ul class="industry-highlights">
-          <li>30+ document formats</li>
-          <li>Knowledge persists when people leave</li>
-          <li>No per-seat licensing</li>
-        </ul>
-        <span class="industry-link">See business use cases &rarr;</span>
-      </div>
-    </a>
+  <div style="margin-top: 32px; padding: 20px 24px; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; font-size: 14px; color: var(--text-dim); line-height: 1.7;">
+    <strong style="color: var(--text);">At 10,000 queries/day with Opus 4.6:</strong> Context stuffing costs $41,070/month. GRIP costs $21,173/month. That's <strong style="color: var(--accent);">$19,897/month saved</strong> at the same accuracy. And context stuffing breaks when you add more documents. GRIP doesn't.
+  </div>
+</div>
+</section>
+
+<!-- ═══ FEATURES ═══ -->
+<section id="features">
+<div class="container">
+  <div class="section-label">How it works</div>
+  <h2>Memory that compounds.</h2>
+  <p class="section-desc">GRIP doesn't just search. It learns your vocabulary, remembers what works, stores facts, and gets better every time you use it.</p>
+
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon">&#129504;</div>
+      <h3>Episodic Memory</h3>
+      <p>Store facts from conversations: "The client's budget is $50K." Memories are searchable alongside your documents. Your AI recalls them automatically.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">&#128279;</div>
+      <h3>Vocabulary Learning</h3>
+      <p>Search "auth" and GRIP finds "authentication", "OAuth", "middleware" — because it learned those terms co-occur in your data. No external model.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">&#128200;</div>
+      <h3>Knowledge Compounding</h3>
+      <p>Every query teaches GRIP. Results that get used are reinforced. Session 100 is dramatically better than session 1. Persistent across restarts.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">&#127919;</div>
+      <h3>Confidence Scoring</h3>
+      <p>Results scored HIGH / MEDIUM / LOW / NONE. Your AI knows when to say "I don't know" instead of hallucinating over bad results.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">&#128270;</div>
+      <h3>Explain Mode</h3>
+      <p>See exactly why each result ranked where it did. Six scoring signals exposed: density, phrase match, title boost, filename, compound terms, absence penalty.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">&#9992;&#65039;</div>
+      <h3>Fully Offline</h3>
+      <p>No cloud. No network. No telemetry. Works air-gapped. Your data stays on your machine. Always. Reads 30+ document formats including scanned PDFs.</p>
+    </div>
   </div>
 </div>
 </section>
@@ -1282,107 +1438,21 @@ footer {
 <span class="hl-dim">latency:</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl-yellow">2.1ms</span><br>
 <br>
 <span class="sep">───────────────────────────────────────────────────</span><br>
-<span class="hl-green">① [32.4]</span> <span class="output">fastapi/security/oauth2.py</span><span class="hl-dim">:370</span><br>
+<span class="hl-green">&#9312; [32.4]</span> <span class="output">fastapi/security/oauth2.py</span><span class="hl-dim">:370</span><br>
 <span class="hl-dim">&nbsp;&nbsp;class OAuth2PasswordBearer(OAuth2):</span><br>
 <span class="hl-dim">&nbsp;&nbsp;&nbsp;&nbsp;def __init__(self, tokenUrl: str, scheme_name: str ...</span><br>
 <br>
-<span class="hl-green">② [28.1]</span> <span class="output">docs/en/docs/tutorial/security/oauth2-jwt.md</span><span class="hl-dim">:1</span><br>
+<span class="hl-green">&#9313; [28.1]</span> <span class="output">docs/en/docs/tutorial/security/oauth2-jwt.md</span><span class="hl-dim">:1</span><br>
 <span class="hl-dim">&nbsp;&nbsp;OAuth2 with Password (and hashing), Bearer with JWT tokens ...</span><br>
 <br>
-<span class="hl-green">③ [24.7]</span> <span class="output">fastapi/security/http.py</span><span class="hl-dim">:42</span><br>
+<span class="hl-green">&#9314; [24.7]</span> <span class="output">fastapi/security/http.py</span><span class="hl-dim">:42</span><br>
 <span class="hl-dim">&nbsp;&nbsp;class HTTPBearer(HTTPBase): ...</span>
 </div>
 
 <div class="block">
-<span class="comment"># GRIP learned "OAuth" → "authent secur valid header" from YOUR data.</span><br>
+<span class="comment"># GRIP learned "OAuth" &rarr; "authent secur valid header" from YOUR data.</span><br>
 <span class="comment"># No embeddings. No vectors. Just learned vocabulary.</span>
 </div>
-    </div>
-  </div>
-</div>
-</section>
-
-<!-- ═══ FEATURES ═══ -->
-<section id="features">
-<div class="container">
-  <div class="section-label">How it works</div>
-  <h2>Retrieval that actually learns.</h2>
-  <p class="section-desc">Most retrieval systems are stateless. Query in, results out, everything forgotten. GRIP remembers.</p>
-
-  <div class="features-grid">
-    <div class="feature-card">
-      <div class="feature-icon">🔗</div>
-      <h3>Co-occurrence Expansion</h3>
-      <p>Search "auth" and GRIP finds "authentication", "OAuth", "middleware" — because it learned those terms co-occur in your data. No external model. No API call.</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">🧠</div>
-      <h3>Auto-Remember</h3>
-      <p>Queries that return good results are reinforced. The system boosts what works. Persistent across restarts. Gets better every time you use it.</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">💬</div>
-      <h3>Session Context</h3>
-      <p>Say "tell me more" and GRIP knows what you were just searching for. Retrieval with conversational memory. Not stateless per-query.</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">🎯</div>
-      <h3>Confidence Scoring</h3>
-      <p>Results scored HIGH / MEDIUM / LOW / NONE. The LLM knows when to say "I don't know" instead of hallucinating over bad results.</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">🔌</div>
-      <h3>Plugin Architecture</h3>
-      <p>Ingest from GitHub, local files, any source. Chunk code or prose. Query via CLI, API, or web UI. Ollama, OpenAI, and Anthropic LLM plugins built in.</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">✈️</div>
-      <h3>Fully Offline</h3>
-      <p>No cloud dependency. No network requirement. No telemetry. Works air-gapped. Your data stays on your machine. Always.</p>
-    </div>
-  </div>
-</div>
-</section>
-
-<!-- ═══ WORKS WITH YOUR STACK ═══ -->
-<section id="stack">
-<div class="container">
-  <div class="section-label">Integration</div>
-  <h2>Drop into your existing stack.</h2>
-  <p class="section-desc">GRIP is a JSON API on localhost. Swap it into any RAG pipeline in 5 minutes. No SDK. No client library. Just HTTP.</p>
-
-  <div class="stack-grid">
-    <div>
-      <div class="stack-logos">
-        <div class="logo-pill">🦜 LangChain</div>
-        <div class="logo-pill">🦙 LlamaIndex</div>
-        <div class="logo-pill">🐍 Python</div>
-        <div class="logo-pill">⬡ Node.js</div>
-        <div class="logo-pill">🐳 Docker</div>
-        <div class="logo-pill">🔧 Any HTTP client</div>
-      </div>
-      <p style="margin-top: 24px; font-size: 15px; color: var(--text-dim); line-height: 1.7;">
-        Replace Pinecone, Chroma, or any vector store. Your existing prompts, chains, and agents work unchanged — GRIP just replaces the retrieval backend.
-      </p>
-      <p style="margin-top: 12px; font-size: 15px; color: var(--text-dim); line-height: 1.7;">
-        Drop your embedding API costs. Drop your vector database bill. Get vocabulary learning and confidence scoring that vector search doesn't have.
-      </p>
-      <a href="https://github.com/Grip-Hub/getgrip.dev/blob/main/GUIDE.md#integrating-grip-into-your-application" class="btn btn-outline" style="margin-top: 24px;" target="_blank" rel="noopener">See integration examples →</a>
-    </div>
-    <div class="stack-code">
-<span class="cm"># LangChain — replace Pinecone in 12 lines</span><br>
-<span class="kw">class</span> <span class="fn">GRIPRetriever</span>(<span class="var">BaseRetriever</span>):<br>
-&nbsp;&nbsp;<span class="var">grip_url</span>: <span class="var">str</span> = <span class="str">"http://localhost:7878"</span><br>
-<br>
-&nbsp;&nbsp;<span class="kw">def</span> <span class="fn">_get_relevant_documents</span>(<span class="var">self</span>, <span class="var">query</span>):<br>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="var">r</span> = <span class="var">requests</span>.<span class="fn">post</span>(<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">f</span><span class="str">"{self.grip_url}/search"</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="var">json</span>={<span class="str">"q"</span>: <span class="var">query</span>, <span class="str">"top_k"</span>: <span class="num">5</span>}<br>
-&nbsp;&nbsp;&nbsp;&nbsp;)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">return</span> [<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="fn">Document</span>(<span class="var">page_content</span>=<span class="var">c</span>[<span class="str">"text"</span>])<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">for</span> <span class="var">c</span> <span class="kw">in</span> <span class="var">r</span>.<span class="fn">json</span>()[<span class="str">"results"</span>]<br>
-&nbsp;&nbsp;&nbsp;&nbsp;]
     </div>
   </div>
 </div>
@@ -1393,7 +1463,7 @@ footer {
 <div class="container">
   <div class="section-label">Benchmarks</div>
   <h2>Tested on real data.</h2>
-  <p class="section-desc">3,000 auto-generated queries across three domains. No hand-curation. No cherry-picking. Industry-standard BEIR evaluation on 6 datasets.</p>
+  <p class="section-desc">3,000 auto-generated queries across three domains. Industry-standard BEIR evaluation on 6 datasets. No cherry-picking.</p>
 
   <div class="bench-combined">
     <div class="bench-combined-num">0.58</div>
@@ -1423,20 +1493,87 @@ footer {
 
   <!-- ── Comparison ── -->
   <div class="compare-section">
-    <h3 style="font-size: 22px; letter-spacing: -0.01em;">What's in the box (and what's not)</h3>
+    <h3 style="font-size: 22px; letter-spacing: -0.01em;">GRIP vs the typical RAG stack</h3>
 
     <table class="compare-table">
-      <tr><th></th><th>Typical RAG Stack</th><th>GRIP</th></tr>
+      <tr><th></th><th>Context Stuffing / RAG</th><th>GRIP</th></tr>
       <tr><td>Embedding model</td><td class="no">Required (OpenAI, Cohere, etc.)</td><td class="yes">Not needed</td></tr>
       <tr><td>Vector database</td><td class="no">Required (Pinecone, Weaviate, etc.)</td><td class="yes">Not needed</td></tr>
-      <tr><td>API keys</td><td class="no">Required for embeddings + LLM</td><td class="yes">LLM only (optional)</td></tr>
+      <tr><td>Cost at scale</td><td class="no">Grows with corpus size</td><td class="yes">Flat — always ~$0.07/query</td></tr>
       <tr><td>Learns vocabulary</td><td class="no">No</td><td class="yes">Yes — from your data</td></tr>
-      <tr><td>Remembers what works</td><td class="no">No</td><td class="yes">Yes — persistent</td></tr>
-      <tr><td>Session context</td><td class="no">No (stateless)</td><td class="yes">Yes</td></tr>
+      <tr><td>Episodic memory</td><td class="no">No</td><td class="yes">store_memory / recall_memory</td></tr>
       <tr><td>Confidence scoring</td><td class="no">No</td><td class="yes">HIGH / MED / LOW / NONE</td></tr>
+      <tr><td>MCP integration</td><td class="no">Custom glue code</td><td class="yes">One config file</td></tr>
       <tr><td>Works offline</td><td class="no">Rarely</td><td class="yes">Fully air-gapped</td></tr>
-      <tr><td>Gets better with use</td><td class="no">No (static index)</td><td class="yes">Yes</td></tr>
+      <tr><td>Gets better with use</td><td class="no">No (static index)</td><td class="yes">Yes — knowledge compounds</td></tr>
     </table>
+  </div>
+</div>
+</section>
+
+<!-- ═══ INDUSTRIES ═══ -->
+<section id="industries">
+<div class="container">
+  <div class="section-label">Built for your work</div>
+  <h2>Your documents. Your industry.</h2>
+  <p class="section-desc">GRIP reads what other tools can't — scanned drawings, legal filings, research papers, service manuals. 30+ document formats.</p>
+
+  <div class="industry-grid">
+    <a href="./engineering" class="industry-card">
+      <img src="Engineering %26 Construction.png" alt="GRIP for Engineering & Construction" loading="lazy">
+      <div class="industry-card-body">
+        <div class="industry-name">Engineering & Construction</div>
+        <p>ISO drawings, P&IDs, valve specs, welding procedures. OCR reads rotated callouts on scanned sheets.</p>
+        <ul class="industry-highlights">
+          <li>Reads scanned technical drawings</li>
+          <li>Cross-references across 1,000+ PDFs</li>
+          <li>Detects outdated revisions</li>
+        </ul>
+        <span class="industry-link">See engineering use cases &rarr;</span>
+      </div>
+    </a>
+
+    <a href="./legal" class="industry-card">
+      <img src="Legal.png" alt="GRIP for Legal" loading="lazy">
+      <div class="industry-card-body">
+        <div class="industry-name">Legal</div>
+        <p>Discovery sets, contracts, regulatory filings. Every document read — not sampled. Air-gapped for client confidentiality.</p>
+        <ul class="industry-highlights">
+          <li>100% of documents reviewed</li>
+          <li>Citations to source + page</li>
+          <li>Fully offline — no cloud</li>
+        </ul>
+        <span class="industry-link">See legal use cases &rarr;</span>
+      </div>
+    </a>
+
+    <a href="./education" class="industry-card">
+      <img src="Education %26 Research.png" alt="GRIP for Education & Research" loading="lazy">
+      <div class="industry-card-body">
+        <div class="industry-name">Education & Research</div>
+        <p>500 papers into a literature review with citations. Researchers find contradictions across sources.</p>
+        <ul class="industry-highlights">
+          <li>BibTeX-aware citations</li>
+          <li>Cross-paper contradiction detection</li>
+          <li>Free tier fits ~500 papers</li>
+        </ul>
+        <span class="industry-link">See research use cases &rarr;</span>
+      </div>
+    </a>
+
+    <a href="./business" class="industry-card">
+      <img src="Business %26 Operations.png" alt="GRIP for Business & Operations" loading="lazy">
+      <div class="industry-card-body">
+        <div class="industry-name">Business & Operations</div>
+        <p>Service manuals, contracts, SOPs. New hires query 18 years of institutional knowledge on day one.</p>
+        <ul class="industry-highlights">
+          <li>30+ document formats</li>
+          <li>Knowledge persists when people leave</li>
+          <li>No per-seat licensing</li>
+        </ul>
+        <span class="industry-link">See business use cases &rarr;</span>
+      </div>
+    </a>
   </div>
 </div>
 </section>
@@ -1446,7 +1583,7 @@ footer {
 <div class="container">
   <div class="section-label">Pricing</div>
   <h2>One license. Unlimited users.</h2>
-  <p class="section-desc">No per-seat fees. No per-query metering. Chunk count is the only variable. Start free — upgrade when you need more.</p>
+  <p class="section-desc">No per-seat fees. No per-query metering. Start free — upgrade when your corpus grows.</p>
 
   <!-- Billing toggle -->
   <div class="billing-toggle">
@@ -1458,14 +1595,14 @@ footer {
     <div class="price-card">
       <div class="price-tier">Free</div>
       <div class="price-amount" style="font-size: 36px;">$0</div>
-      <div class="price-desc">Try GRIP. No credit card. No time limit.</div>
+      <div class="price-desc">Full MCP server. No credit card. No time limit.</div>
       <ul class="price-features">
         <li>10,000 chunks (~3,500 files)</li>
-        <li>All features included</li>
-        <li>Co-occurrence &amp; remember</li>
-        <li>Sessions &amp; confidence</li>
-        <li>CLI + API + Web UI</li>
-        <li>Learning resets on deletion</li>
+        <li>All 15 MCP tools</li>
+        <li>Episodic memory</li>
+        <li>Vocabulary learning</li>
+        <li>Confidence scoring</li>
+        <li>30+ document formats</li>
       </ul>
       <a href="https://pypi.org/project/getgrip/" class="btn btn-outline" style="width: 100%; text-align: center;" target="_blank" rel="noopener">pip install getgrip</a>
     </div>
@@ -1473,13 +1610,13 @@ footer {
     <div class="price-card">
       <div class="price-tier">Personal</div>
       <div class="price-amount" data-yearly="$499" data-monthly="$45">$499<span data-yearly="/year" data-monthly="/mo">/year</span></div>
-      <div class="price-desc">For individual developers and small projects.</div>
+      <div class="price-desc">For individual developers and serious projects.</div>
       <ul class="price-features">
         <li>100,000 chunks (~35K files)</li>
         <li>Unlimited users</li>
         <li>Learning persists permanently</li>
-        <li>CPU engine</li>
-        <li>CLI + API + Web UI</li>
+        <li>Source authority tuning</li>
+        <li>Custom weight profiles</li>
         <li>All plugins included</li>
       </ul>
       <a href="https://getgrip.lemonsqueezy.com/checkout/buy/3b9d60c5-52b2-4ea4-93f5-60ee1cdddbd4?enabled=1326548"
@@ -1491,13 +1628,13 @@ footer {
     <div class="price-card featured">
       <div class="price-tier">Team</div>
       <div class="price-amount" data-yearly="$1,499" data-monthly="$150">$1,499<span data-yearly="/year" data-monthly="/mo">/year</span></div>
-      <div class="price-desc">For teams working with larger document libraries.</div>
+      <div class="price-desc">For teams building AI-powered workflows.</div>
       <ul class="price-features">
         <li>500,000 chunks (~180K files)</li>
         <li>Unlimited users</li>
         <li>Learning persists permanently</li>
-        <li>CPU engine</li>
-        <li>CLI + API + Web UI</li>
+        <li>Source authority tuning</li>
+        <li>Custom weight profiles</li>
         <li>All plugins included</li>
       </ul>
       <a href="https://getgrip.lemonsqueezy.com/checkout/buy/ee07e38e-21a8-441b-adbe-5a95fa4676e3?enabled=1326492"
@@ -1514,7 +1651,7 @@ footer {
         <li>5,000,000 chunks (~1.8M files)</li>
         <li>Unlimited users</li>
         <li>Learning persists permanently</li>
-        <li>CPU engine</li>
+        <li>Source authority tuning</li>
         <li>Priority ingestion</li>
         <li>All plugins included</li>
       </ul>
@@ -1526,7 +1663,7 @@ footer {
   </div>
 
   <div class="price-note">
-    <strong>How many chunks do I need?</strong> Your text files × 3 ≈ chunks. FastAPI (2,424 files) = 4,195 chunks. Linux kernel (70K+ files) = 188K chunks. Most projects fit comfortably in the free tier. See the <a href="https://github.com/Grip-Hub/getgrip.dev/blob/main/GUIDE.md#estimating-your-chunk-count">sizing guide</a> for details.
+    <strong>How many chunks do I need?</strong> Your text files &times; 3 &asymp; chunks. FastAPI (2,424 files) = 4,195 chunks. Linux kernel (70K+ files) = 188K chunks. Most projects fit comfortably in the free tier. See the <a href="https://github.com/Grip-Hub/getgrip.dev/blob/main/GUIDE.md#estimating-your-chunk-count">sizing guide</a> for details.
   </div>
 
   <!-- Enterprise -->
@@ -1543,7 +1680,7 @@ footer {
 <div class="container">
   <div class="footer-inner">
     <div class="footer-left">
-      <strong>GRIP</strong> — Graph Retrieval with Intrinsic Patterns
+      <strong>GRIP</strong> — The memory layer for AI
     </div>
     <ul class="footer-links">
       <li><a href="https://github.com/Grip-Hub/getgrip.dev" target="_blank" rel="noopener">GitHub</a></li>
